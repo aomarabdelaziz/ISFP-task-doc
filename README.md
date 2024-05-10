@@ -17,6 +17,8 @@ This project aims to provide a comprehensive guide for setting up a development 
 - [x] `Done` - [002 - Install Multiple Versions of Java](#java-installation-guide)
 - [x] `Done` - [003 - Install Apache Tomcat 6.0.37.0 Application Server](#apache-tomcat-installation-guide)
 - [x] `Done` - [004 - Download the latest version of Maven and configure its repository.](#maven-installation-guide)
+- [x] `Done` - [005 - Install WebLogic Server 12.2.1.3.0.](#weblogic-server-installation-guide)
+
 <!-- -
 - [x] `Done` - 003 - Install Subversion (SVN)
 - [x] `Done` - 005 - Install Apache and PHP
@@ -521,7 +523,7 @@ Ensure the following prerequisites are met before running the playbook:
   - **Clear Content of maven.sh File:** It clears the content of the maven.sh file if it exists.
   - **Set Environment Variables for Maven**  It sets environment variables `M2_HOME` and updates the PATH variable to include the Maven bin directory.
   - **Configure Maven Repository**  It copies a custom Maven `settings.xml` file to the Maven installation directory to configure Maven repository settings.
-  - **MSource maven.sh Script**  It sources the `maven.sh` script to apply the environment variable changes immediately.
+  - **Source maven.sh Script**  It sources the `maven.sh` script to apply the environment variable changes immediately.
 
 
 <details>
@@ -533,9 +535,161 @@ Ensure the following prerequisites are met before running the playbook:
 
 ![Alternative Image](./images/maven//2.png)
 
-### 1. Maven has installed successfully
+### 2. Maven has installed successfully
 
 ![Alternative Image](./images/maven//3.png)
+
+</details>
+</details>
+
+
+
+## :computer: Maven Installation Guide
+
+<details>
+<summary><b>Show more details</b></summary>
+
+# Installing Maven Latest Version (3.9.6)
+
+This Ansible playbook automates the installation of Apache Maven version 3.9.6 on our local machine. It performs the following steps:
+
+# Prerequisites
+
+Ensure the following prerequisites are met before running the playbook:
+
+- **Access to Apache Maven Archive:** Ensure access to the Apache Maven archives for 3.9.6. The playbook uses direct download link to fetch this archive.
+- **Ansible:**  Ensure Ansible is installed on the local system from which the playbook will be executed.
+- **Target Host:**  The playbook assumes execution on the localhost, but it can be modified to target other hosts as needed.
+
+# Playbook Structure
+
+```yaml
+- name: Install Apache Maven and configure environment
+  hosts: localhost
+  become: yes
+  vars:
+    download_url: https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
+    download_folder: /tmp
+    maven_installation_path: "/opt/maven"
+    maven_home: "/opt/maven/apache-maven-3.9.6"
+    maven_archive: "{{download_folder}}/apache-maven-3.9.6-bin.tar.gz"
+    maven_env_file: "/etc/profile.d/maven.sh"
+
+  tasks:
+    - name: Download Maven
+      get_url:
+        url: "{{ download_url }}"
+        dest: "{{ maven_archive }}"
+
+    - name: Create maven.sh
+      file:
+        path: "{{ maven_installation_path }}"
+        state: directory
+
+    - name: Extract Maven
+      unarchive:
+        src: "{{ maven_archive }}"
+        dest: "{{ maven_installation_path }}"
+        creates: "{{ maven_home }}"
+        remote_src: yes
+
+    - name: Create maven.sh
+      file:
+        path: "{{ maven_env_file }}"
+        state: touch
+
+    - name: Clear content of maven.sh file if it exists
+      shell: echo "" > "{{ maven_env_file }}"
+
+    - name: Set environment variables for Maven
+      lineinfile:
+        dest: "{{ maven_env_file }}"
+        line: "{{ item }}"
+      with_items:
+        - "export M2_HOME={{maven_home}}"
+        - "export PATH=$PATH:$M2_HOME/bin"
+
+    - name: Configure maven repo to use local repo
+      copy:
+        src: "./maven/settings.xml"
+        dest: "{{ maven_home }}/conf/settings.xml"
+
+    - name: Source maven.sh script
+      shell: source {{ maven_env_file }}
+      args:
+        executable: /bin/bash
+```  
+
+- **hosts:**  Specifies the target host where the playbook tasks will be executed. In this case, it's set to localhost.
+- **vars:**   Defines variables used throughout the playbook, including download URL Apache maven archive, download folder location, installation paths, and environment file paths.
+- **tasks:** Contains the main tasks of the playbook
+  - **Download Maven:** It downloads the Apache Maven binary distribution from the specified URL and saves it to a temporary folder.
+  - **Create Maven Installation Directory:** It creates the directory where Apache Maven will be installed..
+  - **Extract Maven:** It creates a script file `(maven.sh)` in the /etc/profile.d directory to set up environment variables for Maven.
+  - **Clear Content of maven.sh File:** It clears the content of the maven.sh file if it exists.
+  - **Set Environment Variables for Maven**  It sets environment variables `M2_HOME` and updates the PATH variable to include the Maven bin directory.
+  - **Configure Maven Repository**  It copies a custom Maven `settings.xml` file to the Maven installation directory to configure Maven repository settings.
+  - **Source maven.sh Script**  It sources the `maven.sh` script to apply the environment variable changes immediately.
+
+
+<details>
+<summary><b>Images</b></summary>
+
+### 1. Executing ansible playbook to our vm
+
+![Alternative Image](./images/maven/1.png)
+
+![Alternative Image](./images/maven//2.png)
+
+### 2. Maven has installed successfully
+
+![Alternative Image](./images/maven//3.png)
+
+</details>
+</details>
+
+
+
+
+## :computer: WebLogic Server Installation Guide
+
+<details>
+<summary><b>Show more details</b></summary>
+
+# Installing WebLogic Server Version (12.2.1.3.0)
+
+This guide steps for installation of WebLogic Server 12.2.1.3.0 on our local machine.
+
+# Prerequisites
+
+Ensure the following prerequisites are met before installing WebLogic Server:
+
+- **Oracle Java 8 :**  Ensure Oracle Java 8  is installed on the local system.
+
+
+
+<details>
+<summary><b>Images</b></summary>
+
+### 1. Executing ansible playbook to our vm
+
+![Alternative Image](./images/weblogic/1.png)
+
+![Alternative Image](./images/weblogic//2.png)
+
+![Alternative Image](./images/weblogic//3.png)
+
+![Alternative Image](./images/weblogic//4.png)
+
+![Alternative Image](./images/weblogic//5.png)
+
+![Alternative Image](./images/weblogic//6.png)
+
+![Alternative Image](./images/weblogic//7.png)
+
+![Alternative Image](./images/weblogic//8.png)
+
+
 
 </details>
 </details>
