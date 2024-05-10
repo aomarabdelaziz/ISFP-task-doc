@@ -16,7 +16,7 @@
     java11_download_url: https://download.oracle.com/otn/java/jdk/11.0.23+7/9bd8d305c900ee4fa3e613b59e6f42de/jdk-11.0.23_linux-x64_bin.tar.gz?AuthParam=1715329784_6c64b1935760ee8cd8f61cc325d75b82
     download_folder: /tmp
     java_8_home: "/usr/local/jdk1.8.0_411"
-    java_11_home: "/usr/local//jdk-11.0.23"
+    java_11_home: "/usr/local/jdk-11.0.23"
     java_8_archive: "{{download_folder}}/jdk-8u411-linux-x64.tar.gz"
     java_11_archive: "{{download_folder}}/jdk-11.0.23_linux-x64_bin.tar.gz"
     java_env_file: "/etc/profile.d/java.sh"
@@ -42,13 +42,13 @@
     - name: Unpack archive Oracle Java 8
       unarchive:
         src: "{{java_8_archive}}"
-        dest: "/opt"
+        dest: /usr/local
         remote_src: yes
 
     - name: Unpack archive Oracle Java 11
       unarchive:
         src: "{{java_11_archive}}"
-        dest: "/opt"
+        dest: /usr/local
         remote_src: yes
 
     - name: Install Oracle Java 8
