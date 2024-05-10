@@ -248,7 +248,7 @@
   become: yes
   vars:
     docker_file_download_url: https://raw.githubusercontent.com/aomarabdelaziz/ISFP-task-doc/master/Docker/Jenkins-ansible/Dockerfile
-    download_path: /tmp/Dockerfil
+    download_path: /tmp/Dockerfile
   tasks:
     - name: Download Dockerfile.jenkins-ansible
       get_url:
