@@ -4,7 +4,7 @@
 
 ## :bulb: Table of Contents
 
-1. [Introduction](#introduction)
+1. [Introduction](#:reminder_ribbon: -introduction)
 2. [Project Progress](#project-progress)
 
 ## :reminder_ribbon: Introduction
@@ -697,6 +697,16 @@ Ensure the following prerequisites are met before installing WebLogic Server:
 ![Alternative Image](./images/weblogic//8.png)
 
 ![Alternative Image](./images/weblogic//9.png)
+
+![Alternative Image](./images/weblogic//10.png)
+
+![Alternative Image](./images/weblogic//11.png)
+
+![Alternative Image](./images/weblogic//12.png)
+
+![Alternative Image](./images/weblogic//13.png)
+
+![Alternative Image](./images/weblogic//14.png)
 
 
 
