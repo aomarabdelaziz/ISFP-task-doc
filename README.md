@@ -247,12 +247,12 @@ So I got those links from my login session; they have a limit 3 times only to be
 </details>
 
 
-## Apache Tomcat Installation Guide
+:computer: ## Apache Tomcat Installation Guide
 
 <details>
 <summary><b>Show more details</b></summary>
 
-:computer: # Installing Apache Tomcat (6.0.37)
+# Installing Apache Tomcat (6.0.37)
 
 This Ansible playbook automates the installation of Apache Tomcat version 6.0.37 on our local machine. It performs the following steps:
 
