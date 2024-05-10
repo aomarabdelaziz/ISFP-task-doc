@@ -185,7 +185,7 @@
         dest: "{{ maven_env_file }}"
         line: "{{ item }}"
       with_items:
-        - "export M2_HOME=/opt/maven"
+        - "export M2_HOME={{maven_home}}"
         - "export PATH=$PATH:$M2_HOME/bin"
 
     - name: Configure maven repo to use local repo
