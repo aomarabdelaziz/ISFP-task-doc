@@ -32,7 +32,7 @@ This project aims to provide a comprehensive guide for setting up a development 
 - [x] `Done` - 015 - Deploy App on Tomcat Docker Container -->
 
 
-## VM Installation Guide
+## :computer:  VM Installation Guide
 
 <details>
 <summary><b>Show more details</b></summary>
@@ -98,7 +98,7 @@ This project aims to provide a comprehensive guide for setting up a development 
 </details>
 </details>
 
-## Java Installation Guide
+## :computer:  Java Installation Guide
 
 <details>
 <summary><b>Show more details</b></summary>
@@ -247,7 +247,7 @@ So I got those links from my login session; they have a limit 3 times only to be
 </details>
 
 
-:computer: ## Apache Tomcat Installation Guide
+##  :computer: Apache Tomcat Installation Guide
 
 <details>
 <summary><b>Show more details</b></summary>
