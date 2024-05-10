@@ -71,6 +71,9 @@
     - name: Clear content of java.sh file if it exists
       shell: echo "" > "{{ java_env_file }}"
 
+    - name: Exports/Run java env file for make JAVA_HOME available globally
+      shell: "source {{java_env_file}}"
+
     - name: Set environment variables for JAVA
       lineinfile:
         dest: "{{ java_env_file }}"
