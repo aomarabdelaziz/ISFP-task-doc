@@ -56,18 +56,40 @@ This project aims to provide a comprehensive guide for setting up a development 
     - Note: If you are using a different operating system, make sure to download the version suitable for your OS.
 
 
-1. Add new Virtual machine and and proper OS ISO
+### 1. Adding a new virtual machine depends on our proper OS ISO (CentOS 7.9)
+
 ![Alternative Image](./images/vm/1.png)
 
-2. Adjust the virtual machine's hardware (CPU,Ram) that fits your desire
+### 2. Adjusting our virtual machine's hardware (CPU, RAM) to fit our desires
 
 ![Alternative Image](./images/vm/2.png)
+
+### 3. Adjusting our virtual machine's hard disk that fit our desires
+
 ![Alternative Image](./images/vm/3.png)
+
+### 4. After finishing our configuration above, that is the summary table of our configuration that we have made
+
 ![Alternative Image](./images/vm/4.png)
+
+### 5. Let's run our centos-isfp VM , I prompted to mount the ISO file
+
 ![Alternative Image](./images/vm/5.png)
+
+### 6. At the boot menu, we chose to install CentOS 7.
+
 ![Alternative Image](./images/vm/6.png)
+
+### 7. At software selection, I chose a CentOS server with a GUI
+
 ![Alternative Image](./images/vm/7.png)
+
+### 8. Our Installation is now completed
+
 ![Alternative Image](./images/vm/8.png)
+
+### 9. Installation Progress..
+
 ![Alternative Image](./images/vm/9.png)
 </details>
 
