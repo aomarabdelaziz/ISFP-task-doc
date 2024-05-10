@@ -36,7 +36,9 @@ This project aims to provide a comprehensive guide for setting up a development 
 
 
 ## VM Installation Guide
-<details><summary><b>Show instructions</b></summary>
+
+<details>
+<summary><b>Show instructions</b></summary>
 
 1. Download the CentOS 7.9 ISO Image From centos.interhost
 
@@ -45,10 +47,13 @@ This project aims to provide a comprehensive guide for setting up a development 
     ```
 
 2. Install Oracle VM Box From Oracle Download Page
+    - For Windows users, download the appropriate Windows installer from the Oracle Download Page:
 
-    ```sh
-    https://www.oracle.com/eg/virtualization/technologies/vm/downloads/virtualbox-downloads.html
-    ```
+        ```sh
+        https://www.oracle.com/eg/virtualization/technologies/vm/downloads/virtualbox-downloads.html
+        ```
 
+    - Note: If you are using a different operating system, make sure to download the version suitable for your OS.
 
 </details>
+
