@@ -252,7 +252,7 @@
   tasks:
     - name: Download Dockerfile.jenkins-ansible
       get_url:
-        url: "https://raw.githubusercontent.com/aomarabdelaziz/ISFP-task-doc/master/Docker/Dockerfile"
+        url: "{{docker_file_download_url}}"
         dest: "{{ download_path }}"
 
     - name: Build Docker image
