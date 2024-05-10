@@ -106,8 +106,8 @@ This project aims to provide a comprehensive guide for setting up a development 
 
 1. Install Multiple Versions of Java and Set Default (Java 8)
 
-    ```sh
-    This Ansible playbook automates the installation of multiple versions of Java on a target system and sets the earlier version (Java 8) as the default. It provides flexibility for developers who may require different Java versions for their projects.
-    ```
+
+    `This Ansible playbook automates the installation of multiple versions of Java on a target system and sets the earlier version (Java 8) as the default. It provides flexibility for developers who may require different Java versions for their projects.`
+
 
 </details>
