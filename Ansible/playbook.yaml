@@ -247,18 +247,18 @@
   become: yes
   vars:
     docker_file_download_url: https://raw.githubusercontent.com/aomarabdelaziz/ISFP-task-doc/master/Docker/Dockerfile.jenkins-ansible
-    download_path: /tmp
+    download_path: /tmp/
   tasks:
     - name: Download Dockerfile.jenkins-ansible
       get_url:
         url: "https://raw.githubusercontent.com/aomarabdelaziz/ISFP-task-doc/master/Docker/Dockerfile.jenkins-ansible"
-        dest: "{{download_path}}Dockerfile.jenkins-ansible"
+        dest: "{{ download_path }}Dockerfile.jenkins-ansible"
     - name: Build Docker image
       docker_image:
         name: jenkins-ansible
         tag: latest
         build:
-          path: "{{download_path}}"
+          path: "{{ download_path }}"
           dockerfile: Dockerfile.jenkins-ansible
     - name: Run Jenkins container
       docker_container:
