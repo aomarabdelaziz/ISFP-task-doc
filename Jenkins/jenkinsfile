@@ -1,0 +1,43 @@
+pipeline {
+    agent any
+    environment {
+        DOCKER_HUB_REPO = "abdelazizomar" // Replace with your Docker Hub username
+        DOCKER_IMAGE_NAME = "tomcat-webapp" // Replace with your Docker image name
+        COMMIT_SHA = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
+    }
+    //  stage('Launch another downstream ansible pipeline for server configuration') {
+    //         steps {
+    //             script {
+    //                   build job: 'ansible-pipeline'
+    //             }
+    //         }
+    //     }
+    stages {
+        stage('Building Stage') {
+            steps {
+                script {               
+                    app = docker.build("${DOCKER_HUB_REPO}/${DOCKER_IMAGE_NAME}:${COMMIT_SHA}", ".")    
+                }
+            }
+        }
+        // stage('Pushing Docker Image') {
+        //     steps {
+        //         script {
+        //             docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+        //                app.push()
+        //             }
+        //             sh 'docker run --network=host ${DOCKER_HUB_REPO}/${DOCKER_IMAGE_NAME}:latest'
+        //         }
+        //     }
+        // }
+        stage('Run tomcat-webapp Application') {
+            steps {
+                script {
+                    sh 'docker rm -f webapp'
+                    sh 'docker run -d --network=host --name=webapp ${DOCKER_HUB_REPO}/${DOCKER_IMAGE_NAME}:${COMMIT_SHA}'
+                }
+            }
+        }
+        
+    }
+}

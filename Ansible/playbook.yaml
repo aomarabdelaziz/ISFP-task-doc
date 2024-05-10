@@ -70,13 +70,14 @@
     - name: Clear content of java.sh file if it exists
       shell: echo "" > "{{ java_env_file }}"
 
-- name: Set environment variables for JAVA
-  lineinfile:
-    dest: "{{ java_env_file }}"
-    line: "{{item }}"
-  with_items:
-    - "export JAVA_HOME={{java_8_home}}"
-    - "export PATH=$PATH:$JAVA_HOME/bin"
+    - name: Set environment variables for JAVA
+      lineinfile:
+        dest: "{{ java_env_file }}"
+        line: "{{item }}"
+      with_items:
+        - "export JAVA_HOME={{java_8_home}}"
+        - "export PATH=$PATH:$JAVA_HOME/bin"
+
     - name: Source java.sh script
       shell: source {{java_env_file}}
       args:
