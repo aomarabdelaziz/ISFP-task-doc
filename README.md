@@ -4,7 +4,7 @@
 
 ## :bulb: Table of Contents
 
-1. [Introduction](#:reminder_ribbon: -introduction)
+1. [Introduction](#introduction)
 2. [Project Progress](#project-progress)
 
 ## :reminder_ribbon: Introduction
