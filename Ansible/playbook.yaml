@@ -260,10 +260,16 @@
     - name: Run Jenkins container
       shell: "docker run --name jenkins --network=host -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -d -v $(which docker):$(which docker) jenkins-ansible"
 
+    - name: Pause for 10 seconds before getting initial admin password
+      pause:
+        seconds: 10
+
     - name: Get initial admin password
       shell: docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
       register: initial_admin_password
+      ignore_errors: yes
 
     - name: Print the secret
       debug:
         msg: "The initial admin password is {{ initial_admin_password.stdout }}"
+      when: initial_admin_password.rc == 0 # Only print if the command succeeds
