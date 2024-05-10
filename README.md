@@ -421,7 +421,7 @@ Ensure the following prerequisites are met before running the playbook:
 
 ### 4. Trying to login into manager page
 
-![Alternative Image](./images/tomat//6.png)
+![Alternative Image](./images/tomcat//6.png)
 
 ### 5. I logged in successfully
 
