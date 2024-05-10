@@ -346,6 +346,47 @@ Ensure the following prerequisites are met before running the playbook:
   - **Modify Tomcat Shutdown Port:**  It modifies the configuration file to change the shutdown port from `8005` to `8006`.
   - **Modify Tomcat Connector Port for AJP:**  It modifies the configuration file to change the port used for the AJP connector from `8009` to `8010`.
   - **Create tomcat-users.xml File:**   It creates a tomcat-users.xml file in the Tomcat configuration directory to define user roles and access privileges.
+
+    ```diff
+    <?xml version='1.0' encoding='utf-8'?>
+    <!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+    -->
+    <tomcat-users>
+    <!--
+    NOTE:  By default, no user is included in the "manager-gui" role required
+    to operate the "/manager/html" web application.  If you wish to use this app,
+    you must define such a user - the username and password are arbitrary.
+    -->
+    <!--
+    NOTE:  The sample user and role entries below are wrapped in a comment
+    and thus are ignored when reading this file. Do not forget to remove
+    <!.. ..> that surrounds them.
+    -->
+    <!--
+    <role rolename="tomcat"/>
+    <role rolename="role1"/>
+    <user username="tomcat" password="tomcat" roles="manager-gui,admin-gui"/>
+    <user username="both" password="tomcat" roles="tomcat,role1"/>
+    <user username="role1" password="tomcat" roles="role1"/>
+    -->
+    + <user username="tomcat" password="tomcat" roles="manager-gui,admin-gui"/>
+    </tomcat-users>
+    ```
+
   - **Start Tomcat Service:**  It starts the Tomcat service using the `startup.sh` script.
   - **Check Tomcat Service Status:** It verifies whether the Tomcat service is running by searching for the process using ps command.
   - **Debug Message:** It provides a debug message indicating whether Tomcat is running or not.
