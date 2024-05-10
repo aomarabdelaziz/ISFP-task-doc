@@ -276,5 +276,6 @@
         command: cat /var/jenkins_home/secrets/initialAdminPassword
       register: initial_admin_password
 
-    - debug:
+    - name: Print the secret
+      debug:
         msg: "The initial admin password is {{ initial_admin_password.stdout }}"
