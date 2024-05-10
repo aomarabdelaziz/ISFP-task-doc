@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Test Ansible') {
             steps {
-                 ansiblePlaybook become: true, becomeUser: 'root', colorized: true, disableHostKeyChecking: true, installation: 'Ansible', inventory: 'Ansible/inventory', playbook: 'Ansible/playbook.yaml', vaultTmpPath: ''
+                 ansiblePlaybook become: true, becomeUser: 'isfp', colorized: true, disableHostKeyChecking: true, installation: 'Ansible', inventory: 'Ansible/inventory', playbook: 'Ansible/playbook.yaml', vaultTmpPath: ''
             }
         }
     }
