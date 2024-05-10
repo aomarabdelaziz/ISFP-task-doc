@@ -412,6 +412,7 @@ Ensure the following prerequisites are met before running the playbook:
 ![Alternative Image](./images/tomcat//4.png)
 
 ### 3. Accessing our apache tomcat from my computer which host the VM
+
 > [!IMPORTANT]  
 > The binds system has changed. Instead of doing the name of the key, there are scancodes assigned per key.
 
