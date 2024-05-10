@@ -254,6 +254,7 @@ So I got those links from my login session; they have a limit 3 times only to be
 
 ### 5. update-alternatives --config java --> shows us the default Java version, which is Oracle 8, that we have installed
 
+2. Add the `size-limit` section and the `size` script to your `package.json`:
 
     ```diff
     + "size-limit": [
@@ -267,7 +268,5 @@ So I got those links from my login session; they have a limit 3 times only to be
         "test": "vitest && eslint ."
       }
     ```
-
-    
 
 </details>
