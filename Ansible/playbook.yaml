@@ -147,49 +147,55 @@
 #     - name: Debug message Tomcat status
 #       debug:
 #         msg: "Tomcat is {{ 'running' if tomcat_status.rc == 0 else 'not running' }}"
-# - name: Install Apache Maven and configure environment
-#   hosts: localhost
-#   become: yes
-#   tasks:
-#     - name: Download Maven
-#       get_url:
-#         url: "https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz"
-#         dest: /tmp/apache-maven-3.9.6-bin.tar.gz
 
-#     - name: Extract Maven
-#       unarchive:
-#         src: /tmp/apache-maven-3.9.6-bin.tar.gz
-#         dest: /opt
-#         remote_src: yes
-#         creates: /opt/apache-maven-3.9.6
+- name: Install Apache Maven and configure environment
+  hosts: localhost
+  become: yes
+  vars:
+    download_url: https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
+    download_folder: /tmp
+    maven_installation_path: "/opt/maven"
+    maven_home: "/opt/maven/apache-maven-3.9.6"
+    maven_archive: "{{download_folder}}/apache-maven-6.0.37.tar.gz"
+    maven_env_file: "/etc/profile.d/maven.sh"
 
-#     - name: Create maven.sh
-#       file:
-#         path: /etc/profile.d/maven.sh
-#         state: touch
+  tasks:
+    - name: Download Maven
+      get_url:
+        url: "{{download_url}}"
+        dest: "{{maven_archive}}"
 
-#     - name: Create symbolic link
-#       file:
-#         src: /opt/apache-maven-3.9.6
-#         dest: /opt/maven
-#         state: link
+    - name: Extract Maven
+      unarchive:
+        src: "{{maven_archive}}"
+        dest: "{{maven_installation_path}}"
+        creates: "{{maven_home}}"
+        remote_src: yes
 
-#     - name: Set environment variables for Maven
-#       lineinfile:
-#         dest: /etc/profile.d/maven.sh
-#         line: |
-#           export M2_HOME=/opt/maven
-#           export PATH=$PATH:$M2_HOME/bin
+    - name: Create maven.sh
+      file:
+        path: "{{maven_env_file}}"
+        state: touch
 
-#     - name: Configre maven repo to use local repo
-#       copy:
-#         src: "./maven/settings.xml"
-#         dest: /opt/maven/conf/settings.xml
+    - name: Clear content of maven.sh file if it exists
+      shell: echo "" > "{{ maven_env_file }}"
 
-#     - name: Source maven.sh script
-#       shell: source /etc/profile.d/maven.sh
-#       args:
-#         executable: /bin/bash
+    - name: Set environment variables for Maven
+      lineinfile:
+        dest: "{{ maven_env_file }}"
+        line: |
+          export M2_HOME=/opt/maven
+          export PATH=$PATH:$M2_HOME/bin
+
+    - name: Configre maven repo to use local repo
+      copy:
+        src: "./maven/settings.xml"
+        dest: "{{maven_home}}/conf/settings.xml
+
+    - name: Source maven.sh script
+      shell: "source {{ maven_env_file }}"
+      args:
+        executable: /bin/bash
 
 # - name: Install Apache and PHP
 #   hosts: localhost

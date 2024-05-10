@@ -16,9 +16,9 @@ This project aims to provide a comprehensive guide for setting up a development 
 - [x] `Done` - [001 - Install CentOS 7.9 as VM](#vm-installation-guide)
 - [x] `Done` - [002 - Install Multiple Versions of Java](#java-installation-guide)
 - [x] `Done` - [003 - Install Apache Tomcat 6.0.37.0 Application Server](#apache-tomcat-installation-guide)
-<!-- - [x] `Done` - 002 - Install Apache Tomcat 6.0.37.0 Application Server
+- [x] `Done` - [004 - Download the latest version of Maven and configure its repository.](#maven-installation-guide)
+<!-- -
 - [x] `Done` - 003 - Install Subversion (SVN)
-- [x] `Done` - 004 - Download the latest version of Maven and configure its repository.
 - [x] `Done` - 005 - Install Apache and PHP
 - [x] `Done` - 006 - Create File Comparison Script
 - [ ] `Progress` - 007 - Install Payara Server 5.191 #badassfish (build 94)
@@ -395,6 +395,189 @@ Ensure the following prerequisites are met before running the playbook:
 
   
 
+
+<details>
+<summary><b>Images</b></summary>
+
+### 1. Executing ansible playbook to our vm
+
+![Alternative Image](./images/tomcat/1.png)
+
+![Alternative Image](./images/tomcat//2.png)
+
+![Alternative Image](./images/tomcat//3.png)
+
+### 2. Accessing our apache tomcat from our VM
+
+![Alternative Image](./images/tomcat//4.png)
+
+### 3. Accessing our apache tomcat from my computer which host the VM
+
+![Alternative Image](./images/tomcat//5.png)
+
+> Assuming that our virtual machine (VM) is accessible to the public, I wanted to emulate the process, so I used the command `sudo firewall-cmd --zone=public --add-port=8088/tcp to open port 8080 within our VM. I also adjusted the VM network settings from our oracle VMbox to port forward from my host machine to the VM (guest) port.
+
+![Alternative Image](./images/tomcat//9.png)
+
+### 4. Trying to login into manager page
+
+![Alternative Image](./images/tomcat//6.png)
+
+### 5. I logged in successfully
+
+![Alternative Image](./images/tomcat//7.png)
+
+### 6. Apache tomcat server status
+
+![Alternative Image](./images/tomcat//8.png)
+
+</details>
+</details>
+
+
+
+## :computer: Maven Installation Guide
+
+<details>
+<summary><b>Show more details</b></summary>
+
+# Installing Maven Latest Version (3.9.6)
+
+This Ansible playbook automates the installation of Apache Tomcat version 6.0.37 on our local machine. It performs the following steps:
+
+# Prerequisites
+
+Ensure the following prerequisites are met before running the playbook:
+
+- **Access to Apache Tomcat Archive:** Ensure access to the Apache Tomcat archives for 6.0.37. The playbook uses direct download link to fetch this archive.
+- **Ansible:**  Ensure Ansible is installed on the local system from which the playbook will be executed.
+- **Target Host:**  The playbook assumes execution on the localhost, but it can be modified to target other hosts as needed.
+
+# Playbook Structure
+
+```yaml
+- name: Install Apache Tomcat 6.0.37
+  hosts: localhost
+  become: yes
+  vars:
+    download_url: https://archive.apache.org/dist/tomcat/tomcat-6/v6.0.37/bin/apache-tomcat-6.0.37.tar.gz
+    download_folder: /tmp
+    tomcat_installation_path: "/opt/tomcat"
+    tomcat_home: "/opt/tomcat/apache-tomcat-6.0.37"
+    tomcat_archive: "{{download_folder}}/apache-tomcat-6.0.37.tar.gz"
+  tasks:
+    - name: Create tomcat directory
+      file:
+        path: "{{tomcat_installation_path}}"
+        state: directory
+
+    - name: Download Apache Tomcat
+      get_url:
+        url: "{{download_url}}"
+        dest: "{{tomcat_archive}}"
+
+    - name: Extract Apache Tomcat
+      unarchive:
+        src: "{{tomcat_archive}}"
+        dest: "{{tomcat_installation_path}}"
+        remote_src: yes
+
+    - name: Change permissions of startup.sh
+      file:
+        path: "{{tomcat_home}}/bin/startup.sh"
+        mode: +x
+
+    - name: Change Tomcat connector port to 8088
+      replace:
+        path: "{{tomcat_home}}/conf/server.xml"
+        regexp: 'port="8080"'
+        replace: 'port="8088"'
+
+    - name: Change Tomcat Shutdown Port 8005 > 8006
+      replace:
+        path: "{{tomcat_home}}/conf/server.xml"
+        regexp: 'port="8005"'
+        replace: 'port="8006"'
+
+    - name: Change Tomcat Connector Port for AJP 8009 > 8010
+      replace:
+        path: "{{tomcat_home}}/conf/server.xml"
+        regexp: 'port="8009"'
+        replace: 'port="8010"'
+
+    - name: Create tomcat-users.xml file
+      template:
+        src: "./tomcat/tomcat-users.xml"
+        dest: "{{tomcat_home}}/conf/tomcat-users.xml"
+
+    - name: Start Tomcat service using startup.sh
+      command: sh "{{tomcat_home}}/bin/startup.sh"
+
+    - name: Check if Tomcat service is running
+      shell: ps aux | grep '[c]atalina.home=/opt/tomcat'
+      register: tomcat_status
+      ignore_errors: yes
+
+    - name: Debug message Tomcat status
+      debug:
+        msg: "Tomcat is {{ 'running' if tomcat_status.rc == 0 else 'not running' }}"
+```  
+
+- **hosts:**  Specifies the target host where the playbook tasks will be executed. In this case, it's set to localhost.
+- **vars:**   Defines variables used throughout the playbook, including download URL Apache tomcat archive, download folder location, installation paths, and environment file paths.
+- **tasks:** Contains the main tasks of the playbook
+  - **Create Tomcat Directory:** It creates the directory where Apache Tomcat will be installed.
+  - **Download Apache Tomcat Archive:** It downloads the Apache Tomcat archive distribution from the provided URL and saves it to a specified folder.
+  - **Extract Apache Tomcat:** It extracts the downloaded Apache Tomcat archive to the installation directory.
+  - **Change Permissions of startup.sh:**  It changes the permissions of the Tomcat startup script to make it executable.
+  - **Change Tomcat Connector Port** It modifies the configuration file to change the default connector port from `8080` to `8088`.
+  - **Modify Tomcat Shutdown Port:**  It modifies the configuration file to change the shutdown port from `8005` to `8006`.
+  - **Modify Tomcat Connector Port for AJP:**  It modifies the configuration file to change the port used for the AJP connector from `8009` to `8010`.
+  - **Create tomcat-users.xml File:**   It creates a tomcat-users.xml file in the Tomcat configuration directory to define user roles and access privileges.
+
+    ```diff
+    <?xml version='1.0' encoding='utf-8'?>
+    <!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+    -->
+    <tomcat-users>
+    <!--
+    NOTE:  By default, no user is included in the "manager-gui" role required
+    to operate the "/manager/html" web application.  If you wish to use this app,
+    you must define such a user - the username and password are arbitrary.
+    -->
+    <!--
+    NOTE:  The sample user and role entries below are wrapped in a comment
+    and thus are ignored when reading this file. Do not forget to remove
+    <!.. ..> that surrounds them.
+    -->
+    <!--
+    <role rolename="tomcat"/>
+    <role rolename="role1"/>
+    <user username="tomcat" password="tomcat" roles="manager-gui,admin-gui"/>
+    <user username="both" password="tomcat" roles="tomcat,role1"/>
+    <user username="role1" password="tomcat" roles="role1"/>
+    -->
+    + <user username="tomcat" password="tomcat" roles="manager-gui,admin-gui"/>
+    </tomcat-users>
+    ```
+
+  - **Start Tomcat Service:**  It starts the Tomcat service using the `startup.sh` script.
+  - **Check Tomcat Service Status:** It verifies whether the Tomcat service is running by searching for the process using ps command.
+  - **Debug Message:** It provides a debug message indicating whether Tomcat is running or not.
 
 <details>
 <summary><b>Images</b></summary>
