@@ -56,11 +56,11 @@
       shell: 'ls "/usr/bin/java"'
 
     - name: Install Oracle Java 8
-      command: 'update-alternatives --install "/usr/bin/java" "java" "{{java_8_home}}/jre/bin/java" 1'
+      shell: 'update-alternatives --install "/usr/bin/java" "java" "{{java_8_home}}/jre/bin/java" 1'
     - name: Install Oracle Java 11
-      command: 'update-alternatives --install "/usr/bin/java" "java" "{{java_11_home}}/jre/bin/java" 1'
+      shell: 'update-alternatives --install "/usr/bin/java" "java" "{{java_11_home}}/jre/bin/java" 1'
     - name: Set Oracle Java 8 as default
-      command: "update-alternatives --set java {{java_8_home}}/jre/bin/java"
+      shell: "update-alternatives --set java {{java_8_home}}/jre/bin/java"
 
     - name: Create /etc/profile.d directory
       file:
