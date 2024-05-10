@@ -1,6 +1,6 @@
 # ISFP DevOps TASK README
 
-![93%](https://progress-bar.dev/90/?title=Done)
+![93%](https://progress-bar.dev/93/?title=Done)
 
 ## Table of Contents
 
