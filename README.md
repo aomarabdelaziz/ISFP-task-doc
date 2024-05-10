@@ -11,7 +11,7 @@
 
 This project aims to provide a comprehensive guide for setting up a development environment on a CentOS 7.9 virtual machine (VM). The environment includes various components such as Apache Tomcat, Subversion (SVN), Maven, Apache, PHP, Payara Server, multiple versions of Java, WebLogic Server, Jenkins, Docker, and Ansible.
 
-## Project Progress
+## :progress: Project Progress
 
 - [x] `Done` - [001 - Install CentOS 7.9 as VM](#vm-installation-guide)
 - [x] `Done` - [002 - Install Multiple Versions of Java](#java-installation-guide)
