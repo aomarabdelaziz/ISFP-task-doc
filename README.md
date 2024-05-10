@@ -91,5 +91,9 @@ This project aims to provide a comprehensive guide for setting up a development 
 ### 9. Installation Progress..
 
 ![Alternative Image](./images/vm/9.png)
+
+### 10. CentOs is now successfully installed and ready to use
+
+![Alternative Image](./images/vm/10.png)
 </details>
 
