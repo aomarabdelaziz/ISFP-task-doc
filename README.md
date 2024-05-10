@@ -414,7 +414,7 @@ Ensure the following prerequisites are met before running the playbook:
 ### 3. Accessing our apache tomcat from my computer which host the VM
 
 > [!NOTE]  
-> The crosshair is designed for a 1920x1080 resolution; in other case, the experience may vary.
+> I supposed that our VM is publicly accessiable and I want to simulate the process so I was open the port 8080 into our vm by using this command `sudo firewall-cmd --zone=public --add-port=8088/tcp`
 
 ![Alternative Image](./images/tomcat//5.png)
 
