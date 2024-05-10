@@ -2,7 +2,7 @@
 
 ![93%](https://progress-bar.dev/93/?title=Done)
 
-## :bulb-about: Table of Contents
+## :about: Table of Contents
 
 1. [Introduction](#introduction)
 2. [Project Progress](#project-progress)
