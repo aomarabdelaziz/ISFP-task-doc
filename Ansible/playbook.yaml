@@ -165,6 +165,11 @@
         url: "{{ download_url }}"
         dest: "{{ maven_archive }}"
 
+    - name: Create maven.sh
+      file:
+        path: "{{ maven_installation_path }}"
+        state: directory
+
     - name: Extract Maven
       unarchive:
         src: "{{ maven_archive }}"
