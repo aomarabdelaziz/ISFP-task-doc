@@ -193,7 +193,7 @@
         dest: "{{maven_home}}/conf/settings.xml
 
     - name: Source maven.sh script
-      shell: "source {{ maven_env_file }}"
+      shell: source {{ maven_env_file }}
       args:
         executable: /bin/bash
 
