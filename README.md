@@ -20,6 +20,7 @@ This project aims to provide a comprehensive guide for setting up a development 
 - [x] `Done` - [005 - Install WebLogic Server 12.2.1.3.0](#weblogic-server-installation-guide)
 - [x] `Done` - [006 - Install PHP, Apache and Docker](#php-apache-docker-installation-guide)
 - [x] `Done` - [007 - Create shell or python script to check and compare between two files](#compare-script-guide)
+- [x] `Done` - [008 - Create Jenkins server based on docker image](#jenkins-image-installation-guide)
 
 <!-- -
 - [x] `Done` - 003 - Install Subversion (SVN)
@@ -744,4 +745,58 @@ compare_lines_src_dest(lines_dict, "output.txt")
 
 2. `compare_lines_src_dest(lines_dict, output_file)`: This function compares the lines from a source file (source.txt) with the lines loaded into the dictionary using the load_lines_into_dict function. For each line in the source file,` it checks if the line exists in the dictionary`. If it does, `it writes the line along with the file names where it was found into an output file (output.txt)`.
 
+</details>
+
+
+## :computer: Jenkins Image Installation Guide
+
+<details>
+<summary><b>Show more details</b></summary>
+
+# Create Jenkins server based on docker image
+
+This Dockerfile provides instructions for building a custom Jenkins image with Ansible support. Here's a breakdown of the Dockerfile:
+
+# Prerequisites
+
+Ensure the following prerequisites are met before running the script:
+
+- **Docker:**  Ensure Docker is installed on the local system from which the Dockerfile will be executed.
+
+# Dockerfile Structure
+
+```yaml
+# Use the official Jenkins image as base
+FROM jenkins/jenkins:latest
+
+# Switch to root user to install Ansible and dependencies
+USER root
+
+# Install dependencies for Ansible
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+    software-properties-common \
+    python3-pip \
+    python3-venv \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create a virtual environment for Ansible
+RUN python3 -m venv /opt/ansible
+
+# Activate the virtual environment and install Ansible
+RUN /opt/ansible/bin/pip install ansible
+
+# Switch back to the Jenkins user
+USER jenkins
+
+
+```  
+
+1. `Base Image`: It starts with the official Jenkins image (jenkins/jenkins:latest) as the base image.
+2. `Switch to Root User`: It switches to the root user to install Ansible and its dependencies.
+3. `Install Dependencies`: It updates the package repositories and installs necessary dependencies for Ansible, including software-properties-common, python3-pip, and python3-venv.
+4. `Create Virtual Environment for Ansible`: It creates a virtual environment for Ansible at /opt/ansible.
+5. `Install Ansible`: It activates the virtual environment and installs Ansible within it using pip.
+6. `Switch Back to Jenkins User`: Finally, it switches back to the Jenkins user to ensure that Jenkins runs with the appropriate permissions.
 </details>
