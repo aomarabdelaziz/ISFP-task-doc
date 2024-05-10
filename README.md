@@ -35,7 +35,7 @@ This project aims to provide a comprehensive guide for setting up a development 
 ## VM Installation Guide
 
 <details>
-<summary><ئb>Show more details</ئb></summary>
+<summary><b>Show more details</b></summary>
 
 1. Download the CentOS 7.9 ISO Image From centos.interhost
 
