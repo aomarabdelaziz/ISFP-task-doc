@@ -7,102 +7,140 @@
       yum:
         name: "*"
         state: latest
-
-- name: Install multiple versions of Java and set earlier one is the default (8)
-  hosts: localhost
-  become: yes
-  vars:
-    java8_download_url: https://download.oracle.com/otn/java/jdk/8u411-b09/43d62d619be4e416215729597d70b8ac/jdk-8u411-linux-x64.tar.gz?AuthParam=1715329607_1d701ac9a940bea9f0e903935ba46eb1
-    java11_download_url: https://download.oracle.com/otn/java/jdk/11.0.23+7/9bd8d305c900ee4fa3e613b59e6f42de/jdk-11.0.23_linux-x64_bin.tar.gz?AuthParam=1715329784_6c64b1935760ee8cd8f61cc325d75b82
-    download_folder: /tmp
-    java_8_home: "/usr/local/jdk1.8.0_411"
-    java_11_home: "/usr/local/jdk-11.0.23"
-    java_8_archive: "{{download_folder}}/jdk-8u411-linux-x64.tar.gz"
-    java_11_archive: "{{download_folder}}/jdk-11.0.23_linux-x64_bin.tar.gz"
-    java_env_file: "/etc/profile.d/java.sh"
-  tasks:
-    - name: Check if Oracle Java 8 archive exists
-      stat:
-        path: "{{ java_8_archive }}"
-      register: java_8_archive_stat
-
-    - name: Check if Oracle Java 11 archive exists
-      stat:
-        path: "{{ java_11_archive }}"
-      register: java_11_archive_stat
-
-    - name: Download Oracle Java 8
-      command: "curl -v -L -b oraclelicense=accept-securebackup-cookie -o {{java_8_archive}}  {{java8_download_url}}"
-      when: java_8_archive_stat.stat.exists == False
-
-    - name: Download Oracle Java 11
-      command: "curl -v -L -b oraclelicense=accept-securebackup-cookie -o {{java_11_archive}}  {{java11_download_url}}"
-      when: java_11_archive_stat.stat.exists == False
-
-    - name: Unpack archive Oracle Java 8
-      unarchive:
-        src: "{{java_8_archive}}"
-        dest: /usr/local
-        remote_src: yes
-
-    - name: Unpack archive Oracle Java 11
-      unarchive:
-        src: "{{java_11_archive}}"
-        dest: /usr/local
-        remote_src: yes
-
-    - name: Install Oracle Java 8
-      command: 'update-alternatives --install "/usr/bin/java" "java" "{{java_8_home}}/jre/bin/java" 1'
-    - name: Install Oracle Java 11
-      command: 'update-alternatives --install "/usr/bin/java" "java" "{{java_11_home}}/jre/bin/java" 1'
-    - name: Set Oracle Java 8 as default
-      command: "update-alternatives --set java {{java_8_home}}/jre/bin/java"
-
-    - name: Create /etc/profile.d directory
-      file:
-        path: /etc/profile.d
-        state: directory
-
-    - name: Create java.sh file
-      file:
-        path: "{{java_env_file}}"
-        state: touch
-
-    - name: Clear content of java.sh file if it exists
-      shell: echo "" > "{{ java_env_file }}"
-
-    - name: Set environment variables for JAVA
-      lineinfile:
-        dest: "{{ java_env_file }}"
-        line: |
-          export JAVA_HOME={{java_8_home}}
-          export PATH=$PATH:$JAVA_HOME/bin
-
-    - name: Source java.sh script
-      shell: source {{java_env_file}}
-      args:
-        executable: /bin/bash
-# - name: Install multiple versions of Java and set default
+# - name: Install multiple versions of Java and set earlier one is the default (8)
 #   hosts: localhost
 #   become: yes
+#   vars:
+#     java8_download_url: https://download.oracle.com/otn/java/jdk/8u411-b09/43d62d619be4e416215729597d70b8ac/jdk-8u411-linux-x64.tar.gz?AuthParam=1715329607_1d701ac9a940bea9f0e903935ba46eb1
+#     java11_download_url: https://download.oracle.com/otn/java/jdk/11.0.23+7/9bd8d305c900ee4fa3e613b59e6f42de/jdk-11.0.23_linux-x64_bin.tar.gz?AuthParam=1715329784_6c64b1935760ee8cd8f61cc325d75b82
+#     download_folder: /tmp
+#     java_8_home: "/usr/local/jdk1.8.0_411"
+#     java_11_home: "/usr/local/jdk-11.0.23"
+#     java_8_archive: "{{download_folder}}/jdk-8u411-linux-x64.tar.gz"
+#     java_11_archive: "{{download_folder}}/jdk-11.0.23_linux-x64_bin.tar.gz"
+#     java_env_file: "/etc/profile.d/java.sh"
 #   tasks:
-#     - name: Install Java 8
-#       yum:
-#         name: java-1.8.0-openjdk
-#         state: present
+#     - name: Check if Oracle Java 8 archive exists
+#       stat:
+#         path: "{{ java_8_archive }}"
+#       register: java_8_archive_stat
 
-#     - name: Install Java 11
-#       yum:
-#         name: java-11-openjdk
-#         state: present
+#     - name: Check if Oracle Java 11 archive exists
+#       stat:
+#         path: "{{ java_11_archive }}"
+#       register: java_11_archive_stat
 
-#     - name: Set Java 8 as default
-#       alternatives:
-#         name: java
-#         link: /usr/bin/java
-#         path: /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.412.b08-1.el7_9.x86_64/jre/bin/java
-#         priority: 1
+#     - name: Download Oracle Java 8
+#       command: "curl -v -L -b oraclelicense=accept-securebackup-cookie -o {{java_8_archive}}  {{java8_download_url}}"
+#       when: java_8_archive_stat.stat.exists == False
 
+#     - name: Download Oracle Java 11
+#       command: "curl -v -L -b oraclelicense=accept-securebackup-cookie -o {{java_11_archive}}  {{java11_download_url}}"
+#       when: java_11_archive_stat.stat.exists == False
+
+#     - name: Unpack archive Oracle Java 8
+#       unarchive:
+#         src: "{{java_8_archive}}"
+#         dest: /usr/local
+#         remote_src: yes
+
+#     - name: Unpack archive Oracle Java 11
+#       unarchive:
+#         src: "{{java_11_archive}}"
+#         dest: /usr/local
+#         remote_src: yes
+
+#     - name: Install Oracle Java 8
+#       command: 'update-alternatives --install "/usr/bin/java" "java" "{{java_8_home}}/jre/bin/java" 1'
+#     - name: Install Oracle Java 11
+#       command: 'update-alternatives --install "/usr/bin/java" "java" "{{java_11_home}}/jre/bin/java" 1'
+#     - name: Set Oracle Java 8 as default
+#       command: "update-alternatives --set java {{java_8_home}}/jre/bin/java"
+
+#     - name: Create /etc/profile.d directory
+#       file:
+#         path: /etc/profile.d
+#         state: directory
+
+#     - name: Create java.sh file
+#       file:
+#         path: "{{java_env_file}}"
+#         state: touch
+
+#     - name: Clear content of java.sh file if it exists
+#       shell: echo "" > "{{ java_env_file }}"
+
+#     - name: Set environment variables for JAVA
+#       lineinfile:
+#         dest: "{{ java_env_file }}"
+#         line: |
+#           export JAVA_HOME={{java_8_home}}
+#           export PATH=$PATH:$JAVA_HOME/bin
+
+#     - name: Source java.sh script
+#       shell: source {{java_env_file}}
+#       args:
+#         executable: /bin/bash
+
+- name: Install Apache Tomcat 6.0.37
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Create tomcat directory
+      file:
+        path: /opt/tomcat
+        state: directory
+
+    - name: Download Apache Tomcat
+      get_url:
+        url: "https://archive.apache.org/dist/tomcat/tomcat-6/v6.0.37/bin/apache-tomcat-6.0.37.tar.gz"
+        dest: /tmp/apache-tomcat-6.0.37.tar.gz
+
+    - name: Extract Apache Tomcat
+      unarchive:
+        src: /tmp/apache-tomcat-6.0.37.tar.gz
+        dest: /opt/tomcat
+        remote_src: yes
+
+    - name: Change permissions of startup.sh
+      file:
+        path: /opt/tomcat/apache-tomcat-6.0.37/bin/startup.sh
+        mode: +x
+
+    - name: Change Tomcat connector port to 8088
+      replace:
+        path: /opt/tomcat/apache-tomcat-6.0.37/conf/server.xml
+        regexp: 'port="8080"'
+        replace: 'port="8088"'
+
+    - name: Change Tomcat port 8005 > 8006
+      replace:
+        path: /opt/tomcat/apache-tomcat-6.0.37/conf/server.xml
+        regexp: 'port="8005"'
+        replace: 'port="8006"'
+
+    - name: Change Tomcat connector 8009 > 8010
+      replace:
+        path: /opt/tomcat/apache-tomcat-6.0.37/conf/server.xml
+        regexp: 'port="8009"'
+        replace: 'port="8010"'
+
+    - name: Create tomcat-users.xml file
+      template:
+        src: "./tomcat/tomcat-users.xml"
+        dest: /opt/tomcat/apache-tomcat-6.0.37/conf/tomcat-users.xml
+
+    - name: Start Tomcat service using startup.sh
+      command: sh /opt/tomcat/apache-tomcat-6.0.37/bin/startup.sh
+
+    - name: Check if Tomcat service is running
+      shell: ps aux | grep '[c]atalina.home=/opt/tomcat'
+      register: tomcat_status
+      ignore_errors: yes
+
+    - name: Debug message Tomcat status
+      debug:
+        msg: "Tomcat is {{ 'running' if tomcat_status.rc == 0 else 'not running' }}"
 # - name: Install Apache Maven and configure environment
 #   hosts: localhost
 #   become: yes
@@ -190,62 +228,3 @@
 #       file:
 #         path: /var/run/docker.sock
 #         mode: "0666"
-# - name: Install Apache Tomcat 6.0.37
-#   hosts: localhost
-#   become: yes
-#   tasks:
-#     - name: Create tomcat directory
-#       file:
-#         path: /opt/tomcat
-#         state: directory
-
-#     - name: Download Apache Tomcat
-#       get_url:
-#         url: "https://archive.apache.org/dist/tomcat/tomcat-6/v6.0.37/bin/apache-tomcat-6.0.37.tar.gz"
-#         dest: /tmp/apache-tomcat-6.0.37.tar.gz
-
-#     - name: Extract Apache Tomcat
-#       unarchive:
-#         src: /tmp/apache-tomcat-6.0.37.tar.gz
-#         dest: /opt/tomcat
-#         remote_src: yes
-
-#     - name: Change permissions of startup.sh
-#       file:
-#         path: /opt/tomcat/apache-tomcat-6.0.37/bin/startup.sh
-#         mode: +x
-
-#     - name: Change Tomcat connector port to 8088
-#       replace:
-#         path: /opt/tomcat/apache-tomcat-6.0.37/conf/server.xml
-#         regexp: 'port="8080"'
-#         replace: 'port="8088"'
-
-#     - name: Change Tomcat port 8005 > 8006
-#       replace:
-#         path: /opt/tomcat/apache-tomcat-6.0.37/conf/server.xml
-#         regexp: 'port="8005"'
-#         replace: 'port="8006"'
-
-#     - name: Change Tomcat connector 8009 > 8010
-#       replace:
-#         path: /opt/tomcat/apache-tomcat-6.0.37/conf/server.xml
-#         regexp: 'port="8009"'
-#         replace: 'port="8010"'
-
-#     - name: Create tomcat-users.xml file
-#       template:
-#         src: "./tomcat/tomcat-users.xml"
-#         dest: /opt/tomcat/apache-tomcat-6.0.37/conf/tomcat-users.xml
-
-#     - name: Start Tomcat service using startup.sh
-#       command: sh /opt/tomcat/apache-tomcat-6.0.37/bin/startup.sh
-
-#     - name: Check if Tomcat service is running
-#       shell: ps aux | grep '[c]atalina.home=/opt/tomcat'
-#       register: tomcat_status
-#       ignore_errors: yes
-
-#     - name: Debug message Tomcat status
-#       debug:
-#         msg: "Tomcat is {{ 'running' if tomcat_status.rc == 0 else 'not running' }}"

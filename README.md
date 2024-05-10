@@ -13,7 +13,7 @@ This project aims to provide a comprehensive guide for setting up a development 
 
 ## Project Progress
 
-- [x] `Done` - [001 - Install CentOS 7.9 as VM](#vm-installation-guide)
+- [x] `[001 - Install CentOS 7.9 as VM]`(#vm-installation-guide)
 - [x] `Done` - [002 - Install Multiple Versions of Java](#java-installation-guide)
 - [x] `Done` - [003 - Install Apache Tomcat 6.0.37.0 Application Server](#apache-tomcat-installation-guide)
 <!-- - [x] `Done` - 002 - Install Apache Tomcat 6.0.37.0 Application Server
