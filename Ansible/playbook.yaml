@@ -259,6 +259,7 @@
 
     - name: Run Jenkins container
       shell: "docker run --name jenkins --network=host -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -d -v $(which docker):$(which docker) jenkins-ansible"
+      ignore_errors: yes
 
     - name: Pause for 10 seconds before getting initial admin password
       pause:
