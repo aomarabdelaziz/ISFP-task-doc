@@ -187,10 +187,12 @@ Ensure the following prerequisites are met before running the playbook:
 - **hosts:**  Specifies the target host where the playbook tasks will be executed. In this case, it's set to localhost.
 - **vars:**   Defines variables used throughout the playbook, including download URLs for Java 8 and Java 11 archives, download folder location, installation paths, and environment file paths.
 - **tasks:** Contains the main tasks of the playbook
-  - **Subtask 1:** Description of the subtask
-  - **Subtask 2:** Description of the subtask
-    - *Sub-subtask A:* Description of the sub-subtask
-    - *Sub-subtask B:* Description of the sub-subtask
-  - **Subtask 3:** Description of the subtask
+  - **Check if Oracle Java archives exist:** Utilizes the `stat` module to check if the Java archives are already downloaded.
+  - **Download Oracle Java archives:** Downloads the Java archives using `curl` commands if they don't already exist.
+  - **Unpack archives:** Uses the `unarchive` module to extract the downloaded Java archives to the specified destination folder `(/opt)`.
+  - **Install Java versions:** Uses `update-alternatives` to install Java versions and set up symbolic links to the Java executable.
+  - **Set default Java version:** Uses `update-alternatives` Sets Java 8 as the default version using update-alternatives.
+  - **Export environment variables:** Uses `update-alternatives` Appends Java environment variables to the system-wide profile file (/etc/profile.d/java.sh) to make Java Home available globally.
+  - **Source java.sh script:**  Sources the java.sh script to ensure the environment variables take effect immediately.
 
 </details>
