@@ -261,7 +261,7 @@
       shell: "docker run --name jenkins --network=host -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -d -v $(which docker):$(which docker) jenkins-ansible"
 
     - name: Get initial admin password
-      command: docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+      shell: docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword
       register: initial_admin_password
 
     - name: Print the secret
