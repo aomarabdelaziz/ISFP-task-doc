@@ -119,62 +119,73 @@ So I got those links from my login session; they have a limit 3 times only to be
   hosts: localhost
   become: yes
   vars:
-    java8_download_url: <https://download.oracle.com/otn/java/jdk/8u411-b09/43d62d619be4e416215729597d70b8ac/jdk-8u411-linux-x64.tar.gz?AuthParam=1715273619_e8c7c418de8a6669cba16e96605628ae>
-    java11_download_url: <https://download.oracle.com/otn/java/jdk/11.0.23+7/9bd8d305c900ee4fa3e613b59e6f42de/jdk-11.0.23_linux-x64_bin.tar.gz?AuthParam=1715274582_4f95848a2a78484bad39825b06e0487f>
+    java8_download_url: https://download.oracle.com/otn/java/jdk/8u411-b09/43d62d619be4e416215729597d70b8ac/jdk-8u411-linux-x64.tar.gz?AuthParam=1715329607_1d701ac9a940bea9f0e903935ba46eb1
+    java11_download_url: https://download.oracle.com/otn/java/jdk/11.0.23+7/9bd8d305c900ee4fa3e613b59e6f42de/jdk-11.0.23_linux-x64_bin.tar.gz?AuthParam=1715329784_6c64b1935760ee8cd8f61cc325d75b82
     download_folder: /tmp
     java_8_home: "/usr/local/jdk1.8.0_411"
-    java_11_home: "/usr/local//jdk-11.0.23"
+    java_11_home: "/usr/local/jdk-11.0.23"
     java_8_archive: "{{download_folder}}/jdk-8u411-linux-x64.tar.gz"
     java_11_archive: "{{download_folder}}/jdk-11.0.23_linux-x64_bin.tar.gz"
     java_env_file: "/etc/profile.d/java.sh"
   tasks:
-  - name: Check if Oracle Java 8 archive exists
+    - name: Check if Oracle Java 8 archive exists
       stat:
         path: "{{ java_8_archive }}"
       register: java_8_archive_stat
 
-  - name: Check if Oracle Java 11 archive exists
+    - name: Check if Oracle Java 11 archive exists
       stat:
         path: "{{ java_11_archive }}"
       register: java_11_archive_stat
 
-  - name: Download Oracle Java 8
+    - name: Download Oracle Java 8
       command: "curl -v -L -b oraclelicense=accept-securebackup-cookie -o {{java_8_archive}}  {{java8_download_url}}"
       when: java_8_archive_stat.stat.exists == False
 
-  - name: Download Oracle Java 11
+    - name: Download Oracle Java 11
       command: "curl -v -L -b oraclelicense=accept-securebackup-cookie -o {{java_11_archive}}  {{java11_download_url}}"
       when: java_11_archive_stat.stat.exists == False
 
-  - name: Unpack archive Oracle Java 8
+    - name: Unpack archive Oracle Java 8
       unarchive:
         src: "{{java_8_archive}}"
-        dest: "/opt"
+        dest: /usr/local
         remote_src: yes
 
-  - name: Unpack archive Oracle Java 11
+    - name: Unpack archive Oracle Java 11
       unarchive:
         src: "{{java_11_archive}}"
-        dest: "/opt"
+        dest: /usr/local
         remote_src: yes
 
-  - name: Install Oracle Java 8
+    - name: Install Oracle Java 8
       command: 'update-alternatives --install "/usr/bin/java" "java" "{{java_8_home}}/jre/bin/java" 1'
-  - name: Install Oracle Java 11
+    - name: Install Oracle Java 11
       command: 'update-alternatives --install "/usr/bin/java" "java" "{{java_11_home}}/jre/bin/java" 1'
-  - name: Set Oracle Java 8 as default
+    - name: Set Oracle Java 8 as default
       command: "update-alternatives --set java {{java_8_home}}/jre/bin/java"
 
-  - name: Exports/Run java env file for make JAVA_HOME available globally
-      shell: "source {{java_env_file}}"
-  - name: Set environment variables for JAVA
+    - name: Create /etc/profile.d directory
+      file:
+        path: /etc/profile.d
+        state: directory
+
+    - name: Create java.sh file
+      file:
+        path: "{{java_env_file}}"
+        state: touch
+
+    - name: Clear content of java.sh file if it exists
+      shell: echo "" > "{{ java_env_file }}"
+
+    - name: Set environment variables for JAVA
       lineinfile:
         dest: "{{ java_env_file }}"
         line: |
           export JAVA_HOME={{java_8_home}}
           export PATH=$PATH:$JAVA_HOME/bin
 
-  - name: Source java.sh script
+    - name: Source java.sh script
       shell: source {{java_env_file}}
       args:
         executable: /bin/bash
@@ -189,7 +200,23 @@ So I got those links from my login session; they have a limit 3 times only to be
   - **Unpack archives:** Uses the `unarchive` module to extract the downloaded Java archives to the specified destination folder `(/opt)`.
   - **Install Java versions:** Uses `update-alternatives` to install Java versions and set up symbolic links to the Java executable.
   - **Set default Java version:** Uses `update-alternatives` Sets Java 8 as the default version using update-alternatives.
-  - **Export environment variables:** Uses `update-alternatives` Appends Java environment variables to the system-wide profile file (/etc/profile.d/java.sh) to make Java Home available globally.
+  - **Export environment variables:** Appends Java environment variables to the system-wide profile file (/etc/profile.d/java.sh) to make Java Home available globally.
   - **Source java.sh script:**  Sources the java.sh script to ensure the environment variables take effect immediately.
+
+
+![Alternative Image](./images/vm/1.png)
+
+
+![Alternative Image](./images/vm/2.png)
+
+
+![Alternative Image](./images/vm/3.png)
+
+
+![Alternative Image](./images/vm/4.png)
+
+
+![Alternative Image](./images/vm/5.png)
+
 
 </details>
