@@ -117,8 +117,8 @@ Ensure the following prerequisites are met before running the playbook:
 # Playbook Structure
 
 
-    ```yaml
-       asdasd
-       ```
+    ```sh
+    asdasd
+    ```
 
 </details>
