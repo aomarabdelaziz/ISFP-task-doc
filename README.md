@@ -56,10 +56,10 @@ This project aims to provide a comprehensive guide for setting up a development 
     - Note: If you are using a different operating system, make sure to download the version suitable for your OS.
 
 
-### 1. Add new Virtual machine and and proper OS ISO
+1. Add new Virtual machine and and proper OS ISO
 ![Alternative Image](./images/vm/1.png)
 
-### 2. Adjust the virtual machine's hardware (CPU,Ram) that fits your desire
+2. Adjust the virtual machine's hardware (CPU,Ram) that fits your desire
 
 ![Alternative Image](./images/vm/2.png)
 ![Alternative Image](./images/vm/3.png)
