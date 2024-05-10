@@ -668,6 +668,13 @@ Ensure the following prerequisites are met before installing WebLogic Server:
 - **fmw_12.2.1.3.0_wls_Disk_1_1of1.zip :** [Download](https://www.oracle.com/middleware/technologies/weblogic-server-installers-downloads.html)
 
 
+# Steps
+
+- After downloading the `fmw_12.2.1.3.0_wls_Disk1_1of1.zip` in downloads directory fellow this steps:
+  - **Change Directory to {user}/downloads** cd `~/Downloads`
+  - `unzip fmw_12.2.1.3.0_wls_Disk1_1of1.zip`
+  - `unzip fmw_12.2.1.3.0_wls_Disk1_1of1.zip`
+  - `java -jar fmw_12.2.1.3.0_wls.jar`
 
 <details>
 <summary><b>Images</b></summary>
