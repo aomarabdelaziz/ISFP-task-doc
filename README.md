@@ -2,16 +2,16 @@
 
 ![93%](https://progress-bar.dev/93/?title=Done)
 
-## Table of Contents
+## :bulb-about: Table of Contents
 
 1. [Introduction](#introduction)
 2. [Project Progress](#project-progress)
 
-## Introduction
+## :reminder_ribbon: Introduction
 
 This project aims to provide a comprehensive guide for setting up a development environment on a CentOS 7.9 virtual machine (VM). The environment includes various components such as Apache Tomcat, Subversion (SVN), Maven, Apache, PHP, Payara Server, multiple versions of Java, WebLogic Server, Jenkins, Docker, and Ansible.
 
-## :progress: Project Progress
+## :pushpin: Project Progress
 
 - [x] `Done` - [001 - Install CentOS 7.9 as VM](#vm-installation-guide)
 - [x] `Done` - [002 - Install Multiple Versions of Java](#java-installation-guide)
