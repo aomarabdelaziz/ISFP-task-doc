@@ -85,53 +85,59 @@
 - name: Install Apache Tomcat 6.0.37
   hosts: localhost
   become: yes
+  vars:
+    download_url: https://archive.apache.org/dist/tomcat/tomcat-6/v6.0.37/bin/apache-tomcat-6.0.37.tar.gz
+    download_folder: /tmp
+    tomcat_installation_path: "/opt/tomcat"
+    tomcat_home: "/opt/tomcat/apache-tomcat-6.0.37"
+    tomcat_archive: "{{download_folder}}/apache-tomcat-6.0.37.tar.gz"
   tasks:
     - name: Create tomcat directory
       file:
-        path: /opt/tomcat
+        path: "{{tomcat_installation_path}}"
         state: directory
 
     - name: Download Apache Tomcat
       get_url:
-        url: "https://archive.apache.org/dist/tomcat/tomcat-6/v6.0.37/bin/apache-tomcat-6.0.37.tar.gz"
-        dest: /tmp/apache-tomcat-6.0.37.tar.gz
+        url: "{{download_url}}"
+        dest: "{{tomcat_archive}}"
 
     - name: Extract Apache Tomcat
       unarchive:
-        src: /tmp/apache-tomcat-6.0.37.tar.gz
-        dest: /opt/tomcat
+        src: "{{tomcat_archive}}"
+        dest: "{{tomcat_installation_path}}"
         remote_src: yes
 
     - name: Change permissions of startup.sh
       file:
-        path: /opt/tomcat/apache-tomcat-6.0.37/bin/startup.sh
+        path: "{{tomcat_home}}/bin/startup.sh"
         mode: +x
 
     - name: Change Tomcat connector port to 8088
       replace:
-        path: /opt/tomcat/apache-tomcat-6.0.37/conf/server.xml
+        path: "{{tomcat_home}}/conf/server.xml"
         regexp: 'port="8080"'
         replace: 'port="8088"'
 
     - name: Change Tomcat port 8005 > 8006
       replace:
-        path: /opt/tomcat/apache-tomcat-6.0.37/conf/server.xml
+        path: "{{tomcat_home}}/conf/server.xml"
         regexp: 'port="8005"'
         replace: 'port="8006"'
 
     - name: Change Tomcat connector 8009 > 8010
       replace:
-        path: /opt/tomcat/apache-tomcat-6.0.37/conf/server.xml
+        path: "{{tomcat_home}}/conf/server.xml"
         regexp: 'port="8009"'
         replace: 'port="8010"'
 
     - name: Create tomcat-users.xml file
       template:
         src: "./tomcat/tomcat-users.xml"
-        dest: /opt/tomcat/apache-tomcat-6.0.37/conf/tomcat-users.xml
+        dest: "{{tomcat_home}}/conf/tomcat-users.xml"
 
     - name: Start Tomcat service using startup.sh
-      command: sh /opt/tomcat/apache-tomcat-6.0.37/bin/startup.sh
+      command: sh "{{tomcat_home}}/bin/startup.sh"
 
     - name: Check if Tomcat service is running
       shell: ps aux | grep '[c]atalina.home=/opt/tomcat'
