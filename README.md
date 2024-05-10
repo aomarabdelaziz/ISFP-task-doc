@@ -225,5 +225,9 @@ So I got those links from my login session; they have a limit 3 times only to be
 ![Alternative Image](./images/ansible-java//5.png)
 
 
+![Alternative Image](./images/ansible-java//6.png)
+
+![Alternative Image](./images/ansible-java//7.png)
+
 </details>
 </details>
