@@ -68,6 +68,13 @@
         path: "{{java_env_file}}"
         state: touch
 
+    - name: Clear content of java.sh file if it exists
+      shell: echo "" > "{{ java_env_file }}"
+      when: ansible_file_exists.java_env_file.stat.exists
+
+    - name: Exports/Run java env file for make JAVA_HOME available globally
+      shell: "source {{java_env_file}}"
+
     - name: Set environment variables for JAVA
       lineinfile:
         dest: "{{ java_env_file }}"
