@@ -18,7 +18,7 @@ This project aims to provide a comprehensive guide for setting up a development 
 
 ## Project Progress
 
-- [x] `Done` - [001 - Install CentOS 7.9 as VM](#)
+- [x] `Done` - [001 - Install CentOS 7.9 as VM](#vm-installation-guide)
 - [x] `Done` - 002 - Install Apache Tomcat 6.0.37.0 Application Server
 - [x] `Done` - 003 - Install Subversion (SVN)
 - [x] `Done` - 004 - Download the latest version of Maven and configure its repository.
@@ -34,3 +34,4 @@ This project aims to provide a comprehensive guide for setting up a development 
 - [x] `Done` - 014 - Configure Local Host Server with Ansible
 - [x] `Done` - 015 - Deploy App on Tomcat Docker Container
 
+## VM Installation Guide
