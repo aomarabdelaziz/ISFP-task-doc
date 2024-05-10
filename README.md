@@ -784,13 +784,17 @@ compare_lines_src_dest(lines_dict, "output.txt")
 
 # Create Jenkins server based on docker image
 
-This Dockerfile provides instructions for building a custom Jenkins image with Ansible support. Here's a breakdown of the Dockerfile:
+1. This Dockerfile provides instructions for building a custom Jenkins image with Ansible support. Here's a breakdown of the Dockerfile.
+2. This Ansible playbook automates the setup of a Jenkins server running within a Docker container, with built-in support for Ansible. It downloads a Dockerfile from a specified URL, builds a Docker image named jenkins-ansible, and then runs a Docker container based on this image.
+
 
 # Prerequisites
 
 Ensure the following prerequisites are met before running the script:
 
 - **Docker:**  Ensure Docker is installed on the local system from which the Dockerfile will be executed.
+- **Ansible:**  Ensure Ansible is installed on the local system from which the playbook will be executed.
+- **Target Host:**  The playbook assumes execution on the localhost, but it can be modified to target other hosts as needed.
 
 # Dockerfile Structure
 
@@ -868,6 +872,17 @@ USER jenkins
 
 
 ```  
+
+- **hosts:**  Specifies the target host where the playbook tasks will be executed. In this case, it's set to localhost.
+- **vars:**   Defines variables used throughout the playbook, including download URL of custom image , download folder location.
+- **tasks:** Contains the main tasks of the playbook
+  - **Download Dockerfile:** The playbook starts by downloading the Dockerfile necessary for building the Jenkins Docker image from the provided URL.
+  - **Build Docker Image:**It then builds a Docker image named jenkins-ansible using the downloaded Dockerfile.
+  - **Run Jenkins Container:** It creates a script file `(maven.sh)` in the /etc/profile.d directory to set up environment variables for Maven.
+  - **Clear Content of maven.sh File:** After building the Docker image, the playbook runs a Docker container named jenkins, which hosts the Jenkins server. The container is configured to have network access to the host (--network=host), mount the Jenkins home directory (-v jenkins_home:/var/jenkins_home), and have access to the Docker socket (-v /var/run/docker.sock:/var/run/docker.sock). This enables Jenkins to interact with Docker for running jobs.
+  - **Delay Before Retrieving Initial Admin Password**  To ensure that Jenkins is fully initialized, a pause of 10 seconds is introduced before attempting to retrieve the initial admin password.
+  - **Retrieve Initial Admin Password:**  The playbook then retrieves the initial admin password for Jenkins from the container's secrets directory (/var/jenkins_home/secrets/initialAdminPassword) using the docker exec command.
+  - **Print Initial Admin Password**  Finally, the initial admin password is printed to the console, provided that the retrieval command succeeds.
 
 
 <details>
