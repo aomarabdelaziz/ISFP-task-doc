@@ -999,6 +999,7 @@ Run the Docker container using the command docker run -d -p 4287:4287 my-webapp 
 > To make jenkins get triggred by github webhook while push something to our master branch I have to enable the build triggers in my pipeline (Github hook trigger for GITScm polling) and add the jenkins server url (ex: https://www.ourjenkins.com/github-webhok) but our jenkins is not in public area we installed it into our VM which isn't publicly accessable.
 > So I used a useful tool which helped me to achieve that and it is called Ngrok
 > What is ngrok? according to ngrok website 
+
 > ngrok is a globally distributed reverse proxy that secures, protects and accelerates your applications and network services, no matter where you run them. You can think of ngrok as the front door to your applications.
 
 > ngrok is environment independent because it can deliver traffic to services running anywhere with no changes to your environment's networking. Run your app on AWS, Azure, Heroku, an on-premise Kubernetes cluster, a Raspberry Pi, and even your laptop. With ngrok, it all works the same.
