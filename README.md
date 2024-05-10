@@ -419,13 +419,17 @@ Ensure the following prerequisites are met before running the playbook:
 
 ![Alternative Image](./images/tomcat//9.png)
 
-### 4. Oracle Java Version
+### 4. Trying to login into manager page
 
-![Alternative Image](./images/ansible-java//6.png)
+![Alternative Image](./images/tomat//6.png)
 
-### 5. update-alternatives --config java --> shows us the default Java version, which is Oracle 8, that we have installed
+### 5. I logged in successfully
 
-![Alternative Image](./images/ansible-java//7.png)
+![Alternative Image](./images/tomcat//7.png)
+
+### 6. Apache tomcat server status
+
+![Alternative Image](./images/tomcat//8.png)
 
 </details>
 </details>
