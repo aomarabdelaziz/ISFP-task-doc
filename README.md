@@ -209,6 +209,7 @@ So I got those links from my login session; they have a limit 3 times only to be
 
 <details>
 <summary><b>Images</b></summary>
+
 ![Alternative Image](./images/ansible-java/1.png)
 
 
