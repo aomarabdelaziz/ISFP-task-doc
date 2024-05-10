@@ -6,6 +6,7 @@
 
 1. [Introduction](#introduction)
 2. [Project Progress](#project-progress)
+2. [Important Notes](#important-notes)
 
 ## :reminder_ribbon: Introduction
 
@@ -22,6 +23,7 @@ This project aims to provide a comprehensive guide for setting up a development 
 - [x] `Done` - [007 - Create shell or python script to check and compare between two files](#compare-script-guide)
 - [x] `Done` - [008 - Create Jenkins server based on docker image](#jenkins-image-installation-guide)
 - [x] `Done` - [009 - Create maven docker compiler with attached non root cached repositries](#maven-docker-image-installation-guide)
+- [x] `Done` - [010 - Create Jenkins pipeline that use ansible for configure local host server](#create-jenkins-pipeline)
 
 <!-- -
 - [x] `Done` - 003 - Install Subversion (SVN)
@@ -987,5 +989,52 @@ Place the Dockerfile in the root directory of your Java web application project.
 Ensure that your project structure aligns with the Dockerfile's expectations (e.g., pom.xml for Maven and ./server and ./webapp directories for application code).
 Build the Docker image using the command docker build -t my-webapp . (replace my-webapp with your desired image name).
 Run the Docker container using the command docker run -d -p 4287:4287 my-webapp to expose the application on port 4287.
+
+</details>
+
+
+## Important Notes
+
+> [!IMPORTANT]  
+> Crucial information necessary for users to succeed.
+
+
+## :computer: Create Jenkins pipeline that use ansible for configure local host server
+
+<details>
+<summary><b>Show more details</b></summary>
+
+# Create maven docker compiler with attached non root cached repositries
+
+This Dockerfile provides a streamlined approach to containerizing Java web applications using Maven and Tomcat. It utilizes a multi-stage build process to separate the build environment from the runtime environment, resulting in a lightweight and efficient Docker image.
+
+# Prerequisites
+
+Ensure the following prerequisites are met before running the script:
+
+- **Jenkins:**  Ensure Docker is installed on the local system.
+- **Ansible:**  Ensure Ansible is installed along side jenkins system.
+
+# Jenkins Structure
+
+```yaml
+pipeline {
+    agent any
+
+    stages {
+        stage('Test Ansible') {
+            steps {
+                 ansiblePlaybook become: true, becomeUser: 'root', colorized: true, disableHostKeyChecking: true, installation: 'Ansible', inventory: 'Ansible/inventory', playbook: 'Ansible/playbook.yaml', vaultTmpPath: ''
+            }
+        }
+    }
+}
+
+
+
+```  
+
+This Jenkins pipeline script executes an Ansible playbook as part of the Jenkins job. It uses the ansiblePlaybook step to run the playbook specified in the playbook.yaml file located in the Ansible directory. The playbook is executed with root privileges (become: true) and disables host key checking (disableHostKeyChecking: true). Ensure that the Ansible installation is configured in Jenkins (installation: 'Ansible') and provide the path to the inventory file (inventory: 'Ansible/inventory').
+
 
 </details>
