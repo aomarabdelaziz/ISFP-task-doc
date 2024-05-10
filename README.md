@@ -210,14 +210,19 @@ So I got those links from my login session; they have a limit 3 times only to be
 <details>
 <summary><b>Images</b></summary>
 
+### 1. Executing ansible playbook to our vm
+
 ![Alternative Image](./images/ansible-java/1.png)
 
 
 ![Alternative Image](./images/ansible-java//2.png)
 
 
+### 2. update-alternatives --config java --> shows us the default java version which is openjdk-8 
+
 ![Alternative Image](./images/ansible-java//3.png)
 
+### 3. after installing ORACLE java , that is our JAVA_HOME Environment variable
 
 ![Alternative Image](./images/ansible-java//4.png)
 
