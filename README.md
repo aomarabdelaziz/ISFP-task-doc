@@ -665,6 +665,7 @@ This guide steps for installation of WebLogic Server 12.2.1.3.0 on our local mac
 Ensure the following prerequisites are met before installing WebLogic Server:
 
 - **Oracle Java 8 :**  Ensure Oracle Java 8  is installed on the local system.
+- **fmw_12.2.1.3.0_wls_Disk_1_1of1.zip :** [Download](https://www.oracle.com/middleware/technologies/weblogic-server-installers-downloads.html)
 
 
 
