@@ -413,9 +413,8 @@ Ensure the following prerequisites are met before running the playbook:
 
 ### 3. Accessing our apache tomcat from my computer which host the VM
 
-> [!IMPORTANT]  
-> The binds system has changed. Instead of doing the name of the key, there are scancodes assigned per key.
-
+sadasd
+asd
 > [!NOTE]  
 > The crosshair is designed for a 1920x1080 resolution; in other case, the experience may vary.
 
@@ -431,10 +430,3 @@ Ensure the following prerequisites are met before running the playbook:
 
 </details>
 </details>
-
-
-> [!IMPORTANT]  
-> The binds system has changed. Instead of doing the name of the key, there are scancodes assigned per key.
-
-> [!NOTE]  
-> The crosshair is designed for a 1920x1080 resolution; in other case, the experience may vary.
