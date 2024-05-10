@@ -204,19 +204,19 @@ So I got those links from my login session; they have a limit 3 times only to be
   - **Source java.sh script:**  Sources the java.sh script to ensure the environment variables take effect immediately.
 
 
-![Alternative Image](./images/vm/1.png)
+![Alternative Image](./images/ansible-java/1.png)
 
 
-![Alternative Image](./images/vm/2.png)
+![Alternative Image](./images/ansible-java//2.png)
 
 
-![Alternative Image](./images/vm/3.png)
+![Alternative Image](./images/ansible-java//3.png)
 
 
-![Alternative Image](./images/vm/4.png)
+![Alternative Image](./images/ansible-java//4.png)
 
 
-![Alternative Image](./images/vm/5.png)
+![Alternative Image](./images/ansible-java//5.png)
 
 
 </details>
