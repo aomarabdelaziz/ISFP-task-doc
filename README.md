@@ -55,5 +55,6 @@ This project aims to provide a comprehensive guide for setting up a development 
 
     - Note: If you are using a different operating system, make sure to download the version suitable for your OS.
 
+![Alternative Image](./images/vm/1.png)
 </details>
 
