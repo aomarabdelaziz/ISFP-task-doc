@@ -6,11 +6,6 @@
 
 1. [Introduction](#introduction)
 2. [Project Progress](#project-progress)
-3. [Tools](#tools)
-4. [Prerequisites](#prerequisites)
-5. [Installation Guide](#installation-guide)
-6. [Access Bootstrap Server](#access-bootstrap-server)
-7. [Pictures](#pictures)
 
 ## Introduction
 
@@ -111,7 +106,8 @@ I choose to install Oracle Java (8,11) versions since WebLogic installation cann
 # Prerequisites
 Ensure the following prerequisites are met before running the playbook:
 
-- **Access to Oracle Java Archives:**  Ensure access to the Oracle Java archives for Java 8 and Java 11 versions. The playbook uses direct download links to fetch these archives.
+- **Access to Oracle Java Archives:** Ensure access to the Oracle Java archives for Java 8 and Java 11 versions. The playbook uses direct download links to fetch these archives. and those direct links are temporary because to download from the Oracle page, you have to sign in and accept the Oracle OTN license and terms.
+So I got those links from my login session; they have a limit 3 times only to be downloaded. Of course,  this is not the best approach. You can download them and upload them to a central server; you can use S3 buckets or any other service for example.
 - **Ansible:**  Ensure Ansible is installed on the local system from which the playbook will be executed.
 - **Target Host:**  The playbook assumes execution on the localhost, but it can be modified to target other hosts as needed.
 
