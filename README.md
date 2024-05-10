@@ -413,8 +413,6 @@ Ensure the following prerequisites are met before running the playbook:
 
 ### 3. Accessing our apache tomcat from my computer which host the VM
 
-sadasd
-asd
 > [!NOTE]  
 > The crosshair is designed for a 1920x1080 resolution; in other case, the experience may vary.
 
