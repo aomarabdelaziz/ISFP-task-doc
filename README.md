@@ -53,7 +53,8 @@ This project aims to provide a comprehensive guide for setting up a development 
 
 
 <details>
-<summary><b>Image</b></summary>
+<summary><b>Images</b></summary>
+
 ### 1. Adding a new virtual machine depends on our proper OS ISO (CentOS 7.9)
 
 ![Alternative Image](./images/vm/1.png)
