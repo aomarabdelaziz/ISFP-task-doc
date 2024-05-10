@@ -254,7 +254,7 @@ So I got those links from my login session; they have a limit 3 times only to be
 
 ### 5. update-alternatives --config java --> shows us the default Java version, which is Oracle 8, that we have installed
 
-Add the `size-limit` section and the `size` script to your `package.json`:
+2. Add the `size-limit` section and the `size` script to your `package.json`:
 
     ```diff
     <?xml version='1.0' encoding='utf-8'?>
@@ -294,6 +294,6 @@ Add the `size-limit` section and the `size` script to your `package.json`:
     -->
     + <user username="tomcat" password="tomcat" roles="manager-gui,admin-gui"/>
     </tomcat-users>
-    ```
+```
 
 </details>
