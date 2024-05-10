@@ -346,7 +346,10 @@ Ensure the following prerequisites are met before running the playbook:
   - **Modify Tomcat Shutdown Port:**  It modifies the configuration file to change the shutdown port from `8005` to `8006`.
   - **Modify Tomcat Connector Port for AJP:**  It modifies the configuration file to change the port used for the AJP connector from `8009` to `8010`.
   - **Create tomcat-users.xml File:**   It creates a tomcat-users.xml file in the Tomcat configuration directory to define user roles and access privileges.
-  
+  - **Start Tomcat Service:**  It starts the Tomcat service using the `startup.sh` script.
+  - **Check Tomcat Service Status:** It verifies whether the Tomcat service is running by searching for the process using ps command.
+  - **Debug Message:** It provides a debug message indicating whether Tomcat is running or not.
+
 1. sdasd
 
   ```diff
@@ -388,9 +391,6 @@ Ensure the following prerequisites are met before running the playbook:
     + <user username="tomcat" password="tomcat" roles="manager-gui,admin-gui"/>
     </tomcat-users>
     ```
-  - **Start Tomcat Service:**  It starts the Tomcat service using the `startup.sh` script.
-  - **Check Tomcat Service Status:** It verifies whether the Tomcat service is running by searching for the process using ps command.
-  - **Debug Message:** It provides a debug message indicating whether Tomcat is running or not.
 
 
 <details>
