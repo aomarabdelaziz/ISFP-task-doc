@@ -33,11 +33,11 @@
 
     - name: Download Oracle Java 8
       command: "curl -v -L -b oraclelicense=accept-securebackup-cookie -o {{java_8_archive}}  {{java8_download_url}}"
-      #when: java_8_archive_stat.stat.exists == False
+      when: java_8_archive_stat.stat.exists == False
 
     - name: Download Oracle Java 11
       command: "curl -v -L -b oraclelicense=accept-securebackup-cookie -o {{java_11_archive}}  {{java11_download_url}}"
-      #when: java_11_archive_stat.stat.exists == False
+      when: java_11_archive_stat.stat.exists == False
 
     - name: Unpack archive Oracle Java 8
       unarchive:
