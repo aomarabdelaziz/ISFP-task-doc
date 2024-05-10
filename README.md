@@ -56,5 +56,13 @@ This project aims to provide a comprehensive guide for setting up a development 
     - Note: If you are using a different operating system, make sure to download the version suitable for your OS.
 
 ![Alternative Image](./images/vm/1.png)
+![Alternative Image](./images/vm/2.png)
+![Alternative Image](./images/vm/3.png)
+![Alternative Image](./images/vm/4.png)
+![Alternative Image](./images/vm/5.png)
+![Alternative Image](./images/vm/6.png)
+![Alternative Image](./images/vm/7.png)
+![Alternative Image](./images/vm/8.png)
+![Alternative Image](./images/vm/9.png)
 </details>
 
