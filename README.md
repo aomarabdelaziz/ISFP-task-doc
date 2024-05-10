@@ -52,6 +52,8 @@ This project aims to provide a comprehensive guide for setting up a development 
     - Note: If you are using a different operating system, make sure to download the version suitable for your OS.
 
 
+<details>
+<summary><b>Image</b></summary>
 ### 1. Adding a new virtual machine depends on our proper OS ISO (CentOS 7.9)
 
 ![Alternative Image](./images/vm/1.png)
@@ -92,7 +94,7 @@ This project aims to provide a comprehensive guide for setting up a development 
 
 ![Alternative Image](./images/vm/10.png)
 </details>
-
+</details>
 
 ## Java Installation Guide
 
