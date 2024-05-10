@@ -892,9 +892,15 @@ USER jenkins
 
 ![Alternative Image](./images/docker/1.png)
 
+### 2. Accessing our jenkins from my computer and from the VM , also I used to port forwarding the ports from the VM network and allow the port in the vm firewall
+
 ![Alternative Image](./images/jenkins/1.png)
 
 ![Alternative Image](./images/jenkins/2.png)
+
+### 3. Configure our jenkins to use ansible that we have installed it with our custom docker image
+
+![Alternative Image](./images/jenkins/3.png)
 
 </details>
 
