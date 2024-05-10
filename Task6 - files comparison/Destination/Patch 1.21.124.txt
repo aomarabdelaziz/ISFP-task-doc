@@ -1,0 +1,8 @@
+Port_Automation/JavaSource/com/sps/gatecontrol/service/spring/GateControlCashierService.java
+Port_Automation/JavaSource/com/sps/core/enums/GateSettingsEnum.java
+Port_Automation/JavaSource/com/sps/core/resources/ApplicationResources_ar.properties
+Port_Automation/JavaSource/com/sps/gatecontrol/cashier/action/Cashier.java
+Port_Automation/JavaSource/com/sps/gatecontrol/newbean/CashierDisplay.java
+Port_Automation/JavaSource/com/sps/gatecontrol/newbean/hibernate/mapping/CashierDisplay.hbm.xml
+Port_Automation/JavaSource/com/sps/gatecontrol/service/IGateControlCashierService.java
+Port_Automation/WebContent/WEB-INF/XMLMappingResources.xml

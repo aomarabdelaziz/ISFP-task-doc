@@ -1,0 +1,11 @@
+Port_Automation/WebContent/Billing/Invoices/StorageLicensetInvoiceFlow/GenerateInvoice/GenerateInvoice.jsp
+ReportViewer/WebContent/Reports/Billing/StevedoreContainerInvoice/RPT05018.rpt
+Port_Automation/WebContent/Billing/Invoices/StorageLicensetInvoiceFlow/Reports/StorageObservationReport.jsp
+ReportViewer/WebContent/Reports/Billing/StorageLicense/RPT05024.rpt
+Port_Automation/JavaSource/com/sps/billing/invoices/gcinvoice/invoiceflow/reports/action/InitChargeDischargeReport.java
+Port_Automation/JavaSource/com/sps/core/resources/ApplicationResources_ar.properties
+Port_Automation/WebContent/Billing/Invoices/GCInvoice/Reports/ChargeDischargeReport.jsp
+Port_Automation/WebContent/WEB-INF/struts-config.xml
+Port_Automation/JavaSource/com/sps/billing/invoices/storageLicenseInvoice/invoiceFlow/reports/InitStorageObservation.java
+Port_Automation/JavaSource/com/sps/billing/invoices/storageLicenseInvoice/dao/hibernate/StorageLicenseMethodDao.java
+Port_Automation/JavaSource/com/sps/billing/invoices/storageLicenseInvoice/services/spring/StorageLicenseMethodService.java

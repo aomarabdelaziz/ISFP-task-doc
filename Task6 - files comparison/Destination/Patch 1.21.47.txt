@@ -1,0 +1,2 @@
+Port_Automation/JavaSource/com/sps/warehousing/service/spring/WarehousingService.java
+Port_Automation/JavaSource/com/sps/core/resources/ApplicationResources_ar.properties

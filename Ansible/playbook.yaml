@@ -1,0 +1,231 @@
+---
+- name: Install multiple versions of Java and set earlier one is the default (8)
+  hosts: localhost
+  become: yes
+  vars:
+    java8_download_url: https://download.oracle.com/otn/java/jdk/8u411-b09/43d62d619be4e416215729597d70b8ac/jdk-8u411-linux-x64.tar.gz?AuthParam=1715273619_e8c7c418de8a6669cba16e96605628ae
+    java11_download_url: https://download.oracle.com/otn/java/jdk/11.0.23+7/9bd8d305c900ee4fa3e613b59e6f42de/jdk-11.0.23_linux-x64_bin.tar.gz?AuthParam=1715274582_4f95848a2a78484bad39825b06e0487f
+    download_folder: /tmp
+    java_8_home: "/usr/local/jdk1.8.0_411"
+    java_11_home: "/usr/local//jdk-11.0.23"
+    java_8_archive: "{{download_folder}}/jdk-8u411-linux-x64.tar.gz"
+    java_11_archive: "{{download_folder}}/jdk-11.0.23_linux-x64_bin.tar.gz"
+    java_env_file: "/etc/profile.d/java.sh"
+  tasks:
+    - name: Check if Oracle Java 8 archive exists
+      stat:
+        path: "{{ java_8_archive }}"
+      register: java_8_archive_stat
+
+    - name: Check if Oracle Java 11 archive exists
+      stat:
+        path: "{{ java_11_archive }}"
+      register: java_11_archive_stat
+
+    - name: Download Oracle Java 8
+      command: "curl -v -L -b oraclelicense=accept-securebackup-cookie -o {{java_8_archive}}  {{java8_download_url}}"
+      when: java_8_archive_stat.stat.exists == False
+
+    - name: Download Oracle Java 11
+      command: "curl -v -L -b oraclelicense=accept-securebackup-cookie -o {{java_11_archive}}  {{java11_download_url}}"
+      when: java_11_archive_stat.stat.exists == False
+
+    - name: Unpack archive Oracle Java 8
+      unarchive:
+        src: "{{java_8_archive}}"
+        dest: "/opt"
+        remote_src: yes
+
+    - name: Unpack archive Oracle Java 11
+      unarchive:
+        src: "{{java_11_archive}}"
+        dest: "/opt"
+        remote_src: yes
+
+    - name: Install Oracle Java 8
+      command: 'update-alternatives --install "/usr/bin/java" "java" "{{java_8_home}}/jre/bin/java" 1'
+    - name: Install Oracle Java 11
+      command: 'update-alternatives --install "/usr/bin/java" "java" "{{java_11_home}}/jre/bin/java" 1'
+    - name: Set Oracle Java 8 as default
+      command: "update-alternatives --set java {{java_8_home}}/jre/bin/java"
+
+    - name: Exports/Run java env file for make JAVA_HOME available globally
+      shell: "source {{java_env_file}}"
+    - name: Set environment variables for JAVA
+      lineinfile:
+        dest: "{{ java_env_file }}"
+        line: |
+          export JAVA_HOME={{java_8_home}}
+          export PATH=$PATH:$JAVA_HOME/bin
+
+    - name: Source java.sh script
+      shell: source {{java_env_file}}
+      args:
+        executable: /bin/bash
+# - name: Install multiple versions of Java and set default
+#   hosts: localhost
+#   become: yes
+#   tasks:
+#     - name: Install Java 8
+#       yum:
+#         name: java-1.8.0-openjdk
+#         state: present
+
+#     - name: Install Java 11
+#       yum:
+#         name: java-11-openjdk
+#         state: present
+
+#     - name: Set Java 8 as default
+#       alternatives:
+#         name: java
+#         link: /usr/bin/java
+#         path: /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.412.b08-1.el7_9.x86_64/jre/bin/java
+#         priority: 1
+
+- name: Install Apache Maven and configure environment
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Download Maven
+      get_url:
+        url: "https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz"
+        dest: /tmp/apache-maven-3.9.6-bin.tar.gz
+
+    - name: Extract Maven
+      unarchive:
+        src: /tmp/apache-maven-3.9.6-bin.tar.gz
+        dest: /opt
+        remote_src: yes
+        creates: /opt/apache-maven-3.9.6
+
+    - name: Create maven.sh
+      file:
+        path: /etc/profile.d/maven.sh
+        state: touch
+
+    - name: Create symbolic link
+      file:
+        src: /opt/apache-maven-3.9.6
+        dest: /opt/maven
+        state: link
+
+    - name: Set environment variables for Maven
+      lineinfile:
+        dest: /etc/profile.d/maven.sh
+        line: |
+          export M2_HOME=/opt/maven
+          export PATH=$PATH:$M2_HOME/bin
+
+    - name: Configre maven repo to use local repo
+      copy:
+        src: "./maven/settings.xml"
+        dest: /opt/maven/conf/settings.xml
+
+    - name: Source maven.sh script
+      shell: source /etc/profile.d/maven.sh
+      args:
+        executable: /bin/bash
+
+- name: Install Apache and PHP
+  hosts: localhost
+  become: yes
+
+  tasks:
+    - name: Install apache(httpd)
+      yum:
+        name: httpd
+        state: present
+
+    - name: Install php package
+      yum:
+        name: php
+        state: present
+
+- name: Install Docker
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Add Docker repository
+      yum_repository:
+        name: docker-ce
+        description: Docker CE Stable - $basearch
+        baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
+        gpgcheck: yes
+        gpgkey: https://download.docker.com/linux/centos/gpg
+        enabled: yes
+
+    - name: Install Docker
+      yum:
+        name: docker-ce
+        state: present
+
+    - name: Start Docker service
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Change permissions of /var/run/docker.sock
+      file:
+        path: /var/run/docker.sock
+        mode: "0666"
+- name: Install Apache Tomcat 6.0.37
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Create tomcat directory
+      file:
+        path: /opt/tomcat
+        state: directory
+
+    - name: Download Apache Tomcat
+      get_url:
+        url: "https://archive.apache.org/dist/tomcat/tomcat-6/v6.0.37/bin/apache-tomcat-6.0.37.tar.gz"
+        dest: /tmp/apache-tomcat-6.0.37.tar.gz
+
+    - name: Extract Apache Tomcat
+      unarchive:
+        src: /tmp/apache-tomcat-6.0.37.tar.gz
+        dest: /opt/tomcat
+        remote_src: yes
+
+    - name: Change permissions of startup.sh
+      file:
+        path: /opt/tomcat/apache-tomcat-6.0.37/bin/startup.sh
+        mode: +x
+
+    - name: Change Tomcat connector port to 8088
+      replace:
+        path: /opt/tomcat/apache-tomcat-6.0.37/conf/server.xml
+        regexp: 'port="8080"'
+        replace: 'port="8088"'
+
+    - name: Change Tomcat port 8005 > 8006
+      replace:
+        path: /opt/tomcat/apache-tomcat-6.0.37/conf/server.xml
+        regexp: 'port="8005"'
+        replace: 'port="8006"'
+
+    - name: Change Tomcat connector 8009 > 8010
+      replace:
+        path: /opt/tomcat/apache-tomcat-6.0.37/conf/server.xml
+        regexp: 'port="8009"'
+        replace: 'port="8010"'
+
+    - name: Create tomcat-users.xml file
+      template:
+        src: "./tomcat/tomcat-users.xml"
+        dest: /opt/tomcat/apache-tomcat-6.0.37/conf/tomcat-users.xml
+
+    - name: Start Tomcat service using startup.sh
+      command: sh /opt/tomcat/apache-tomcat-6.0.37/bin/startup.sh
+
+    - name: Check if Tomcat service is running
+      shell: ps aux | grep '[c]atalina.home=/opt/tomcat'
+      register: tomcat_status
+      ignore_errors: yes
+
+    - name: Debug message Tomcat status
+      debug:
+        msg: "Tomcat is {{ 'running' if tomcat_status.rc == 0 else 'not running' }}"

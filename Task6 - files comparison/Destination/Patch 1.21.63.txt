@@ -1,0 +1,8 @@
+Port_Automation/JavaSource/com/sps/generalCargo/dao/IGCManifestHazardDao.java
+Port_Automation/JavaSource/com/sps/generalCargo/dao/hibernate/GCManifestHazardDao.java
+Port_Automation/JavaSource/com/sps/generalCargo/hazardOperationRequest/action/SaveHazardOperationRequest.java
+Port_Automation/JavaSource/com/sps/generalCargo/hazardOperationRequest/action/SearchHazardRequests.java
+Port_Automation/JavaSource/com/sps/generalCargo/service/IGCManifestHazardService.java
+Port_Automation/JavaSource/com/sps/generalCargo/service/spring/GCManifestHazardService.java
+Port_Automation/JavaSource/com/sps/generalCargo/hazardOperationRequest/action/ViewHazardRequestsDetails.java
+ReportViewer/WebContent/Reports/GenaralCargo/RPT08072.rpt

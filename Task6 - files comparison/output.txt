@@ -1,0 +1,26 @@
+Port_Automation/JavaSource/com/sps/billing/invoices/action/BaseAction.java'Patch 1.15.785.txt, Patch 1.21.32.txt, Patch 1.21.44.txt
+Port_Automation/JavaSource/com/sps/billing/invoices/containerinvoice/loaddischargeinvoice/service/spring/BillingContainerLoadDischargeService.java'Patch 1.21.09.txt
+Port_Automation/JavaSource/com/sps/billing/service/IBillingService.java'Patch 1.15.785.txt, Patch 1.21.09.txt, Patch 1.21.106.txt, Patch 1.21.32.txt, Patch 1.21.98.txt
+Port_Automation/JavaSource/com/sps/billing/service/spring/BillingService.java'Patch 1.15.785.txt, Patch 1.21.09.txt, Patch 1.21.106.txt, Patch 1.21.13.txt, Patch 1.21.16.txt, Patch 1.21.32.txt, Patch 1.21.44.txt, Patch 1.21.98.txt
+Port_Automation/WebContent/WEB-INF/BillingApplicationContext.xml'Patch 1.15.785.txt, Patch 1.21.25.txt, Patch 1.21.32.txt, Patch 1.21.44.txt, Patch 1.21.95.txt, Patch 1.21.98.txt
+Port_Automation/JavaSource/com/sps/container/definition/dao/ContainerDefinitionDao.java'Patch 1.21.27.txt, Patch 1.21.83.txt
+Port_Automation/JavaSource/com/sps/container/definition/service/ContainerDefinitionService.java'Patch 1.21.111.txt, Patch 1.21.17.txt, Patch 1.21.27.txt, Patch 1.21.28.txt, Patch 1.21.30.txt, Patch 1.21.36.txt, Patch 1.21.51.txt, Patch 1.21.65.txt, Patch 1.21.83.txt, Patch 1.21.95.txt
+Port_Automation/JavaSource/com/sps/container/definition/service/IContainerDefinitionService.java'Patch 1.21.27.txt
+Port_Automation/JavaSource/com/sps/container/permitdismiss/action/InitPermitDismissAddEdit.java'Patch 1.21.95.txt
+Port_Automation/JavaSource/com/sps/container/permitdismiss/action/SavePermitDismissAddEdit.java'Patch 1.21.30.txt
+Port_Automation/WebContent/WEB-INF/XMLMappingResources.xml'Patch 1.15.785.txt, Patch 1.21.112.txt, Patch 1.21.124.txt, Patch 1.21.125.txt, Patch 1.21.128.txt, Patch 1.21.132.txt, Patch 1.21.32.txt, Patch 1.21.44.txt, Patch 1.21.67.txt
+Port_Automation/WebContent/WEB-INF/struts-config.xml'Patch 1.15.785.txt, Patch 1.21.10.txt, Patch 1.21.106.txt, Patch 1.21.107.txt, Patch 1.21.110.txt, Patch 1.21.114.txt, Patch 1.21.119.txt, Patch 1.21.121.txt, Patch 1.21.125.txt, Patch 1.21.128.txt, Patch 1.21.26.txt, Patch 1.21.32.txt, Patch 1.21.37.txt, Patch 1.21.39.txt, Patch 1.21.43.txt, Patch 1.21.44.txt, Patch 1.21.53.txt, Patch 1.21.56.txt, Patch 1.21.67.txt, Patch 1.21.70.txt
+Port_Automation/JavaSource/com/sps/billing/invoices/containerinvoice/collectionserviceinvoice/service/spring/BillingContainerCollectionServiceService.java'Patch 1.21.84.txt
+Port_Automation/JavaSource/com/sps/core/resources/ApplicationResources_ar.properties'Patch 1.15.785.txt, Patch 1.21.10.txt, Patch 1.21.110.txt, Patch 1.21.113.txt, Patch 1.21.114.txt, Patch 1.21.119.txt, Patch 1.21.121.txt, Patch 1.21.124.txt, Patch 1.21.125.txt, Patch 1.21.128.txt, Patch 1.21.16.txt, Patch 1.21.23.txt, Patch 1.21.25.txt, Patch 1.21.26.txt, Patch 1.21.32.txt, Patch 1.21.38.txt, Patch 1.21.39.txt, Patch 1.21.43.txt, Patch 1.21.45.txt, Patch 1.21.47.txt, Patch 1.21.49.txt, Patch 1.21.5.txt, Patch 1.21.56.txt, Patch 1.21.66.txt, Patch 1.21.67.txt, Patch 1.21.69.txt, Patch 1.21.70.txt, Patch 1.21.76.txt, Patch 1.21.83.txt
+Port_Automation/JavaSource/com/sps/container/definition/dao/IContainerDefinitionDao.java'Patch 1.21.27.txt
+Port_Automation/JavaSource/com/sps/container/permitdismiss/action/InitPermitDismissSearch.java'Patch 1.21.95.txt
+Port_Automation/JavaSource/com/sps/billing/dao/IBillingDao.java'Patch 1.21.98.txt
+Port_Automation/JavaSource/com/sps/billing/dao/hibernate/BillingDao.java'Patch 1.21.98.txt
+Port_Automation/JavaSource/com/sps/billing/invoices/gcinvoice/dao/hibernate/BillingGCDao.java'Patch 1.21.118.txt, Patch 1.21.52.txt
+Port_Automation/JavaSource/com/sps/container/definition/dao/ContainerDefinitionDao.java'Patch 1.21.27.txt, Patch 1.21.83.txt
+Port_Automation/JavaSource/com/sps/container/definition/dao/IContainerDefinitionDao.java'Patch 1.21.27.txt
+Port_Automation/JavaSource/com/sps/container/definition/service/ContainerDefinitionService.java'Patch 1.21.111.txt, Patch 1.21.17.txt, Patch 1.21.27.txt, Patch 1.21.28.txt, Patch 1.21.30.txt, Patch 1.21.36.txt, Patch 1.21.51.txt, Patch 1.21.65.txt, Patch 1.21.83.txt, Patch 1.21.95.txt
+Port_Automation/JavaSource/com/sps/container/definition/service/IContainerDefinitionService.java'Patch 1.21.27.txt
+Port_Automation/JavaSource/com/sps/billing/invoices/containerinvoice/collectionserviceinvoice/service/spring/BillingContainerCollectionServiceService.java'Patch 1.21.84.txt
+ReportViewer/WebContent/Reports/Containers/RPT03022DD.rpt'Patch 1.21.4.txt
+ReportViewer/WebContent/Reports/Containers/RPT030264.rpt'Patch 1.21.27.txt, Patch 1.21.4.txt, Patch 1.21.65.txt, Patch 1.21.8.txt

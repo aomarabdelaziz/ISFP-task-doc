@@ -1,0 +1,6 @@
+Port_Automation/JavaSource/com/sps/core/resources/ApplicationResources_ar.properties
+Port_Automation/JavaSource/com/sps/warehousing/manifest/registration/action/EditBolStatus.java
+Port_Automation/JavaSource/com/sps/warehousing/manifest/registration/action/ViewBl.java
+Port_Automation/WebContent/ManifestRegistration/EditBolStatus.jsp
+Port_Automation/WebContent/ManifestRegistration/ViewBls.jsp
+Port_Automation/WebContent/WEB-INF/struts-config.xml

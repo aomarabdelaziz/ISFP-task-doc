@@ -1,0 +1,17 @@
+Port_Automation/WebContent/Stevedoring/StevadoringWorks/StevadoringWorks.jsp
+Port_Automation/JavaSource/com/sps/stevedoring/works/InitStevadoringWork.java
+Port_Automation/JavaSource/com/sps/stevedoring/works/SaveStevadoringWork.java
+Port_Automation/JavaSource/com/sps/stevedoring/bean/hibernate/mapping/StevadoringWork.hbm.xml
+Port_Automation/JavaSource/com/sps/core/resources/ApplicationResources_ar.properties
+Port_Automation/JavaSource/com/sps/stevedoring/works/HandleDDL.java
+Port_Automation/JavaSource/com/sps/warehousing/transorderexec/action/InitExecTransOrder.java
+ReportViewer/WebContent/Reports/Billing/StorageLicense/RPT05018.rpt
+Port_Automation/WebContent/WEB-INF/XMLMappingResources.xml
+Port_Automation/JavaSource/com/sps/stevedoring/bean/StevadoringWork.java
+Port_Automation/JavaSource/com/sps/stevedoring/dao/IStevedoringDao.java
+Port_Automation/JavaSource/com/sps/stevedoring/dao/hibernate/StevedoringDao.java
+Port_Automation/JavaSource/com/sps/stevedoring/service/IStevedoringService.java
+Port_Automation/JavaSource/com/sps/stevedoring/service/spring/StevedoringService.java
+Port_Automation/JavaSource/com/sps/stevedoring/works
+Port_Automation/WebContent/Stevedoring/StevadoringWorks
+Port_Automation/WebContent/WEB-INF/struts-config.xml

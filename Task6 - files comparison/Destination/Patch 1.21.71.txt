@@ -1,0 +1,2 @@
+Port_Automation/JavaSource/com/sps/harbor/vesseloperations/visitrequests/departure/action/UpdateDeparture.java
+Port_Automation/WebContent/Harbor/UpdateEtaEtdDraft/UpdateDeparture.jsp

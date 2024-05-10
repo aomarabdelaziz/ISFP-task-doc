@@ -1,0 +1,9 @@
+Port_Automation/JavaSource/com/sps/gatecontrol/service/spring/GateControlBusinessService.java
+Port_Automation/JavaSource/com/sps/gatecontrol/dao/IGateControlDao.java
+Port_Automation/JavaSource/com/sps/gatecontrol/dao/hibernate/GateControlDao.java
+Port_Automation/JavaSource/com/sps/gatecontrol/portstructure/dao/ISecondaryGateDao.java
+Port_Automation/JavaSource/com/sps/gatecontrol/portstructure/dao/hibernate/SecondaryGateDao.java
+Port_Automation/JavaSource/com/sps/gatecontrol/service/spring/GateControlCashierService.java
+Port_Automation/WebContent/WEB-INF/XMLSecondaryMappingResources.xml
+Port_Automation/JavaSource/com/sps/gatecontrol/service/IGateControlService.java
+Port_Automation/JavaSource/com/sps/gatecontrol/service/spring/GateControlService.java

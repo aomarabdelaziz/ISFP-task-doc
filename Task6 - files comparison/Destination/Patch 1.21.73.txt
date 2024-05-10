@@ -1,0 +1,9 @@
+Port_Automation/JavaSource/com/sps/gatecontrol/newbean/hibernate/mapping/CashierTruckBookingTruck.hbm.xml
+Port_Automation/JavaSource/com/sps/gatecontrol/newbean/hibernate/mapping/CashierTruckVisit.hbm.xml
+Port_Automation/JavaSource/com/sps/gatecontrol/newbean/hibernate/mapping/TruckBooking.hbm.xml
+Port_Automation/JavaSource/com/sps/gatecontrol/newbean/hibernate/mapping/TruckBookingTruck.hbm.xml
+Port_Automation/JavaSource/com/sps/gatecontrol/newbean/hibernate/mapping/TruckBookingTruckUse.hbm.xml
+Port_Automation/JavaSource/com/sps/gatecontrol/newbean/hibernate/mapping/TruckVisit.hbm.xml
+Port_Automation/JavaSource/com/sps/gatecontrol/newbean/hibernate/mapping/TruckVisitUse.hbm.xml
+Port_Automation/JavaSource/com/sps/container/definition/bean/BaplieContainerUse.java  
+Port_Automation/JavaSource/com/sps/container/definition/bean/hibernate/mapping/BaplieContainerUse.hbm.xml 

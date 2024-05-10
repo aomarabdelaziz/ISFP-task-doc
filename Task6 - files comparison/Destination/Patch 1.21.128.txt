@@ -1,0 +1,12 @@
+Port_Automation/JavaSource/com/sps/stevedoring/bean/WarhousingSetting.java
+Port_Automation/JavaSource/com/sps/stevedoring/bean/hibernate/mapping/WarhousingSetting.hbm.xml
+Port_Automation/JavaSource/com/sps/warehousing/warhousingSetting
+Port_Automation/WebContent/WEB-INF/XMLMappingResources.xml
+Port_Automation/WebContent/WEB-INF/struts-config.xml
+Port_Automation/WebContent/Warehousing/setting
+Port_Automation/JavaSource/com/sps/core/enums/WarehousingSettingsEnum.java
+Port_Automation/JavaSource/com/sps/core/resources/ApplicationResources_ar.properties
+Port_Automation/JavaSource/com/sps/warehousing/transorderexec/action/AddEditReceiveOrderCard.java
+Port_Automation/JavaSource/com/sps/warehousing/transorderexec/action/AddEditTransOrderDetail.java
+Port_Automation/JavaSource/com/sps/warehousing/transorderexec/action/InitManageExecTransOrder.java
+Port_Automation/WebContent/TransOrderExec/ManageTransOrderExec.jsp

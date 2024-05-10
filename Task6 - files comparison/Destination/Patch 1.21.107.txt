@@ -1,0 +1,9 @@
+Port_Automation/JavaSource/com/sps/gatecontrol/dao/IGateControlDao.java
+Port_Automation/JavaSource/com/sps/gatecontrol/dao/hibernate/GateControlDao.java
+Port_Automation/JavaSource/com/sps/gatecontrol/service/IGateControlService.java
+Port_Automation/JavaSource/com/sps/gatecontrol/service/spring/GateControlService.java
+Port_Automation/JavaSource/com/sps/gatecontrol/videoWall
+Port_Automation/WebContent/GateControl/videoWall
+Port_Automation/WebContent/WEB-INF/struts-config.xml
+Port_Automation/JavaSource/com/sps/harbor/vesseloperations/videowallmodule/action/DepartureVideoWall.java
+Port_Automation/JavaSource/com/sps/harbor/vesseloperations/videowallmodule/action/VesselInPortVideoWall.java

@@ -1,0 +1,10 @@
+Port_Automation/JavaSource/com/isfp/integration/service/spring/IntegrationService.java
+Port_Automation/JavaSource/com/sps/core/resources/ApplicationResources_ar.properties
+Port_Automation/JavaSource/com/sps/warehousing/deliveryrequest/registration/action/InitDeliveryRequest.java
+Port_Automation/JavaSource/com/sps/warehousing/deliveryrequest/registration/action/ViewManifestBills.java
+Port_Automation/JavaSource/com/sps/warehousing/transorderexec/action/AddEditTransOrderDetail.java
+Port_Automation/WebContent/ReportJsp/Layouts/ReceiveCard.jsp
+ReportViewer/WebContent/Reports/Warehousing/RPT06014_802.rpt
+ReportViewer/WebContent/Reports/Warehousing/RPT06015_802.rpt
+ReportViewer/WebContent/Reports/Warehousing/RPT06016_802.rpt
+ReportViewer/WebContent/Reports/Warehousing/RPT06017_802.rpt
