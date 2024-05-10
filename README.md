@@ -689,6 +689,8 @@ Ensure the following prerequisites are met before installing WebLogic Server:
 
 ![Alternative Image](./images/weblogic//8.png)
 
+![Alternative Image](./images/weblogic//9.png)
+
 
 
 </details>
