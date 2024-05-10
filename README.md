@@ -1006,6 +1006,19 @@ Run the Docker container using the command docker run -d -p 4287:4287 my-webapp 
 
 > ngrok is a unified ingress platform because it combines all the components to deliver traffic from your services to the internet into one. ngrok consolidates together your reverse proxy, load balancer, API gateway, firewall, delivery network, DDoS protection and more.
 
+<details>
+<summary><b>Images</b></summary>
+
+### 1. Proof that ngrok can redirect the request to our jenkins server 
+
+![Alternative Image](./images/jenkins/5.png)
+![Alternative Image](./images/jenkins/5-1.png)
+![Alternative Image](./images/jenkins/5-2.png)
+
+</details>
+
+
+
 
 ## :computer: Create Jenkins pipeline that use ansible for configure local host server
 
