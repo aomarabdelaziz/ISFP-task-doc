@@ -182,4 +182,15 @@ Ensure the following prerequisites are met before running the playbook:
       args:
         executable: /bin/bash
 ```  
+
+
+- **hosts:**  Specifies the target host where the playbook tasks will be executed. In this case, it's set to localhost.
+- **vars:**   Defines variables used throughout the playbook, including download URLs for Java 8 and Java 11 archives, download folder location, installation paths, and environment file paths.
+- **tasks:** Contains the main tasks of the playbook
+  - **Subtask 1:** Description of the subtask
+  - **Subtask 2:** Description of the subtask
+    - *Sub-subtask A:* Description of the sub-subtask
+    - *Sub-subtask B:* Description of the sub-subtask
+  - **Subtask 3:** Description of the subtask
+
 </details>
