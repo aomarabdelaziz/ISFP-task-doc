@@ -443,84 +443,73 @@ Ensure the following prerequisites are met before running the playbook:
 
 # Installing Maven Latest Version (3.9.6)
 
-This Ansible playbook automates the installation of Apache Tomcat version 6.0.37 on our local machine. It performs the following steps:
+This Ansible playbook automates the installation of Apache Maven version 3.9.6 on our local machine. It performs the following steps:
 
 # Prerequisites
 
 Ensure the following prerequisites are met before running the playbook:
 
-- **Access to Apache Tomcat Archive:** Ensure access to the Apache Tomcat archives for 6.0.37. The playbook uses direct download link to fetch this archive.
+- **Access to Apache Maven Archive:** Ensure access to the Apache Maven archives for 3.9.6. The playbook uses direct download link to fetch this archive.
 - **Ansible:**  Ensure Ansible is installed on the local system from which the playbook will be executed.
 - **Target Host:**  The playbook assumes execution on the localhost, but it can be modified to target other hosts as needed.
 
 # Playbook Structure
 
 ```yaml
-- name: Install Apache Tomcat 6.0.37
+- name: Install Apache Maven and configure environment
   hosts: localhost
   become: yes
   vars:
-    download_url: https://archive.apache.org/dist/tomcat/tomcat-6/v6.0.37/bin/apache-tomcat-6.0.37.tar.gz
+    download_url: https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
     download_folder: /tmp
-    tomcat_installation_path: "/opt/tomcat"
-    tomcat_home: "/opt/tomcat/apache-tomcat-6.0.37"
-    tomcat_archive: "{{download_folder}}/apache-tomcat-6.0.37.tar.gz"
+    maven_installation_path: "/opt/maven"
+    maven_home: "/opt/maven/apache-maven-3.9.6"
+    maven_archive: "{{download_folder}}/apache-maven-3.9.6-bin.tar.gz"
+    maven_env_file: "/etc/profile.d/maven.sh"
+
   tasks:
-    - name: Create tomcat directory
+    - name: Download Maven
+      get_url:
+        url: "{{ download_url }}"
+        dest: "{{ maven_archive }}"
+
+    - name: Create maven.sh
       file:
-        path: "{{tomcat_installation_path}}"
+        path: "{{ maven_installation_path }}"
         state: directory
 
-    - name: Download Apache Tomcat
-      get_url:
-        url: "{{download_url}}"
-        dest: "{{tomcat_archive}}"
-
-    - name: Extract Apache Tomcat
+    - name: Extract Maven
       unarchive:
-        src: "{{tomcat_archive}}"
-        dest: "{{tomcat_installation_path}}"
+        src: "{{ maven_archive }}"
+        dest: "{{ maven_installation_path }}"
+        creates: "{{ maven_home }}"
         remote_src: yes
 
-    - name: Change permissions of startup.sh
+    - name: Create maven.sh
       file:
-        path: "{{tomcat_home}}/bin/startup.sh"
-        mode: +x
+        path: "{{ maven_env_file }}"
+        state: touch
 
-    - name: Change Tomcat connector port to 8088
-      replace:
-        path: "{{tomcat_home}}/conf/server.xml"
-        regexp: 'port="8080"'
-        replace: 'port="8088"'
+    - name: Clear content of maven.sh file if it exists
+      shell: echo "" > "{{ maven_env_file }}"
 
-    - name: Change Tomcat Shutdown Port 8005 > 8006
-      replace:
-        path: "{{tomcat_home}}/conf/server.xml"
-        regexp: 'port="8005"'
-        replace: 'port="8006"'
+    - name: Set environment variables for Maven
+      lineinfile:
+        dest: "{{ maven_env_file }}"
+        line: "{{ item }}"
+      with_items:
+        - "export M2_HOME={{maven_home}}"
+        - "export PATH=$PATH:$M2_HOME/bin"
 
-    - name: Change Tomcat Connector Port for AJP 8009 > 8010
-      replace:
-        path: "{{tomcat_home}}/conf/server.xml"
-        regexp: 'port="8009"'
-        replace: 'port="8010"'
+    - name: Configure maven repo to use local repo
+      copy:
+        src: "./maven/settings.xml"
+        dest: "{{ maven_home }}/conf/settings.xml"
 
-    - name: Create tomcat-users.xml file
-      template:
-        src: "./tomcat/tomcat-users.xml"
-        dest: "{{tomcat_home}}/conf/tomcat-users.xml"
-
-    - name: Start Tomcat service using startup.sh
-      command: sh "{{tomcat_home}}/bin/startup.sh"
-
-    - name: Check if Tomcat service is running
-      shell: ps aux | grep '[c]atalina.home=/opt/tomcat'
-      register: tomcat_status
-      ignore_errors: yes
-
-    - name: Debug message Tomcat status
-      debug:
-        msg: "Tomcat is {{ 'running' if tomcat_status.rc == 0 else 'not running' }}"
+    - name: Source maven.sh script
+      shell: source {{ maven_env_file }}
+      args:
+        executable: /bin/bash
 ```  
 
 - **hosts:**  Specifies the target host where the playbook tasks will be executed. In this case, it's set to localhost.
@@ -536,43 +525,296 @@ Ensure the following prerequisites are met before running the playbook:
   - **Create tomcat-users.xml File:**   It creates a tomcat-users.xml file in the Tomcat configuration directory to define user roles and access privileges.
 
     ```diff
-    <?xml version='1.0' encoding='utf-8'?>
     <!--
-    Licensed to the Apache Software Foundation (ASF) under one or more
-    contributor license agreements.  See the NOTICE file distributed with
-    this work for additional information regarding copyright ownership.
-    The ASF licenses this file to You under the Apache License, Version 2.0
-    (the "License"); you may not use this file except in compliance with
-    the License.  You may obtain a copy of the License at
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
 
         http://www.apache.org/licenses/LICENSE-2.0
 
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-    -->
-    <tomcat-users>
-    <!--
-    NOTE:  By default, no user is included in the "manager-gui" role required
-    to operate the "/manager/html" web application.  If you wish to use this app,
-    you must define such a user - the username and password are arbitrary.
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
     -->
     <!--
-    NOTE:  The sample user and role entries below are wrapped in a comment
-    and thus are ignored when reading this file. Do not forget to remove
-    <!.. ..> that surrounds them.
+
+    | This is the configuration file for Maven. It can be specified at two levels:
+    |
+    |  1. User Level. This settings.xml file provides configuration for a single user,
+    |                 and is normally provided in ${user.home}/.m2/settings.xml.
+    |
+    |                 NOTE: This location can be overridden with the CLI option:
+    |
+    |                 -s /path/to/user/settings.xml
+    |
+    |  2. Global Level. This settings.xml file provides configuration for all Maven
+    |                 users on a machine (assuming they're all using the same Maven
+    |                 installation). It's normally provided in
+    |                 ${maven.conf}/settings.xml.
+    |
+    |                 NOTE: This location can be overridden with the CLI option:
+    |
+    |                 -gs /path/to/global/settings.xml
+    |
+    | The sections in this sample file are intended to give you a running start at
+    | getting the most out of your Maven installation. Where appropriate, the default
+    | values (values used when the setting is not specified) are provided.
+    |
+    |
+    -->
+    <settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 https://maven.apache.org/xsd/settings-1.2.0.xsd">
+    <!--
+    localRepository
+    | The path to the local repository maven will use to store artifacts.
+    |
+    | Default: ${user.home}/.m2/repository
+    
+    
+    -->
+   + <localRepository>${user.home}/.m2/repository</localRepository>
+    <!--
+    interactiveMode
+    | This will determine whether maven prompts you when it needs input. If set to false,
+    | maven will use a sensible default value, perhaps based on some other setting, for
+    | the parameter in question.
+    |
+    | Default: true
+    <interactiveMode>true</interactiveMode>
+    
     -->
     <!--
-    <role rolename="tomcat"/>
-    <role rolename="role1"/>
-    <user username="tomcat" password="tomcat" roles="manager-gui,admin-gui"/>
-    <user username="both" password="tomcat" roles="tomcat,role1"/>
-    <user username="role1" password="tomcat" roles="role1"/>
+    offline
+    | Determines whether maven should attempt to connect to the network when executing a build.
+    | This will have an effect on artifact downloads, artifact deployment, and others.
+    |
+    | Default: false
+    <offline>false</offline>
+    
     -->
-    + <user username="tomcat" password="tomcat" roles="manager-gui,admin-gui"/>
-    </tomcat-users>
+    <!--
+    pluginGroups
+    | This is a list of additional group identifiers that will be searched when resolving plugins by their prefix, i.e.
+    | when invoking a command line like "mvn prefix:goal". Maven will automatically add the group identifiers
+    | "org.apache.maven.plugins" and "org.codehaus.mojo" if these are not already contained in the list.
+    |
+    -->
+    <pluginGroups>
+    <!--
+    pluginGroup
+        | Specifies a further group identifier to use for plugin lookup.
+        <pluginGroup>com.your.plugins</pluginGroup>
+        
+    -->
+    </pluginGroups>
+    <!--
+    TODO Since when can proxies be selected as depicted? 
+    -->
+    <!--
+    proxies
+    | This is a list of proxies which can be used on this machine to connect to the network.
+    | Unless otherwise specified (by system property or command-line switch), the first proxy
+    | specification in this list marked as active will be used.
+    |
+    -->
+    <proxies>
+    <!--
+    proxy
+        | Specification for one proxy, to be used in connecting to the network.
+        |
+        <proxy>
+        <id>optional</id>
+        <active>true</active>
+        <protocol>http</protocol>
+        <username>proxyuser</username>
+        <password>proxypass</password>
+        <host>proxy.host.net</host>
+        <port>80</port>
+        <nonProxyHosts>local.net|some.host.com</nonProxyHosts>
+        </proxy>
+        
+    -->
+    </proxies>
+    <!--
+    servers
+    | This is a list of authentication profiles, keyed by the server-id used within the system.
+    | Authentication profiles can be used whenever maven must make a connection to a remote server.
+    |
+    -->
+    <servers>
+    <!--
+    server
+        | Specifies the authentication information to use when connecting to a particular server, identified by
+        | a unique name within the system (referred to by the 'id' attribute below).
+        |
+        | NOTE: You should either specify username/password OR privateKey/passphrase, since these pairings are
+        |       used together.
+        |
+        <server>
+        <id>deploymentRepo</id>
+        <username>repouser</username>
+        <password>repopwd</password>
+        </server>
+        
+    -->
+    <!--
+    Another sample, using keys to authenticate.
+        <server>
+        <id>siteServer</id>
+        <privateKey>/path/to/private/key</privateKey>
+        <passphrase>optional; leave empty if not used.</passphrase>
+        </server>
+        
+    -->
+    </servers>
+    <!--
+    mirrors
+    | This is a list of mirrors to be used in downloading artifacts from remote repositories.
+    |
+    | It works like this: a POM may declare a repository to use in resolving certain artifacts.
+    | However, this repository may have problems with heavy traffic at times, so people have mirrored
+    | it to several places.
+    |
+    | That repository definition will have a unique id, so we can create a mirror reference for that
+    | repository, to be used as an alternate download site. The mirror site will be the preferred
+    | server for that repository.
+    |
+    -->
+    <mirrors>
+    <!--
+    mirror
+        | Specifies a repository mirror site to use instead of a given repository. The repository that
+        | this mirror serves has an ID that matches the mirrorOf element of this mirror. IDs are used
+        | for inheritance and direct lookup purposes, and must be unique across the set of mirrors.
+        |
+        <mirror>
+        <id>mirrorId</id>
+        <mirrorOf>repositoryId</mirrorOf>
+        <name>Human Readable Name for this Mirror.</name>
+        <url>http://my.repository.com/repo/path</url>
+        </mirror>
+        
+    -->
+    <mirror>
+    <id>maven-default-http-blocker</id>
+    <mirrorOf>external:http:*</mirrorOf>
+    <name>
+    Pseudo repository to mirror external repositories initially using HTTP.
+    </name>
+    <url>http://0.0.0.0/</url>
+    <blocked>true</blocked>
+    </mirror>
+    </mirrors>
+    <!--
+    profiles
+    | This is a list of profiles which can be activated in a variety of ways, and which can modify
+    | the build process. Profiles provided in the settings.xml are intended to provide local machine-
+    | specific paths and repository locations which allow the build to work in the local environment.
+    |
+    | For example, if you have an integration testing plugin - like cactus - that needs to know where
+    | your Tomcat instance is installed, you can provide a variable here such that the variable is
+    | dereferenced during the build process to configure the cactus plugin.
+    |
+    | As noted above, profiles can be activated in a variety of ways. One way - the activeProfiles
+    | section of this document (settings.xml) - will be discussed later. Another way essentially
+    | relies on the detection of a property, either matching a particular value for the property,
+    | or merely testing its existence. Profiles can also be activated by JDK version prefix, where a
+    | value of '1.4' might activate a profile when the build is executed on a JDK version of '1.4.2_07'.
+    | Finally, the list of active profiles can be specified directly from the command line.
+    |
+    | NOTE: For profiles defined in the settings.xml, you are restricted to specifying only artifact
+    |       repositories, plugin repositories, and free-form properties to be used as configuration
+    |       variables for plugins in the POM.
+    |
+    |
+    -->
+    <profiles>
+    <!--
+    profile
+        | Specifies a set of introductions to the build process, to be activated using one or more of the
+        | mechanisms described above. For inheritance purposes, and to activate profiles via <activatedProfiles/>
+        | or the command line, profiles have to have an ID that is unique.
+        |
+        | An encouraged best practice for profile identification is to use a consistent naming convention
+        | for profiles, such as 'env-dev', 'env-test', 'env-production', 'user-jdcasey', 'user-brett', etc.
+        | This will make it more intuitive to understand what the set of introduced profiles is attempting
+        | to accomplish, particularly when you only have a list of profile id's for debug.
+        |
+        | This profile example uses the JDK version to trigger activation, and provides a JDK-specific repo.
+        <profile>
+        <id>jdk-1.4</id>
+
+        <activation>
+            <jdk>1.4</jdk>
+        </activation>
+
+        <repositories>
+            <repository>
+            <id>jdk14</id>
+            <name>Repository for JDK 1.4 builds</name>
+            <url>http://www.myhost.com/maven/jdk14</url>
+            <layout>default</layout>
+            <snapshotPolicy>always</snapshotPolicy>
+            </repository>
+        </repositories>
+        </profile>
+        
+    -->
+    <!--
+
+        | Here is another profile, activated by the property 'target-env' with a value of 'dev', which
+        | provides a specific path to the Tomcat instance. To use this, your plugin configuration might
+        | hypothetically look like:
+        |
+        | ...
+        | <plugin>
+        |   <groupId>org.myco.myplugins</groupId>
+        |   <artifactId>myplugin</artifactId>
+        |
+        |   <configuration>
+        |     <tomcatLocation>${tomcatPath}</tomcatLocation>
+        |   </configuration>
+        | </plugin>
+        | ...
+        |
+        | NOTE: If you just wanted to inject this configuration whenever someone set 'target-env' to
+        |       anything, you could just leave off the <value/> inside the activation-property.
+        |
+        <profile>
+        <id>env-dev</id>
+
+        <activation>
+            <property>
+            <name>target-env</name>
+            <value>dev</value>
+            </property>
+        </activation>
+
+        <properties>
+            <tomcatPath>/path/to/tomcat/instance</tomcatPath>
+        </properties>
+        </profile>
+        
+    -->
+    </profiles>
+    <!--
+    activeProfiles
+    | List of profiles that are active for all builds.
+    |
+    <activeProfiles>
+        <activeProfile>alwaysActiveProfile</activeProfile>
+        <activeProfile>anotherAlwaysActiveProfile</activeProfile>
+    </activeProfiles>
+    
+    -->
+    </settings>
     ```
 
   - **Start Tomcat Service:**  It starts the Tomcat service using the `startup.sh` script.
