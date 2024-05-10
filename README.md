@@ -839,11 +839,23 @@ docker build -t jenkins-ansible -f Dockerfile.jenkins-ansible .
 ```
 ![Alternative Image](./images/docker/1.png)
 
-### 1. Launch docker instance from our custom image we built it before
+### 2. Launch docker instance from our custom image we built it before
 
 ```sh
-docker run --name jenkins --network=host -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -d -v $(which docker):$(which docker) jenkins-ansible
+docker run --name jenkins --network=host -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -d -v $(which docker):$(which docker) jenkins-ansible
 ```
+> Assuming that our virtual machine (VM) is accessible to the public, I wanted to emulate the process, so I used to run the docker container with `--network=host` to enable me to access the jenkins from my computer to the vm and to can be accessible to github webhook
+
+![Alternative Image](./images/docker/2.png)
+
+
+### 3. Accessing the jenkins container to get Admin Secret
+
+```sh
+docker run --name jenkins --network=host -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -d -v $(which docker):$(which docker) jenkins-ansible
+```
+
+> Assuming that our virtual machine (VM) is accessible to the public, I wanted to emulate the process, so I used to run the docker container with `--network=host` to enable me to access the jenkins from my computer to the vm and to can be accessible to github webhook
 
 ![Alternative Image](./images/docker/2.png)
 
