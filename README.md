@@ -24,9 +24,9 @@ Hey Folks 🖐️, This project aims to provide a comprehensive guide for settin
 - [x] `Done` - 004 - Download the latest version of Maven and configure its repository.
 - [x] `Done` - 005 - Install Apache and PHP
 - [x] `Done` - 006 - Create File Comparison Script
-- [x] `Done` - 007 - Install Payara Server 5.191 #badassfish (build 94)
+- [ ] `Progress` - 007 - Install Payara Server 5.191 #badassfish (build 94)
 - [x] `Done` - 008 - Install Multiple Versions of Java
-- [ ]  `Progress` - 009 - Install WebLogic Server 12.2.1.3.0
+- [x] `Done` - 009 - Install WebLogic Server 12.2.1.3.0
 - [x] `Done` - 010 - Create Jenkins Server Based on Docker Image
 - [x] `Done` - 011 - Create Maven Docker Compiler
 - [x] `Done` - 012 - Create Jenkins Pipeline for Automated Compilation
