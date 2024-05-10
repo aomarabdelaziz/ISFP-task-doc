@@ -118,23 +118,7 @@ Ensure the following prerequisites are met before running the playbook:
 
 
     ```yaml
-        - name: Install multiple versions of Java and set earlier one is the default (8)
-        hosts: localhost
-        become: yes
-        vars:
-            java8_download_url: <https://download.oracle.com/otn/java/jdk/8u411-b09/43d62d619be4e416215729597d70b8ac/jdk-8u411-linux-x64.tar.gz?AuthParam=1715273619_e8c7c418de8a6669cba16e96605628ae>
-            java11_download_url: <https://download.oracle.com/otn/java/jdk/11.0.23+7/9bd8d305c900ee4fa3e613b59e6f42de/jdk-11.0.23_linux-x64_bin.tar.gz?AuthParam=1715274582_4f95848a2a78484bad39825b06e0487f>
-            download_folder: /tmp
-            java_8_home: "/usr/local/jdk1.8.0_411"
-            java_11_home: "/usr/local//jdk-11.0.23"
-            java_8_archive: "{{download_folder}}/jdk-8u411-linux-x64.tar.gz"
-            java_11_archive: "{{download_folder}}/jdk-11.0.23_linux-x64_bin.tar.gz"
-            java_env_file: "/etc/profile.d/java.sh"
-        tasks:
-        - name: Check if Oracle Java 8 archive exists
-            stat:
-                path: "{{ java_8_archive }}"
-            register: java_8_archive_stat
+       asdasd
     ```
 
 </details>
