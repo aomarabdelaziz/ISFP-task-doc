@@ -247,29 +247,19 @@
   become: yes
   vars:
     docker_file_download_url: https://raw.githubusercontent.com/aomarabdelaziz/ISFP-task-doc/master/Docker/Dockerfile.jenkins-ansible
-    download_path: /tmp/
+    download_path: /tmp/Dockerfile.jenkins-ansible
   tasks:
     - name: Download Dockerfile.jenkins-ansible
       get_url:
         url: "https://raw.githubusercontent.com/aomarabdelaziz/ISFP-task-doc/master/Docker/Dockerfile.jenkins-ansible"
-        dest: "{{ download_path }}Dockerfile.jenkins-ansible"
+        dest: "{{ download_path }}"
+
     - name: Build Docker image
-      docker_image:
-        name: jenkins-ansible
-        tag: latest
-        build:
-          path: "{{ download_path }}"
-          dockerfile: Dockerfile.jenkins-ansible
-    - name: Run Jenkins container
-      docker_container:
-        name: jenkins
-        image: jenkins-ansible
-        detach: yes
-        volumes:
-          - jenkins_home:/var/jenkins_home
-          - /var/run/docker.sock:/var/run/docker.sock
-          - "{{ ansible_playbook_dir }}/docker:/usr/bin/docker"
-        network_mode: host
+      command: "docker build -t jenkins-ansible -f {{download_path}} ."
+
+    - name: Run Jenkins containerg
+      command: "docker run --name jenkins --network=host -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -d -v $(which docker):$(which docker) jenkins-ansible"
+
     - name: Get initial admin password
       command: docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword
       register: initial_admin_password
