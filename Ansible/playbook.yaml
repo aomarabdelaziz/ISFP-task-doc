@@ -203,46 +203,41 @@
 #       args:
 #         executable: /bin/bash
 
-# - name: Install Apache and PHP
-#   hosts: localhost
-#   become: yes
+- name: Install Apache and PHP
+  hosts: localhost
+  become: yes
 
-#   tasks:
-#     - name: Install apache(httpd)
-#       yum:
-#         name: httpd
-#         state: present
+  tasks:
+    - name: Install apache(httpd)
+      yum:
+        name: httpd
+        state: present
 
-#     - name: Install php package
-#       yum:
-#         name: php
-#         state: present
+    - name: Install php package
+      yum:
+        name: php
+        state: present
+    - name: Add Docker repository
+      yum_repository:
+        name: docker-ce
+        description: Docker CE Stable - $basearch
+        baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
+        gpgcheck: yes
+        gpgkey: https://download.docker.com/linux/centos/gpg
+        enabled: yes
 
-# - name: Install Docker
-#   hosts: localhost
-#   become: yes
-#   tasks:
-#     - name: Add Docker repository
-#       yum_repository:
-#         name: docker-ce
-#         description: Docker CE Stable - $basearch
-#         baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
-#         gpgcheck: yes
-#         gpgkey: https://download.docker.com/linux/centos/gpg
-#         enabled: yes
+    - name: Install Docker
+      yum:
+        name: docker-ce
+        state: present
 
-#     - name: Install Docker
-#       yum:
-#         name: docker-ce
-#         state: present
+    - name: Start Docker service
+      service:
+        name: docker
+        state: started
+        enabled: yes
 
-#     - name: Start Docker service
-#       service:
-#         name: docker
-#         state: started
-#         enabled: yes
-
-#     - name: Change permissions of /var/run/docker.sock
-#       file:
-#         path: /var/run/docker.sock
-#         mode: "0666"
+    - name: Change permissions of /var/run/docker.sock
+      file:
+        path: /var/run/docker.sock
+        mode: "0666"
