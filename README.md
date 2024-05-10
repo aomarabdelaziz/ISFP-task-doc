@@ -413,12 +413,11 @@ Ensure the following prerequisites are met before running the playbook:
 
 ### 3. Accessing our apache tomcat from my computer which host the VM
 
-
+![Alternative Image](./images/tomcat//5.png)
 
 > Assuming that our virtual machine (VM) is accessible to the public, I wanted to emulate the process, so I used the command `sudo firewall-cmd --zone=public --add-port=8088/tcp to open port 8080 within our VM. I also adjusted the VM network settings from our oracle VMbox to port forward from my host machine to the VM (guest) port.
 
-
-![Alternative Image](./images/tomcat//5.png)
+![Alternative Image](./images/tomcat//9.png)
 
 ### 4. Oracle Java Version
 
