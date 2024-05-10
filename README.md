@@ -19,6 +19,7 @@ This project aims to provide a comprehensive guide for setting up a development 
 - [x] `Done` - [004 - Download the latest version of Maven and configure its repository](#maven-installation-guide)
 - [x] `Done` - [005 - Install WebLogic Server 12.2.1.3.0](#weblogic-server-installation-guide)
 - [x] `Done` - [006 - Install PHP, Apache and Docker](#php-apache-docker-installation-guide)
+- [x] `Done` - [007 - Create shell or python script to check and compare between two files](#compare-script-guide)
 
 <!-- -
 - [x] `Done` - 003 - Install Subversion (SVN)
@@ -682,8 +683,65 @@ Ensure the following prerequisites are met before running the playbook:
 
 ### 1. Executing ansible playbook to our vm
 
-![Alternative Image](./images/maven/1.png)
+![Alternative Image](./images/apache-php-docker/1.png)
 
 
 </details>
+</details>
+
+
+## :computer: Compare Script Guide
+
+<details>
+<summary><b>Show more details</b></summary>
+
+# Loading Lines into Dictionary and Comparing Source with Destination
+
+This Python script automates the process of comparing lines from a source file with multiple destination files and outputs the results into an output file. Here's how it works:
+
+
+# Prerequisites
+
+Ensure the following prerequisites are met before running the script:
+
+- **Python:**  Ensure Python is installed on the local system from which the script will be executed.
+
+# Script Structure
+
+```yaml
+import os
+
+def load_lines_into_dict(directory_path):
+    files_in_directory = os.listdir(directory_path)
+    lines_found = {}
+    for file_name in files_in_directory:
+        file_path_abs = os.path.join(directory_path, file_name)
+        if os.path.isfile(file_path_abs):
+            with open(file_path_abs, 'r') as file:
+                for line in file:
+                    file_name_only = os.path.basename(file_path_abs)
+                    if line.strip() not in lines_found:
+                        lines_found[line.strip()] = [file_name_only]
+                    else:
+                        lines_found[line.strip()].append(file_name_only)
+    return lines_found
+
+def compare_lines_src_dest(lines_dict, output_file):
+    with open("source.txt", 'r') as source_file:
+        with open(output_file, 'w') as result_file:
+            for line in source_file:
+                line = line.strip()
+                if line in lines_dict:
+                    result_file.write(f"{line}'{', '.join(lines_dict[line])}\n")
+
+lines_dict = load_lines_into_dict("./Destination")
+compare_lines_src_dest(lines_dict, "output.txt")
+
+
+```  
+
+1. `load_lines_into_dict(directory_path)`: This function takes a directory path as input and loads all the lines from files within that directory into a dictionary. Each line is used as a key, and the value associated with each key is a list of file names where the line is found. `It iterates through each file in the directory, reads its lines`, and populates the dictionary accordingly.
+
+2. `compare_lines_src_dest(lines_dict, output_file)`: This function compares the lines from a source file (source.txt) with the lines loaded into the dictionary using the load_lines_into_dict function. For each line in the source file,` it checks if the line exists in the dictionary`. If it does, `it writes the line along with the file names where it was found into an output file (output.txt)`.
+
 </details>
