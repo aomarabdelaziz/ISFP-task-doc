@@ -401,19 +401,21 @@ Ensure the following prerequisites are met before running the playbook:
 
 ### 1. Executing ansible playbook to our vm
 
-![Alternative Image](./images/ansible-java/1.png)
+![Alternative Image](./images/tomcat/1.png)
 
-![Alternative Image](./images/ansible-java//2.png)
+![Alternative Image](./images/tomcat//2.png)
 
-![Alternative Image](./images/ansible-java//3.png)
+![Alternative Image](./images/tomcat//3.png)
 
-### 2. update-alternatives --config java --> shows us the default java version which is openjdk-8
+### 2. Accessing our apache tomcat from our VM
 
-![Alternative Image](./images/ansible-java//4.png)
+![Alternative Image](./images/tomcat//4.png)
 
-### 3. after installing ORACLE java , that is our JAVA_HOME Environment variable
+### 3. Accessing our apache tomcat from my computer which host the VM
+> [!IMPORTANT]  
+> The binds system has changed. Instead of doing the name of the key, there are scancodes assigned per key.
 
-![Alternative Image](./images/ansible-java//5.png)
+![Alternative Image](./images/tomcat//5.png)
 
 ### 4. Oracle Java Version
 
