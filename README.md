@@ -103,7 +103,7 @@ This project aims to provide a comprehensive guide for setting up a development 
 <details>
 <summary><b>Show more details</b></summary>
 
-# Install Multiple Versions of Java and Set Default (Java 8)
+# Installing  Multiple Versions of Java and Set Default (Java 8)
 This Ansible playbook automates the installation of various Java versions on a target machine, with the earlier version (Java 8) set as the default. It gives developers the flexibility they need if their applications require different Java versions.
 I choose to install Oracle Java (8,11) versions since WebLogic installation cannot be proceed because the open-jdk is no longer supported any more.
 
@@ -252,11 +252,102 @@ So I got those links from my login session; they have a limit 3 times only to be
 <details>
 <summary><b>Show more details</b></summary>
 
-### 5. update-alternatives --config java --> shows us the default Java version, which is Oracle 8, that we have installed
+# Installing Apache Tomcat (6.0.37)
 
-2. Add the `size-limit` section and the `size` script to your `package.json`:
+This Ansible playbook automates the installation of Apache Tomcat version 6.0.37 on our local machine. It performs the following steps:
 
-    ```diff
+
+# Prerequisites
+
+Ensure the following prerequisites are met before running the playbook:
+
+- **Access to Apache Tomcat Archive:** Ensure access to the Apache Tomcat archives for 6.0.37. The playbook uses direct download link to fetch this archive. 
+- **Ansible:**  Ensure Ansible is installed on the local system from which the playbook will be executed.
+- **Target Host:**  The playbook assumes execution on the localhost, but it can be modified to target other hosts as needed.
+
+# Playbook Structure
+
+```yaml
+- name: Install Apache Tomcat 6.0.37
+  hosts: localhost
+  become: yes
+  vars:
+    download_url: https://archive.apache.org/dist/tomcat/tomcat-6/v6.0.37/bin/apache-tomcat-6.0.37.tar.gz
+    download_folder: /tmp
+    tomcat_installation_path: "/opt/tomcat"
+    tomcat_home: "/opt/tomcat/apache-tomcat-6.0.37"
+    tomcat_archive: "{{download_folder}}/apache-tomcat-6.0.37.tar.gz"
+  tasks:
+    - name: Create tomcat directory
+      file:
+        path: "{{tomcat_installation_path}}"
+        state: directory
+
+    - name: Download Apache Tomcat
+      get_url:
+        url: "{{download_url}}"
+        dest: "{{tomcat_archive}}"
+
+    - name: Extract Apache Tomcat
+      unarchive:
+        src: "{{tomcat_archive}}"
+        dest: "{{tomcat_installation_path}}"
+        remote_src: yes
+
+    - name: Change permissions of startup.sh
+      file:
+        path: "{{tomcat_home}}/bin/startup.sh"
+        mode: +x
+
+    - name: Change Tomcat connector port to 8088
+      replace:
+        path: "{{tomcat_home}}/conf/server.xml"
+        regexp: 'port="8080"'
+        replace: 'port="8088"'
+
+    - name: Change Tomcat Shutdown Port 8005 > 8006
+      replace:
+        path: "{{tomcat_home}}/conf/server.xml"
+        regexp: 'port="8005"'
+        replace: 'port="8006"'
+
+    - name: Change Tomcat Connector Port for AJP 8009 > 8010
+      replace:
+        path: "{{tomcat_home}}/conf/server.xml"
+        regexp: 'port="8009"'
+        replace: 'port="8010"'
+
+    - name: Create tomcat-users.xml file
+      template:
+        src: "./tomcat/tomcat-users.xml"
+        dest: "{{tomcat_home}}/conf/tomcat-users.xml"
+
+    - name: Start Tomcat service using startup.sh
+      command: sh "{{tomcat_home}}/bin/startup.sh"
+
+    - name: Check if Tomcat service is running
+      shell: ps aux | grep '[c]atalina.home=/opt/tomcat'
+      register: tomcat_status
+      ignore_errors: yes
+
+    - name: Debug message Tomcat status
+      debug:
+        msg: "Tomcat is {{ 'running' if tomcat_status.rc == 0 else 'not running' }}"
+```  
+
+- **hosts:**  Specifies the target host where the playbook tasks will be executed. In this case, it's set to localhost.
+- **vars:**   Defines variables used throughout the playbook, including download URL Apache tomcat archive, download folder location, installation paths, and environment file paths.
+- **tasks:** Contains the main tasks of the playbook
+  - **Create Tomcat Directory:** It creates the directory where Apache Tomcat will be installed.
+  - **Download Apache Tomcat Archive:** It downloads the Apache Tomcat archive distribution from the provided URL and saves it to a specified folder.
+  - **Extract Apache Tomcat:** It extracts the downloaded Apache Tomcat archive to the installation directory.
+  - **Change Permissions of startup.sh:**  It changes the permissions of the Tomcat startup script to make it executable.
+  - **Change Tomcat Connector Port** It modifies the configuration file to change the default connector port from `8080` to `8088`.
+  - **Modify Tomcat Shutdown Port:**  It modifies the configuration file to change the shutdown port from `8005` to `8006`.
+  - **Modify Tomcat Connector Port for AJP:**  It modifies the configuration file to change the port used for the AJP connector from `8009` to `8010`.
+  - **Create tomcat-users.xml File:**   It creates a tomcat-users.xml file in the Tomcat configuration directory to define user roles and access privileges.
+
+  ```diff
     <?xml version='1.0' encoding='utf-8'?>
     <!--
     Licensed to the Apache Software Foundation (ASF) under one or more
@@ -295,5 +386,43 @@ So I got those links from my login session; they have a limit 3 times only to be
     + <user username="tomcat" password="tomcat" roles="manager-gui,admin-gui"/>
     </tomcat-users>
     ```
+  - **Start Tomcat Service:**  It starts the Tomcat service using the `startup.sh` script.
+  - **Check Tomcat Service Status:** It verifies whether the Tomcat service is running by searching for the process using ps command.
+  - **Debug Message:** It provides a debug message indicating whether Tomcat is running or not.
 
+
+<details>
+<summary><b>Images</b></summary>
+
+### 1. Executing ansible playbook to our vm
+
+![Alternative Image](./images/ansible-java/1.png)
+
+![Alternative Image](./images/ansible-java//2.png)
+
+![Alternative Image](./images/ansible-java//3.png)
+
+### 2. update-alternatives --config java --> shows us the default java version which is openjdk-8
+
+![Alternative Image](./images/ansible-java//4.png)
+
+### 3. after installing ORACLE java , that is our JAVA_HOME Environment variable
+
+![Alternative Image](./images/ansible-java//5.png)
+
+### 4. Oracle Java Version
+
+![Alternative Image](./images/ansible-java//6.png)
+
+### 5. update-alternatives --config java --> shows us the default Java version, which is Oracle 8, that we have installed
+
+![Alternative Image](./images/ansible-java//7.png)
+
+</details>
+</details>
+
+
+
+
+    
 </details>
