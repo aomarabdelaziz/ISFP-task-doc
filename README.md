@@ -834,7 +834,18 @@ USER jenkins
 
 ### 1. Building our image
 
+```sh
+docker build -t jenkins-ansible -f Dockerfile.jenkins-ansible .
+```
 ![Alternative Image](./images/docker/1.png)
+
+### 1. Launch docker instance from our custom image we built it before
+
+```sh
+docker run --name jenkins --network=host -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -d -v $(which docker):$(which docker) jenkins-ansible
+```
+
+![Alternative Image](./images/docker/2.png)
 
 </details>
 
