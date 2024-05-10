@@ -658,7 +658,8 @@ Ensure the following prerequisites are met before running the playbook:
 
 # Installing WebLogic Server Version (12.2.1.3.0)
 
-This guide steps for installation of WebLogic Server 12.2.1.3.0 on our local machine.
+This guide steps for installation of WebLogic Server 12.2.1.3.0 on our local machine. The download step is done manually due the the large size
+and the GUI Wizard installation
 
 # Prerequisites
 
