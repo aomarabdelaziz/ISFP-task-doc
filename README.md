@@ -513,115 +513,29 @@ Ensure the following prerequisites are met before running the playbook:
 ```  
 
 - **hosts:**  Specifies the target host where the playbook tasks will be executed. In this case, it's set to localhost.
-- **vars:**   Defines variables used throughout the playbook, including download URL Apache tomcat archive, download folder location, installation paths, and environment file paths.
+- **vars:**   Defines variables used throughout the playbook, including download URL Apache maven archive, download folder location, installation paths, and environment file paths.
 - **tasks:** Contains the main tasks of the playbook
-  - **Create Tomcat Directory:** It creates the directory where Apache Tomcat will be installed.
-  - **Download Apache Tomcat Archive:** It downloads the Apache Tomcat archive distribution from the provided URL and saves it to a specified folder.
-  - **Extract Apache Tomcat:** It extracts the downloaded Apache Tomcat archive to the installation directory.
-  - **Change Permissions of startup.sh:**  It changes the permissions of the Tomcat startup script to make it executable.
-  - **Change Tomcat Connector Port** It modifies the configuration file to change the default connector port from `8080` to `8088`.
-  - **Modify Tomcat Shutdown Port:**  It modifies the configuration file to change the shutdown port from `8005` to `8006`.
-  - **Modify Tomcat Connector Port for AJP:**  It modifies the configuration file to change the port used for the AJP connector from `8009` to `8010`.
-  - **Create tomcat-users.xml File:**   It creates a tomcat-users.xml file in the Tomcat configuration directory to define user roles and access privileges.
+  - **Download Maven:** It downloads the Apache Maven binary distribution from the specified URL and saves it to a temporary folder.
+  - **Create Maven Installation Directory:** It creates the directory where Apache Maven will be installed..
+  - **Extract Maven:** It creates a script file `(maven.sh)` in the /etc/profile.d directory to set up environment variables for Maven.
+  - **Clear Content of maven.sh File:** It clears the content of the maven.sh file if it exists.
+  - **Set Environment Variables for Maven**  It sets environment variables `M2_HOME` and updates the PATH variable to include the Maven bin directory.
+  - **Configure Maven Repository**  It copies a custom Maven `settings.xml` file to the Maven installation directory to configure Maven repository settings.
+  - **MSource maven.sh Script**  It sources the `maven.sh` script to apply the environment variable changes immediately.
 
-    ```diff
-    <!--
-
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-        http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
-    -->
-    <!--
-
-    | This is the configuration file for Maven. It can be specified at two levels:
-    |
-    |  1. User Level. This settings.xml file provides configuration for a single user,
-    |                 and is normally provided in ${user.home}/.m2/settings.xml.
-    |
-    |                 NOTE: This location can be overridden with the CLI option:
-    |
-    |                 -s /path/to/user/settings.xml
-    |
-    |  2. Global Level. This settings.xml file provides configuration for all Maven
-    |                 users on a machine (assuming they're all using the same Maven
-    |                 installation). It's normally provided in
-    |                 ${maven.conf}/settings.xml.
-    |
-    |                 NOTE: This location can be overridden with the CLI option:
-    |
-    |                 -gs /path/to/global/settings.xml
-    |
-    | The sections in this sample file are intended to give you a running start at
-    | getting the most out of your Maven installation. Where appropriate, the default
-    | values (values used when the setting is not specified) are provided.
-    |
-    |
-    -->
-    <settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 https://maven.apache.org/xsd/settings-1.2.0.xsd">
-    <!--
-    localRepository
-    | The path to the local repository maven will use to store artifacts.
-    |
-    | Default: ${user.home}/.m2/repository
-    
-    
-    -->
-    + <localRepository>${user.home}/.m2/repository</localRepository>
-   
-    </settings>
-    ```
-
-  - **Start Tomcat Service:**  It starts the Tomcat service using the `startup.sh` script.
-  - **Check Tomcat Service Status:** It verifies whether the Tomcat service is running by searching for the process using ps command.
-  - **Debug Message:** It provides a debug message indicating whether Tomcat is running or not.
 
 <details>
 <summary><b>Images</b></summary>
 
 ### 1. Executing ansible playbook to our vm
 
-![Alternative Image](./images/tomcat/1.png)
+![Alternative Image](./images/maven/1.png)
 
-![Alternative Image](./images/tomcat//2.png)
+![Alternative Image](./images/maven//2.png)
 
-![Alternative Image](./images/tomcat//3.png)
+### 1. Maven has installed successfully
 
-### 2. Accessing our apache tomcat from our VM
-
-![Alternative Image](./images/tomcat//4.png)
-
-### 3. Accessing our apache tomcat from my computer which host the VM
-
-![Alternative Image](./images/tomcat//5.png)
-
-> Assuming that our virtual machine (VM) is accessible to the public, I wanted to emulate the process, so I used the command `sudo firewall-cmd --zone=public --add-port=8088/tcp to open port 8080 within our VM. I also adjusted the VM network settings from our oracle VMbox to port forward from my host machine to the VM (guest) port.
-
-![Alternative Image](./images/tomcat//9.png)
-
-### 4. Trying to login into manager page
-
-![Alternative Image](./images/tomcat//6.png)
-
-### 5. I logged in successfully
-
-![Alternative Image](./images/tomcat//7.png)
-
-### 6. Apache tomcat server status
-
-![Alternative Image](./images/tomcat//8.png)
+![Alternative Image](./images/maven//3.png)
 
 </details>
 </details>
