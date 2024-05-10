@@ -116,7 +116,7 @@ Ensure the following prerequisites are met before running the playbook:
 
 # Playbook Structure
 
-    ```yaml
+    ```ansible
         - name: Install multiple versions of Java and set earlier one is the default (8)
         hosts: localhost
         become: yes
