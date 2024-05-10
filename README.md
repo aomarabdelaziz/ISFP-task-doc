@@ -38,13 +38,17 @@ This project aims to provide a comprehensive guide for setting up a development 
 ## VM Installation Guide
 <details><summary><b>Show instructions</b></summary>
 
-1. Install the preset:
+1. Download the CentOS 7.9 ISO Image
 
     ```sh
-    npm install --save-dev size-limit @size-limit/file
+    http://centos.interhost.net.il/7.9.2009/isos/x86_64/
     ```
 
-6. If you don’t have a continuous integration service running, don’t forget
-   to add one — start with Github Actions.
+2. Install Oracle VM Box
+
+ ```sh
+    http://centos.interhost.net.il/7.9.2009/isos/x86_64/
+    ```
+
 
 </details>
