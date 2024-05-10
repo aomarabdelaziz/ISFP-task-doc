@@ -271,9 +271,7 @@
           - "{{ ansible_playbook_dir }}/docker:/usr/bin/docker"
         network_mode: host
     - name: Get initial admin password
-      docker_exec:
-        container: jenkins
-        command: cat /var/jenkins_home/secrets/initialAdminPassword
+      command: docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword
       register: initial_admin_password
 
     - name: Print the secret
