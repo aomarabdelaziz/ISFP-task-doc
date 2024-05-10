@@ -21,6 +21,7 @@ This project aims to provide a comprehensive guide for setting up a development 
 - [x] `Done` - [006 - Install PHP, Apache and Docker](#php-apache-docker-installation-guide)
 - [x] `Done` - [007 - Create shell or python script to check and compare between two files](#compare-script-guide)
 - [x] `Done` - [008 - Create Jenkins server based on docker image](#jenkins-image-installation-guide)
+- [x] `Done` - [009 - Create maven docker compiler with attached non root cached repositries](#jenkins-image-installation-guide)
 
 <!-- -
 - [x] `Done` - 003 - Install Subversion (SVN)

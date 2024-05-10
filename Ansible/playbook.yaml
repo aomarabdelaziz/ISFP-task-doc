@@ -246,12 +246,12 @@
   hosts: localhost
   become: yes
   vars:
-    docker_file_download_url: https://raw.githubusercontent.com/aomarabdelaziz/ISFP-task-doc/master/Docker/Dockerfile.jenkins-ansible
-    download_path: /tmp/Dockerfile.jenkins-ansible
+    docker_file_download_url: https://raw.githubusercontent.com/aomarabdelaziz/ISFP-task-doc/master/Docker/Jenkins-ansible/Dockerfile
+    download_path: /tmp/Dockerfil
   tasks:
     - name: Download Dockerfile.jenkins-ansible
       get_url:
-        url: "https://raw.githubusercontent.com/aomarabdelaziz/ISFP-task-doc/master/Docker/Dockerfile.jenkins-ansible"
+        url: "https://raw.githubusercontent.com/aomarabdelaziz/ISFP-task-doc/master/Docker/Dockerfile"
         dest: "{{ download_path }}"
 
     - name: Build Docker image
