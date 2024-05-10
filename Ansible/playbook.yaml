@@ -1,4 +1,13 @@
 ---
+- name: Update CentOS repositories
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Update repositories
+      yum:
+        name: "*"
+        state: latest
+
 - name: Install multiple versions of Java and set earlier one is the default (8)
   hosts: localhost
   become: yes
