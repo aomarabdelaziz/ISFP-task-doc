@@ -105,7 +105,8 @@ This project aims to provide a comprehensive guide for setting up a development 
 <summary><b>Show instructions</b></summary>
 
 # Install Multiple Versions of Java and Set Default (Java 8)
-This Ansible playbook automates the installation of multiple versions of Java on a target system and sets the earlier version (Java 8) as the default. It provides flexibility for developers who may require different Java versions for their projects.
+This Ansible playbook automates the installation of various Java versions on a target machine, with the earlier version (Java 8) set as the default. It gives developers the flexibility they need if their applications require different Java versions.
+I choose to install Oracle Java (8,11) versions since WebLogic installation cannot be proceed because the open-jdk is no longer supported any more.
 
 # Prerequisites
 Ensure the following prerequisites are met before running the playbook:
