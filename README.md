@@ -99,7 +99,7 @@ This project aims to provide a comprehensive guide for setting up a development 
 </details>
 
 
-## VM Java Guide
+## Java Installation Guide
 
 <details>
 <summary><b>Show instructions</b></summary>
