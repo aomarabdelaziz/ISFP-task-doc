@@ -1,2 +1,0 @@
-Port_Automation/JavaSource/com/sps/billing/invoices/violation/dao/hibernate/ViolationMethodDao.java
-Port_Automation/JavaSource/com/sps/billing/invoices/violation/invoiceFlow/contract/action/AddEditContractCustomerLicense.java

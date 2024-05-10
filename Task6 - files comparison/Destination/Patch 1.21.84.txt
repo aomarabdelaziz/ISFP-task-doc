@@ -1,3 +1,0 @@
-Port_Automation/JavaSource/com/sps/billing/invoices/containerinvoice/collectionserviceinvoice/service/spring/BillingContainerCollectionServiceService.java  
-ReportViewer/WebContent/Reports/Billing/Building/RPT05018.rpt  
-ReportViewer/WebContent/Reports/Billing/Yard/RPT05018.rpt

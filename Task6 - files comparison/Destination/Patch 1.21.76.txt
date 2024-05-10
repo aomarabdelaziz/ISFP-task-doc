@@ -1,3 +1,0 @@
-Port_Automation/JavaSource/com/sps/core/resources/ApplicationResources_ar.properties
-Port_Automation/WebContent/ReportJsp/Stevedoring/WorkOrderFdateTdate.jsp
-ReportViewer/WebContent/Reports/Stevedoring/RPT07031.rpt

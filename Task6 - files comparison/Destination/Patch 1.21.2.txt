@@ -1,2 +1,0 @@
-Port_Automation/JavaSource/com/sps/billing/invoices/buildingLicense/services/spring/BillingBuildingService.java
-Port_Automation/JavaSource/com/sps/billing/invoices/violation/services/spring/BillingViolationService.java

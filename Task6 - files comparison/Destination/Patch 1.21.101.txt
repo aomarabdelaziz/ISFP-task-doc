@@ -1,4 +1,0 @@
-ReportViewer/WebContent/Reports/Billing/GC/RPT05007_Egypt.rpt
-ReportViewer/WebContent/Reports/Billing/GC/RPT05018.rpt
-ReportViewer/WebContent/Reports/Billing/StevedoreContainerInvoice/RPT05008_Egypt.rpt
-ReportViewer/WebContent/Reports/Billing/StevedoreContainerInvoice/RPT05018.rpt

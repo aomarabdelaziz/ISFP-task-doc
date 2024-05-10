@@ -1,6 +1,0 @@
-Port_Automation/JavaSource/com/sps/gatecontrol/dao/hibernate/GateControlDao.java
-Port_Automation/JavaSource/com/sps/gatecontrol/newbean/CashierTruckVisitInfo.java
-Port_Automation/JavaSource/com/sps/gatecontrol/newbean/hibernate/mapping/CashierTruckVisitInfo.hbm.xml
-Port_Automation/JavaSource/com/sps/gatecontrol/service/spring/GateControlService.java
-Port_Automation/JavaSource/com/sps/gatecontrol/truckvisitminisearch/TruckVisitMiniSearch.java
-Port_Automation/WebContent/WEB-INF/XMLMappingResources.xml

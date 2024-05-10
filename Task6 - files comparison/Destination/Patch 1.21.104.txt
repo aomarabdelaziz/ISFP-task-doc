@@ -1,3 +1,0 @@
-Port_Automation/WebContent/ReportJsp/warehousing/ReportEndOutCargo.jsp
-ReportViewer/WebContent/Reports/Warehousing/RPT08038.rpt
-ReportViewer/WebContent/Reports/Warehousing/RPT08038_2.rpt

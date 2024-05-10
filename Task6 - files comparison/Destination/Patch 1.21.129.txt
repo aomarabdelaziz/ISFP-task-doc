@@ -1,4 +1,0 @@
-ReportViewer/WebContent/Reports/GateControl/RPT02004.rpt
-ReportViewer/WebContent/Reports/GateControl/RPT02022.rpt
-ReportViewer/WebContent/Reports/GateControl/RPT02023.rpt
-ReportViewer/WebContent/Reports/GateControl/RPT02034.rpt

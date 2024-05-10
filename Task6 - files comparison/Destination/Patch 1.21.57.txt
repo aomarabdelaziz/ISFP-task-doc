@@ -1,6 +1,0 @@
-Port_Automation/JavaSource/com/sps/gatecontrol/portstructure/dao/ISecondaryGateDao.java
-Port_Automation/JavaSource/com/sps/gatecontrol/portstructure/dao/hibernate/SecondaryGateDao.java
-Port_Automation/JavaSource/com/sps/gatecontrol/service/ISecondaryGateService.java
-Port_Automation/JavaSource/com/sps/gatecontrol/service/spring/SecondaryGateService.java
-Port_Automation/JavaSource/com/sps/stevedoring/ActualLoadDischarge/InitAddEditActualLoadDischargeRequest.java
-Port_Automation/WebContent/WEB-INF/XMLSecondaryMappingResources.xml

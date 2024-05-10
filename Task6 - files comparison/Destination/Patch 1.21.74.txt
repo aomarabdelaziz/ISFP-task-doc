@@ -1,3 +1,0 @@
-Port_Automation/JavaSource/com/sps/container/terminalgate/truckExit/action/TruckHandelExit.java
-Port_Automation/JavaSource/com/sps/container/terminalgate/truckExit/action/ContainerTrucksExit.java
-Port_Automation/JavaSource/com/sps/container/terminalgate/truckExit/action/TransportTrucksExit.java

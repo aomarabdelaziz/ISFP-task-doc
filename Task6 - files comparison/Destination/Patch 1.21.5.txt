@@ -1,9 +1,0 @@
-Port_Automation/JavaSource/com/sps/core/resources/ApplicationResources_ar.properties
-Port_Automation/JavaSource/com/sps/license/inclusiverate/action/AddEditInclusiveRate.java
-Port_Automation/JavaSource/com/sps/license/service/ILicenseService.java
-Port_Automation/JavaSource/com/sps/license/service/spring/LicenseService.java
-Port_Automation/WebContent/RentOrder/AddEditRentOrder.jsp
-Port_Automation/JavaSource/com/sps/license/building/buildingLicense/AddEditBuildingLicense.java
-Port_Automation/WebContent/Building/License/BuildingAddEditRegisterViolation.jsp
-Port_Automation/JavaSource/com/sps/license/equipments/action/AddEditEquipmentLicense.java
-Port_Automation/JavaSource/com/sps/billing/invoices/storageLicenseInvoice/dao/hibernate/StorageLicenseMethodDao.java

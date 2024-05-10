@@ -1,3 +1,0 @@
-Port_Automation/JavaSource/com/sps/gatecontrol/service/spring/GateControlCashierService.java
-Port_Automation/JavaSource/com/sps/gatecontrol/service/spring/GateControlEntryService.java
-Port_Automation/JavaSource/com/sps/gatecontrol/trucksbooking/action/InsertBooking.java

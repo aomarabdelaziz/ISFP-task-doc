@@ -1,5 +1,0 @@
-Port_Automation/JavaSource/com/sps/gatecontrol/dao/IGateControlDao.java
-Port_Automation/JavaSource/com/sps/gatecontrol/dao/hibernate/GateControlDao.java
-Port_Automation/JavaSource/com/sps/gatecontrol/service/spring/GateControlCashierService.java
-Port_Automation/JavaSource/com/sps/license/equipments/action/SearchEquipmentLicense.java
-Port_Automation/JavaSource/com/sps/license/trucks/action/SearchTruck.java

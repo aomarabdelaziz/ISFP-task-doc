@@ -1,5 +1,0 @@
-Port_Automation/WebContent/Billing/Invoices/InclusiveRateInvoice/ExtraService
-Port_Automation/JavaSource/com/sps/billing/invoices/inclusiverate/invoiceflow/extraservice
-Port_Automation/WebContent/WEB-INF/struts-config.xml
-Port_Automation/JavaSource/com/sps/billing/invoices/inclusiverate/service/IBillingInclusiveRateService.java  
-Port_Automation/JavaSource/com/sps/billing/invoices/inclusiverate/service/spring/BillingInclusiveRateService.java  

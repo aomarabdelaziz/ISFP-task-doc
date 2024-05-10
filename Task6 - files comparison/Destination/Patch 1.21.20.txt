@@ -1,2 +1,0 @@
-Port_Automation/JavaSource/com/sps/warehousing/printdeliveryrequest/PrintNewDeliverRequest.java
-Port_Automation/WebContent/ContainerDeliveryRequest/SearchDeliveryRequests.jsp

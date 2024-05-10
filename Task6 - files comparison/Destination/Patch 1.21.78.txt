@@ -1,5 +1,0 @@
-Port_Automation/JavaSource/com/sps/billing/invoices/yardLicense/services/spring/YardMethodService.java
-Port_Automation/JavaSource/com/sps/license/bean/YardLicense.java
-Port_Automation/JavaSource/com/sps/license/bean/hibernate/mapping/YardLicense.hbm.xml
-Port_Automation/JavaSource/com/sps/license/dao/hibernate/LicenseDao.java
-Port_Automation/JavaSource/com/sps/billing/invoices/buildingLicense/invoiceFlow/regenerateInvoice/GenerateInvoice.java
