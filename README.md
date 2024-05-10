@@ -35,7 +35,7 @@ This project aims to provide a comprehensive guide for setting up a development 
 ## VM Installation Guide
 
 <details>
-<summary><b>Show more details</b></summary>
+<summary><ئb>Show more details</ئb></summary>
 
 1. Download the CentOS 7.9 ISO Image From centos.interhost
 
@@ -201,7 +201,7 @@ So I got those links from my login session; they have a limit 3 times only to be
 - **tasks:** Contains the main tasks of the playbook
   - **Check if Oracle Java archives exist:** Utilizes the `stat` module to check if the Java archives are already downloaded.
   - **Download Oracle Java archives:** Downloads the Java archives using `curl` commands if they don't already exist.
-  - **Unpack archives:** Uses the `unarchive` module to extract the downloaded Java archives to the specified destination folder `(/opt)`.
+  - **Unpack archives:** Uses the `unarchive` module to extract the downloaded Java archives to the specified destination folder `(/usr/local)`.
   - **Install Java versions:** Uses `update-alternatives` to install Java versions and set up symbolic links to the Java executable.
   - **Set default Java version:** Uses `update-alternatives` Sets Java 8 as the default version using update-alternatives.
   - **Export environment variables:** Appends Java environment variables to the system-wide profile file (/etc/profile.d/java.sh) to make Java Home available globally.
