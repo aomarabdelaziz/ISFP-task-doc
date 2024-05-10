@@ -218,19 +218,27 @@ So I got those links from my login session; they have a limit 3 times only to be
 ![Alternative Image](./images/ansible-java//2.png)
 
 
-### 2. update-alternatives --config java --> shows us the default java version which is openjdk-8 
 
 ![Alternative Image](./images/ansible-java//3.png)
 
-### 3. after installing ORACLE java , that is our JAVA_HOME Environment variable
+
+### 2. update-alternatives --config java --> shows us the default java version which is openjdk-8
+
 
 ![Alternative Image](./images/ansible-java//4.png)
+
+### 3. after installing ORACLE java , that is our JAVA_HOME Environment variable
 
 
 ![Alternative Image](./images/ansible-java//5.png)
 
+### 4. Oracle Java Version
+
 
 ![Alternative Image](./images/ansible-java//6.png)
+
+### 5. update-alternatives --config java --> shows us the default java version which is oracle-8 that we have installed it
+
 
 ![Alternative Image](./images/ansible-java//7.png)
 
