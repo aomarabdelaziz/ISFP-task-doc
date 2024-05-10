@@ -207,6 +207,8 @@ So I got those links from my login session; they have a limit 3 times only to be
   - **Source java.sh script:**  Sources the java.sh script to ensure the environment variables take effect immediately.
 
 
+<details>
+<summary><b>Images</b></summary>
 ![Alternative Image](./images/ansible-java/1.png)
 
 
@@ -222,4 +224,5 @@ So I got those links from my login session; they have a limit 3 times only to be
 ![Alternative Image](./images/ansible-java//5.png)
 
 
+</details>
 </details>
