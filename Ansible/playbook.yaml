@@ -63,6 +63,11 @@
         path: /etc/profile.d
         state: directory
 
+    - name: Create java.sh file
+      file:
+        path: "{{java_env_file}}"
+        state: touch
+
     - name: Set environment variables for JAVA
       lineinfile:
         dest: "{{ java_env_file }}"
