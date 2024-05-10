@@ -679,7 +679,6 @@ Ensure the following prerequisites are met before installing WebLogic Server:
 <details>
 <summary><b>Images</b></summary>
 
-### 1. Executing ansible playbook to our vm
 
 ![Alternative Image](./images/weblogic/1.png)
 
