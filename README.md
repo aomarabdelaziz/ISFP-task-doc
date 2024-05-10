@@ -35,7 +35,7 @@ This project aims to provide a comprehensive guide for setting up a development 
 ## VM Installation Guide
 
 <details>
-<summary><b>Show instructions</b></summary>
+<summary><b>Show more details</b></summary>
 
 1. Download the CentOS 7.9 ISO Image From centos.interhost
 
@@ -101,7 +101,7 @@ This project aims to provide a comprehensive guide for setting up a development 
 ## Java Installation Guide
 
 <details>
-<summary><b>Show instructions</b></summary>
+<summary><b>Show more details</b></summary>
 
 # Install Multiple Versions of Java and Set Default (Java 8)
 This Ansible playbook automates the installation of various Java versions on a target machine, with the earlier version (Java 8) set as the default. It gives developers the flexibility they need if their applications require different Java versions.
@@ -250,5 +250,5 @@ So I got those links from my login session; they have a limit 3 times only to be
 ## Apache Tomcat Installation Guide
 
 <details>
-<summary><b>Show instructions</b></summary>
+<summary><b>Show more details</b></summary>
 </details>
