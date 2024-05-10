@@ -50,11 +50,6 @@
         dest: /usr/local
         remote_src: yes
 
-    - name: Test Folder
-      shell: 'ls "{{java_8_home}}/jre/bin/java"'
-    - name: Test Folder
-      shell: 'ls "/usr/bin/java"'
-
     - name: Install Oracle Java 8
       command: 'update-alternatives --install "/usr/bin/java" "java" "{{java_8_home}}/jre/bin/java" 1'
     - name: Install Oracle Java 11
