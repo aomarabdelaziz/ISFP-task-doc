@@ -799,4 +799,14 @@ USER jenkins
 4. `Create Virtual Environment for Ansible`: It creates a virtual environment for Ansible at /opt/ansible.
 5. `Install Ansible`: It activates the virtual environment and installs Ansible within it using pip.
 6. `Switch Back to Jenkins User`: Finally, it switches back to the Jenkins user to ensure that Jenkins runs with the appropriate permissions.
+
+<details>
+<summary><b>Images</b></summary>
+
+### 1. Building our image
+
+![Alternative Image](./images/docker/1.png)
+
+</details>
+
 </details>
