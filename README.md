@@ -116,9 +116,7 @@ Ensure the following prerequisites are met before running the playbook:
 
 # Playbook Structure
 
-   ```sh
-    http://centos.interhost.net.il/7.9.2009/isos/x86_64/
-    ```
+
     ```yaml
         - name: Install multiple versions of Java and set earlier one is the default (8)
         hosts: localhost
@@ -137,52 +135,6 @@ Ensure the following prerequisites are met before running the playbook:
             stat:
                 path: "{{ java_8_archive }}"
             register: java_8_archive_stat
-
-        - name: Check if Oracle Java 11 archive exists
-            stat:
-                path: "{{ java_11_archive }}"
-            register: java_11_archive_stat
-
-        - name: Download Oracle Java 8
-            command: "curl -v -L -b oraclelicense=accept-securebackup-cookie -o {{java_8_archive}}  {{java8_download_url}}"
-            when: java_8_archive_stat.stat.exists == False
-
-        - name: Download Oracle Java 11
-            command: "curl -v -L -b oraclelicense=accept-securebackup-cookie -o {{java_11_archive}}  {{java11_download_url}}"
-            when: java_11_archive_stat.stat.exists == False
-
-        - name: Unpack archive Oracle Java 8
-            unarchive:
-                src: "{{java_8_archive}}"
-                dest: "/opt"
-                remote_src: yes
-
-        - name: Unpack archive Oracle Java 11
-            unarchive:
-                src: "{{java_11_archive}}"
-                dest: "/opt"
-                remote_src: yes
-
-        - name: Install Oracle Java 8
-            command: 'update-alternatives --install "/usr/bin/java" "java" "{{java_8_home}}/jre/bin/java" 1'
-        - name: Install Oracle Java 11
-            command: 'update-alternatives --install "/usr/bin/java" "java" "{{java_11_home}}/jre/bin/java" 1'
-        - name: Set Oracle Java 8 as default
-            command: "update-alternatives --set java {{java_8_home}}/jre/bin/java"
-
-        - name: Exports/Run java env file for make JAVA_HOME available globally
-            shell: "source {{java_env_file}}"
-        - name: Set environment variables for JAVA
-            lineinfile:
-                dest: "{{ java_env_file }}"
-                line: |
-                export JAVA_HOME={{java_8_home}}
-                export PATH=$PATH:$JAVA_HOME/bin
-
-        - name: Source java.sh script
-            shell: source {{java_env_file}}
-            args:
-                executable: /bin/bash
     ```
 
 </details>
