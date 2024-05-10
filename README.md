@@ -35,18 +35,16 @@ This project aims to provide a comprehensive guide for setting up a development 
 - [x] `Done` - 015 - Deploy App on Tomcat Docker Container
 
 
+## VM Installation Guide
+<details><summary><b>Show instructions</b></summary>
 
-<details>
-  <summary><b><a href="#VM-Installation-Guide">## VM Installation Guide</a></b></summary>
+1. Install the preset:
 
-  1. Install the preset:
+    ```sh
+    npm install --save-dev size-limit @size-limit/file
+    ```
 
-      ```sh
-      npm install --save-dev size-limit @size-limit/file
-      ```
-
-  6. If you don’t have a continuous integration service running, don’t forget
-     to add one — start with Github Actions.
+6. If you don’t have a continuous integration service running, don’t forget
+   to add one — start with Github Actions.
 
 </details>
-
