@@ -204,7 +204,7 @@ So I got those links from my login session; they have a limit 3 times only to be
   - **Unpack archives:** Uses the `unarchive` module to extract the downloaded Java archives to the specified destination folder `(/usr/local)`.
   - **Install Java versions:** Uses `update-alternatives` to install Java versions and set up symbolic links to the Java executable.
   - **Set default Java version:** Uses `update-alternatives` Sets Java 8 as the default version using update-alternatives.
-  - **Export environment variables:** Appends Java environment variables to the system-wide profile file (/etc/profile.d/java.sh) to make Java Home available globally.
+  - **Export environment variables:** Appends Java environment variables to the system-wide profile file `(/etc/profile.d/java.sh)` to make Java Home available globally.
   - **Source java.sh script:**  Sources the java.sh script to ensure the environment variables take effect immediately.
 
 
