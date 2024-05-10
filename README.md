@@ -988,5 +988,4 @@ Ensure that your project structure aligns with the Dockerfile's expectations (e.
 Build the Docker image using the command docker build -t my-webapp . (replace my-webapp with your desired image name).
 Run the Docker container using the command docker run -d -p 4287:4287 my-webapp to expose the application on port 4287.
 
-
 </details>
