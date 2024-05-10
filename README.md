@@ -672,7 +672,7 @@ Ensure the following prerequisites are met before installing WebLogic Server:
 
 - After downloading the `fmw_12.2.1.3.0_wls_Disk1_1of1.zip` in downloads directory fellow this steps:
   - **Change Directory to {user}/downloads**: `cd ~/Downloads`
-  - **Extract the .zip file**: `unzip fmw_12.2.1.3.0_wls_Disk1_1of1.zip`
+  - **Extract the WebLogic Installer .zip file**: `unzip fmw_12.2.1.3.0_wls_Disk1_1of1.zip`
   - **Run the WebLogic installer**: `java -jar fmw_12.2.1.3.0_wls.jar`
 
 <details>
