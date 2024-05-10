@@ -108,11 +108,80 @@ This project aims to provide a comprehensive guide for setting up a development 
 This Ansible playbook automates the installation of multiple versions of Java on a target system and sets the earlier version (Java 8) as the default. It provides flexibility for developers who may require different Java versions for their projects.
 
 # Prerequisites
-*Ensure the following prerequisites are met before running the playbook:
+Ensure the following prerequisites are met before running the playbook:
 
 - **Access to Oracle Java Archives:**  Ensure access to the Oracle Java archives for Java 8 and Java 11 versions. The playbook uses direct download links to fetch these archives.
 - **Ansible:**  Ensure Ansible is installed on the local system from which the playbook will be executed.
-- **Target Host:r**  The playbook assumes execution on the localhost, but it can be modified to target other hosts as needed.
+- **Target Host:**  The playbook assumes execution on the localhost, but it can be modified to target other hosts as needed.
 
+# Playbook Structure
+
+    ```sh
+    ---
+
+- name: Install multiple versions of Java and set earlier one is the default (8)
+  hosts: localhost
+  become: yes
+  vars:
+    java8_download_url: <https://download.oracle.com/otn/java/jdk/8u411-b09/43d62d619be4e416215729597d70b8ac/jdk-8u411-linux-x64.tar.gz?AuthParam=1715273619_e8c7c418de8a6669cba16e96605628ae>
+    java11_download_url: <https://download.oracle.com/otn/java/jdk/11.0.23+7/9bd8d305c900ee4fa3e613b59e6f42de/jdk-11.0.23_linux-x64_bin.tar.gz?AuthParam=1715274582_4f95848a2a78484bad39825b06e0487f>
+    download_folder: /tmp
+    java_8_home: "/usr/local/jdk1.8.0_411"
+    java_11_home: "/usr/local//jdk-11.0.23"
+    java_8_archive: "{{download_folder}}/jdk-8u411-linux-x64.tar.gz"
+    java_11_archive: "{{download_folder}}/jdk-11.0.23_linux-x64_bin.tar.gz"
+    java_env_file: "/etc/profile.d/java.sh"
+  tasks:
+  - name: Check if Oracle Java 8 archive exists
+      stat:
+        path: "{{ java_8_archive }}"
+      register: java_8_archive_stat
+
+  - name: Check if Oracle Java 11 archive exists
+      stat:
+        path: "{{ java_11_archive }}"
+      register: java_11_archive_stat
+
+  - name: Download Oracle Java 8
+      command: "curl -v -L -b oraclelicense=accept-securebackup-cookie -o {{java_8_archive}}  {{java8_download_url}}"
+      when: java_8_archive_stat.stat.exists == False
+
+  - name: Download Oracle Java 11
+      command: "curl -v -L -b oraclelicense=accept-securebackup-cookie -o {{java_11_archive}}  {{java11_download_url}}"
+      when: java_11_archive_stat.stat.exists == False
+
+  - name: Unpack archive Oracle Java 8
+      unarchive:
+        src: "{{java_8_archive}}"
+        dest: "/opt"
+        remote_src: yes
+
+  - name: Unpack archive Oracle Java 11
+      unarchive:
+        src: "{{java_11_archive}}"
+        dest: "/opt"
+        remote_src: yes
+
+  - name: Install Oracle Java 8
+      command: 'update-alternatives --install "/usr/bin/java" "java" "{{java_8_home}}/jre/bin/java" 1'
+  - name: Install Oracle Java 11
+      command: 'update-alternatives --install "/usr/bin/java" "java" "{{java_11_home}}/jre/bin/java" 1'
+  - name: Set Oracle Java 8 as default
+      command: "update-alternatives --set java {{java_8_home}}/jre/bin/java"
+
+  - name: Exports/Run java env file for make JAVA_HOME available globally
+      shell: "source {{java_env_file}}"
+  - name: Set environment variables for JAVA
+      lineinfile:
+        dest: "{{ java_env_file }}"
+        line: |
+          export JAVA_HOME={{java_8_home}}
+          export PATH=$PATH:$JAVA_HOME/bin
+
+  - name: Source java.sh script
+      shell: source {{java_env_file}}
+      args:
+        executable: /bin/bash
+    ```
 
 </details>
