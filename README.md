@@ -15,6 +15,7 @@ This project aims to provide a comprehensive guide for setting up a development 
 
 - [x] `Done` - [001 - Install CentOS 7.9 as VM](#vm-installation-guide)
 - [x] `Done` - [002 - Install Multiple Versions of Java](#java-installation-guide)
+- [x] `Done` - [003 - Install Apache Tomcat 6.0.37.0 Application Server](#apache-tomcat-installation-guide)
 <!-- - [x] `Done` - 002 - Install Apache Tomcat 6.0.37.0 Application Server
 - [x] `Done` - 003 - Install Subversion (SVN)
 - [x] `Done` - 004 - Download the latest version of Maven and configure its repository.
@@ -237,10 +238,17 @@ So I got those links from my login session; they have a limit 3 times only to be
 
 ![Alternative Image](./images/ansible-java//6.png)
 
-### 5. update-alternatives --config java --> shows us the default java version which is oracle-8 that we have installed it
+### 5. update-alternatives --config java --> shows us the default Java version, which is Oracle 8, that we have installed
 
 
 ![Alternative Image](./images/ansible-java//7.png)
 
 </details>
+</details>
+
+
+## Apache Tomcat Installation Guide
+
+<details>
+<summary><b>Show instructions</b></summary>
 </details>
