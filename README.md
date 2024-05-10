@@ -795,7 +795,7 @@ USER jenkins
 
 1. `Base Image`: It starts with the official Jenkins image (jenkins/jenkins:latest) as the base image.
 2. `Switch to Root User`: It switches to the root user to install Ansible and its dependencies.
-3. `Install Dependencies`: It updates the package repositories and installs necessary dependencies for Ansible, including software-properties-common, python3-pip, and python3-venv.
+3. `Install Dependencies`: It updates the `package repositories` and installs necessary dependencies for Ansible, including `software-properties-common`, `python3-pip`, and `python3-venv`.
 4. `Create Virtual Environment for Ansible`: It creates a virtual environment for Ansible at /opt/ansible.
 5. `Install Ansible`: It activates the virtual environment and installs Ansible within it using pip.
 6. `Switch Back to Jenkins User`: Finally, it switches back to the Jenkins user to ensure that Jenkins runs with the appropriate permissions.
