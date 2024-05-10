@@ -117,8 +117,7 @@ Ensure the following prerequisites are met before running the playbook:
 # Playbook Structure
 
 
----
-
+```yaml
 - name: Install multiple versions of Java and set earlier one is the default (8)
   hosts: localhost
   become: yes
@@ -182,5 +181,5 @@ Ensure the following prerequisites are met before running the playbook:
       shell: source {{java_env_file}}
       args:
         executable: /bin/bash
-    
+```  
 </details>
