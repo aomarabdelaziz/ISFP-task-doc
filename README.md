@@ -990,11 +990,17 @@ Ensure that your project structure aligns with the Dockerfile's expectations (e.
 Build the Docker image using the command docker build -t my-webapp . (replace my-webapp with your desired image name).
 Run the Docker container using the command docker run -d -p 4287:4287 my-webapp to expose the application on port 4287.
 
+## Benefits
+`Efficiency`: Utilizes a multi-stage build process to optimize the Docker image size and reduce dependencies.
+`Portability`: Encapsulates the entire application environment, making it easy to deploy and run on any platform that supports Docker.
+`Consistency`: Ensures consistent and reproducible builds across different environments, eliminating potential dependency issues.
+
 </details>
 
 
 ## Important Notes
 
+# Before digging into next steps you should know
 > [!IMPORTANT]  
 > To make Jenkins get triggered by a github webhook while pushing something to our master branch, I have to enable the build triggers in my pipeline (the github hook trigger for GITScm polling) and add the Jenkins server url (ex: <https://www.ourjenkins.com/github-webhok>), but since Jenkins is not in a public area, we installed it into our VM, which isn't publicly accessible.
 > So I used a useful tool that helped me achieve that, and it is called Ngrok.
