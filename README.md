@@ -819,17 +819,6 @@ Ensure the following prerequisites are met before running the script:
 
 ```  
 
-- **hosts:**  Specifies the target host where the playbook tasks will be executed. In this case, it's set to localhost.
-- **vars:**   Defines variables used throughout the playbook, including download URL of custom image , download folder location.
-- **tasks:** Contains the main tasks of the playbook
-  - **Download Dockerfile:** The playbook starts by downloading the Dockerfile necessary for building the Jenkins Docker image from the provided URL.
-  - **Build Docker Image:**It then builds a Docker image named jenkins-ansible using the downloaded Dockerfile.
-  - **Run Jenkins Container:** It creates a script file `(maven.sh)` in the /etc/profile.d directory to set up environment variables for Maven.
-  - **Clear Content of maven.sh File:** After building the Docker image, the playbook runs a Docker container named jenkins, which hosts the Jenkins server. The container is configured to have network access to the host (--network=host), mount the Jenkins home directory (-v jenkins_home:/var/jenkins_home), and have access to the Docker socket (-v /var/run/docker.sock:/var/run/docker.sock). This enables Jenkins to interact with Docker for running jobs.
-  - **Delay Before Retrieving Initial Admin Password**  To ensure that Jenkins is fully initialized, a pause of 10 seconds is introduced before attempting to retrieve the initial admin password.
-  - **Retrieve Initial Admin Password:**  The playbook then retrieves the initial admin password for Jenkins from the container's secrets directory (/var/jenkins_home/secrets/initialAdminPassword) using the docker exec command.
-  - **Print Initial Admin Password**  Finally, the initial admin password is printed to the console, provided that the retrieval command succeeds.
-
 <details>
 <summary><b>Images</b></summary>
 
