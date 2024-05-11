@@ -41,7 +41,7 @@ This project aims to provide a comprehensive guide for setting up a development 
 - [x] `Done` - 015 - Deploy App on Tomcat Docker Container -->
 
 
-## :computer:  VM Installation Guide
+## VM Installation Guide
 
 <details>
 <summary><b>Show more details</b></summary>
