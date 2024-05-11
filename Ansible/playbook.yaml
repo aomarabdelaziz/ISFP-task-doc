@@ -334,6 +334,10 @@
         name: httpd
         state: started
         enabled: yes
+
+    - name: Start SVN server
+      command: "svnserve -d -r {{svn_repos_home}}"
+      ignore_errors: true
 # - name: Run Jenkins with ansible support as a Docker image
 #   hosts: localhost
 #   become: yes
