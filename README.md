@@ -1,6 +1,6 @@
 # ISFP DevOps TASK README
 
-![93%](https://progress-bar.dev/93/?title=Done)
+![100%](https://progress-bar.dev/100/?title=Done)
 
 ## :bulb: Table of Contents
 
@@ -19,13 +19,14 @@ This project aims to provide a comprehensive guide for setting up a development 
 - [x] `Done` - [003 - Install Apache Tomcat 6.0.37.0 Application Server](#apache-tomcat-installation-guide)
 - [x] `Done` - [004 - Download the latest version of Maven and configure its repository](#maven-installation-guide)
 - [x] `Done` - [005 - Install WebLogic Server 12.2.1.3.0](#weblogic-server-installation-guide)
-- [x] `Done` - [006 - Install PHP, Apache and Docker](#php-apache-docker-installation-guide)
-- [x] `Done` - [007 - Install Subversion “SVN” on your VM](#subversion-installation-guide)
-- [x] `Done` - [008 - Create shell or python script to check and compare between two files](#compare-script-guide)
-- [x] `Done` - [009 - Create Jenkins server based on docker image](#jenkins-image-installation-guide)
-- [x] `Done` - [010 - Create maven docker compiler with attached non root cached repositries](#maven-docker-image-installation-guide)
-- [x] `Done` - [011 - Create Jenkins pipeline that use ansible for configure local host server](#create-jenkins-pipeline)
-- [x] `Done` - [012-13 - Create Jenkins pipeline that automate git fetch from webhook and compiled source code base on docker image and Launch Jenkins another downstream pipeline called ansible pipeline](#jenkins-automate-git-pipeline)
+- [x] `Done` - [006 -  Install Payara Server 5.191 #badassfish (build 94)](#payara-server-installation-guide)
+- [x] `Done` - [007 - Install PHP, Apache and Docker](#php-apache-docker-installation-guide)
+- [x] `Done` - [008 - Install Subversion “SVN” on your VM](#subversion-installation-guide)
+- [x] `Done` - [009 - Create shell or python script to check and compare between two files](#compare-script-guide)
+- [x] `Done` - [010 - Create Jenkins server based on docker image](#jenkins-image-installation-guide)
+- [x] `Done` - [011 - Create maven docker compiler with attached non root cached repositries](#maven-docker-image-installation-guide)
+- [x] `Done` - [012 - Create Jenkins pipeline that use ansible for configure local host server](#create-jenkins-pipeline)
+- [x] `Done` - [013-14 - Create Jenkins pipeline that automate git fetch from webhook and compiled source code base on docker image and Launch Jenkins another downstream pipeline called ansible pipeline](#jenkins-automate-git-pipeline)
 
 <!-- -
 - [x] `Done` - 003 - Install Subversion (SVN)
