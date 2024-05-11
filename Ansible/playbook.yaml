@@ -273,6 +273,8 @@
         - "LoadModule dav_svn_module     modules/mod_dav_svn.so"
         - "LoadModule authz_svn_module   modules/mod_authz_svn.so"
         - "LoadModule dontdothat_module  modules/mod_dontdothat.so"
+        - ""
+        - ""
         - "<Location /svn>"
         - "DAV svn"
         - "SVNParentPath /svn"
@@ -303,6 +305,11 @@
         path: "{{svn_accounts_home}}"
         state: directory
         mode: "0755"
+
+    - name: Create svn-auth file
+      file:
+        path: "svn-auth"
+        state: touch
 
     - name: "Change permissions of {{svn_accounts_home}}/svn-auth"
       file:
