@@ -107,7 +107,7 @@ This project aims to provide a comprehensive guide for setting up a development 
 </details>
 </details>
 
-## :computer:  Java Installation Guide
+## Java Installation Guide
 
 <details>
 <summary><b>Show more details</b></summary>
