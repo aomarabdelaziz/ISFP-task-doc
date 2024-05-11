@@ -24,6 +24,7 @@ This project aims to provide a comprehensive guide for setting up a development 
 - [x] `Done` - [008 - Create Jenkins server based on docker image](#jenkins-image-installation-guide)
 - [x] `Done` - [009 - Create maven docker compiler with attached non root cached repositries](#maven-docker-image-installation-guide)
 - [x] `Done` - [010 - Create Jenkins pipeline that use ansible for configure local host server](#create-jenkins-pipeline)
+- [x] `Done` - [011 - Create Jenkins pipeline that automate git fetch from webhook and compiled source code base on docker image](#jenkins-automate-git-pipeline)
 
 <!-- -
 - [x] `Done` - 003 - Install Subversion (SVN)
@@ -1071,5 +1072,102 @@ pipeline {
 This Jenkins pipeline script executes an Ansible playbook as part of the Jenkins job. It uses the ansiblePlaybook step to run the playbook specified in the playbook.yaml file located in the Ansible directory. The playbook is executed with root privileges (become: true) and disables host key checking (disableHostKeyChecking: true). Ensure that the Ansible installation is configured in Jenkins (installation: 'Ansible') and provide the path to the inventory file (inventory: 'Ansible/inventory').
 
 
+
+</details>
+
+
+
+## :computer: Jenkins Automate Git Pipeline
+
+<details>
+<summary><b>Show more details</b></summary>
+
+# Create Jenkins pipeline that automate git fetch from webhook and compiled source code base on docker image
+
+This Dockerfile provides a streamlined approach to containerizing Java web applications using Maven and Tomcat. It utilizes a multi-stage build process to separate the build environment from the runtime environment, resulting in a lightweight and efficient Docker image.
+
+# Prerequisites
+
+Ensure the following prerequisites are met before running the script:
+
+- **Jenkins:**  Ensure Docker is installed on the local system.
+- **Ansible:**  Ensure Ansible is installed along side jenkins system.
+
+# Jenkins Structure
+
+```yaml
+pipeline {
+    agent any
+    environment {
+        DOCKER_HUB_REPO = "abdelazizomar" // Replace with your Docker Hub username
+        DOCKER_IMAGE_NAME = "tomcat-webapp" // Replace with your Docker image name
+        COMMIT_SHA = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
+    }
+     stage('Launch another downstream ansible pipeline for server configuration') {
+            steps {
+                script {
+                      build job: 'ansible-pipeline'
+                }
+            }
+        }
+    stages {
+        stage('Building Stage') {
+            steps {
+                script {               
+                    app = docker.build("${DOCKER_HUB_REPO}/${DOCKER_IMAGE_NAME}:${COMMIT_SHA}", ".")    
+                }
+            }
+        }
+        stage('Pushing Docker Image') {
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+                       app.push()
+                    }
+                    sh 'docker run --network=host ${DOCKER_HUB_REPO}/${DOCKER_IMAGE_NAME}:latest'
+                }
+            }
+        }
+        stage('Run tomcat-webapp Application') {
+            steps {
+                script {
+                    sh 'docker rm -f webapp'
+                    sh 'docker run -d --network=host --name=webapp ${DOCKER_HUB_REPO}/${DOCKER_IMAGE_NAME}:${COMMIT_SHA}'
+                }
+            }
+        }
+        
+    }
+}
+
+
+
+
+```  
+
+This Jenkins pipeline script integrates Docker into the CI/CD workflow, providing automated building, pushing, and deployment of Dockerized applications. By encapsulating the application within Docker containers, it ensures consistent and reproducible deployments across different environments.
+
+# Stage 1: Launch another downstream ansible pipeline for server configuration
+This stage initiates another Jenkins pipeline job named ansible-pipeline for configuring the server using Ansible. This ensures that the server environment is properly configured before deploying the application.
+
+# Stage 2: Building Stage
+- This stage is responsible for building the Docker image for the Tomcat web application.
+- It uses the Docker plugin to build the image based on the Dockerfile present in the project directory.
+- The image is tagged with the commit SHA to ensure version control and traceability.
+
+# Stage 3: Pushing Docker Image
+- In this stage, the Docker image built in the previous stage is pushed to the Docker Hub registry.
+- It utilizes Docker registry credentials stored in Jenkins credentials as docker-hub-credentials.
+- After pushing the image, it runs a Docker container based on the latest image to verify its functionality.
+
+# Stage 4: Run tomcat-webapp Application
+- This final stage deploys the Tomcat web application by running a Docker container.
+- It removes any existing container named webapp to ensure a clean deployment environment.
+- Then, it runs a new container based on the Docker image tagged with the commit SHA.
+The --network=host option is used to enable network access between the container and the host system.
+
+# Environment Variables
+- The DOCKER_HUB_REPO and DOCKER_IMAGE_NAME environment variables define the Docker Hub repository and image name, allowing for easy customization.
+- The COMMIT_SHA variable retrieves the short commit SHA from the Git repository to uniquely tag Docker images.
 
 </details>
