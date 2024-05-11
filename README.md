@@ -1034,37 +1034,5 @@ Run the Docker container using the command docker run -d -p 4287:4287 my-webapp 
 <details>
 <summary><b>Show more details</b></summary>
 
-# Create maven docker compiler with attached non root cached repositries
-
-This Dockerfile provides a streamlined approach to containerizing Java web applications using Maven and Tomcat. It utilizes a multi-stage build process to separate the build environment from the runtime environment, resulting in a lightweight and efficient Docker image.
-
-# Prerequisites
-
-Ensure the following prerequisites are met before running the script:
-
-- **Jenkins:**  Ensure Docker is installed on the local system.
-- **Ansible:**  Ensure Ansible is installed along side jenkins system.
-
-# Jenkins Structure
-
-```yaml
-pipeline {
-    agent any
-
-    stages {
-        stage('Test Ansible') {
-            steps {
-                 ansiblePlaybook become: true, becomeUser: 'root', colorized: true, disableHostKeyChecking: true, installation: 'Ansible', inventory: 'Ansible/inventory', playbook: 'Ansible/playbook.yaml', vaultTmpPath: ''
-            }
-        }
-    }
-}
-
-
-
-```  
-
-This Jenkins pipeline script executes an Ansible playbook as part of the Jenkins job. It uses the ansiblePlaybook step to run the playbook specified in the playbook.yaml file located in the Ansible directory. The playbook is executed with root privileges (become: true) and disables host key checking (disableHostKeyChecking: true). Ensure that the Ansible installation is configured in Jenkins (installation: 'Ansible') and provide the path to the inventory file (inventory: 'Ansible/inventory').
-
 
 </details>
