@@ -24,7 +24,7 @@ This project aims to provide a comprehensive guide for setting up a development 
 - [x] `Done` - [008 - Create Jenkins server based on docker image](#jenkins-image-installation-guide)
 - [x] `Done` - [009 - Create maven docker compiler with attached non root cached repositries](#maven-docker-image-installation-guide)
 - [x] `Done` - [010 - Create Jenkins pipeline that use ansible for configure local host server](#create-jenkins-pipeline)
-- [x] `Done` - [011 - Create Jenkins pipeline that automate git fetch from webhook and compiled source code base on docker image](#jenkins-automate-git-pipeline)
+- [x] `Done` - [011 - Create Jenkins pipeline that automate git fetch from webhook and compiled source code base on docker image and Launch Jenkins another downstream pipeline called ansible pipeline](#jenkins-automate-git-pipeline)
 
 <!-- -
 - [x] `Done` - 003 - Install Subversion (SVN)
@@ -1082,7 +1082,7 @@ This Jenkins pipeline script executes an Ansible playbook as part of the Jenkins
 <details>
 <summary><b>Show more details</b></summary>
 
-# Create Jenkins pipeline that automate git fetch from webhook and compiled source code base on docker image
+# Create Jenkins pipeline that automate git fetch from webhook and compiled source code base on docker image and Launch Jenkins another downstream pipeline called ansible pipeline
 
 This Dockerfile provides a streamlined approach to containerizing Java web applications using Maven and Tomcat. It utilizes a multi-stage build process to separate the build environment from the runtime environment, resulting in a lightweight and efficient Docker image.
 
@@ -1180,7 +1180,7 @@ The --network=host option is used to enable network access between the container
 
 ![Alternative Image](./images/jenkins/10.png)
 
-### 1. Pipeline started b github webhook while push to master branch, starting with the ansible pipeline
+### 1. Pipeline started by github webhook while push to master branch, starting with the ansible pipeline
 
 ![Alternative Image](./images/jenkins/12.png)
 
