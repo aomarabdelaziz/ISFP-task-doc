@@ -616,8 +616,6 @@ Ensure the following prerequisites are met before installing WebLogic Server:
 
 
 
-Shaaaaah
-
 ## Payara Server Installation Guide
 
 <details>
