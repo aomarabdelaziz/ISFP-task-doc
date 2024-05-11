@@ -837,12 +837,30 @@ Ensure the following prerequisites are met before running the script:
 
 ![Alternative Image](./images/svn/1.png)
 ![Alternative Image](./images/svn/2.png)
+
+### 2. Accessing our ISFP repo From Chrome
+
 ![Alternative Image](./images/svn/3.png)
+
+### 3. Accessing our ISFP repo From TortoiseSVN
+
 ![Alternative Image](./images/svn/4.png)
+
+### 4. checking out to our repo form Windows CMD
+
 ![Alternative Image](./images/svn/5.png)
 ![Alternative Image](./images/svn/6.png)
+
+### 5. Adding a new file 
+
 ![Alternative Image](./images/svn/7.png)
+
+### 5. Trying to commit it
+
 ![Alternative Image](./images/svn/8.png)
+
+### 6. Committing blocked by pre-commit webhook located into the repo/hooks directory
+
 ![Alternative Image](./images/svn/9.png)
 ![Alternative Image](./images/svn/10.png)
 ![Alternative Image](./images/svn/11.png)
