@@ -614,6 +614,64 @@ Ensure the following prerequisites are met before installing WebLogic Server:
 </details>
 
 
+
+Shaaaaah
+
+## Payara Server Installation Guide
+
+<details>
+<summary><b>Show more details</b></summary>
+
+# Installing Payara Server 5.191 #badassfish (build 94)
+
+This guide steps for installation of 5.191 #badassfish (build 94) on our local machine.
+
+# Prerequisites
+
+Ensure the following prerequisites are met before installing WebLogic Server:
+
+- **Oracle Java 8 :**  Ensure Oracle Java 8  is installed on the local system.
+- **payara-5.191.zip :** [Download](https://repo1.maven.org/maven2/fish/payara/distributions/payara/5.191/)
+
+# Steps
+
+- After downloading the `payara-5.191.zip` in downloads directory fellow this steps:
+  - **Change Directory to {user}/downloads**: `cd ~/Downloads`
+  - **Extract the Payara Server Installer .zip file**: `unzip payara-5.191.zip`
+  - **Change Directory to {user}/downloads/payara5/bin**: `cd payara5/bin`
+  - **Start the Payara Server**: `./asadmin start-domain domain1`
+
+<details>
+<summary><b>Images</b></summary>
+
+### 1. Starting our payara domain
+
+![Alternative Image](./images/payara//4.png)
+
+![Alternative Image](./images/payara/1.png)
+
+### 3. Payara server version
+
+![Alternative Image](./images/payara//2.png)
+
+### 4. Payara server default admin username
+
+![Alternative Image](./images/payara//3.png)
+
+### 4. Changing default admin username to glassfish
+
+ ```sh
+ By editing /home/isfp/Downloads/payara5/glassfish/domains/domain1/config/admin-keyfile
+ ```
+![Alternative Image](./images/payara//5.png)
+![Alternative Image](./images/payara//6.png)
+
+
+
+</details>
+</details>
+
+
 ## PHP Apache Docker Installation Guide
 
 <details>
