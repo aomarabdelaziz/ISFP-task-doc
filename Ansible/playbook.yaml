@@ -302,10 +302,11 @@
       file:
         path: "{{svn_accounts_home}}"
         state: directory
+        mode: "0755"
 
-    - name: "Change permissions of {{svn_accounts_home}}"
+    - name: "Change permissions of {{svn_accounts_home}}/svn-auth"
       file:
-        path: "{{svn_accounts_home}}"
+        path: "{{svn_accounts_home}}/svn-auth"
         owner: root
         group: apache
         mode: 0640
