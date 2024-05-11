@@ -662,7 +662,7 @@ Ensure the following prerequisites are met before installing WebLogic Server:
  ```sh
  By editing /home/isfp/Downloads/payara5/glassfish/domains/domain1/config/admin-keyfile
  ```
-![Alternative Image](./images/payara//5.png)
+![Alternative Image](./images/payara//5-1.png)
 ![Alternative Image](./images/payara//6.png)
 
 
