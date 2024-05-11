@@ -1,248 +1,248 @@
-# ---
-# - name: Update CentOS repositories
-#   hosts: localhost
-#   become: yes
-#   tasks:
-#     - name: Update repositories
-#       yum:
-#         name: "*"
-#         state: latest
+---
+- name: Update CentOS repositories
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Update repositories
+      yum:
+        name: "*"
+        state: latest
 
-# - name: Install multiple versions of Java and set earlier one is the default (8)
-#   hosts: localhost
-#   become: yes
-#   vars:
-#     java8_download_url: https://download.oracle.com/otn/java/jdk/8u411-b09/43d62d619be4e416215729597d70b8ac/jdk-8u411-linux-x64.tar.gz?AuthParam=1715329607_1d701ac9a940bea9f0e903935ba46eb1
-#     java11_download_url: https://download.oracle.com/otn/java/jdk/11.0.23+7/9bd8d305c900ee4fa3e613b59e6f42de/jdk-11.0.23_linux-x64_bin.tar.gz?AuthParam=1715329784_6c64b1935760ee8cd8f61cc325d75b82
-#     download_folder: /tmp
-#     java_8_home: "/usr/local/jdk1.8.0_411"
-#     java_11_home: "/usr/local/jdk-11.0.23"
-#     java_8_archive: "{{download_folder}}/jdk-8u411-linux-x64.tar.gz"
-#     java_11_archive: "{{download_folder}}/jdk-11.0.23_linux-x64_bin.tar.gz"
-#     java_env_file: "/etc/profile.d/java.sh"
-#   tasks:
-#     - name: Check if Oracle Java 8 archive exists
-#       stat:
-#         path: "{{ java_8_archive }}"
-#       register: java_8_archive_stat
+- name: Install multiple versions of Java and set earlier one is the default (8)
+  hosts: localhost
+  become: yes
+  vars:
+    java8_download_url: https://download.oracle.com/otn/java/jdk/8u411-b09/43d62d619be4e416215729597d70b8ac/jdk-8u411-linux-x64.tar.gz?AuthParam=1715329607_1d701ac9a940bea9f0e903935ba46eb1
+    java11_download_url: https://download.oracle.com/otn/java/jdk/11.0.23+7/9bd8d305c900ee4fa3e613b59e6f42de/jdk-11.0.23_linux-x64_bin.tar.gz?AuthParam=1715329784_6c64b1935760ee8cd8f61cc325d75b82
+    download_folder: /tmp
+    java_8_home: "/usr/local/jdk1.8.0_411"
+    java_11_home: "/usr/local/jdk-11.0.23"
+    java_8_archive: "{{download_folder}}/jdk-8u411-linux-x64.tar.gz"
+    java_11_archive: "{{download_folder}}/jdk-11.0.23_linux-x64_bin.tar.gz"
+    java_env_file: "/etc/profile.d/java.sh"
+  tasks:
+    - name: Check if Oracle Java 8 archive exists
+      stat:
+        path: "{{ java_8_archive }}"
+      register: java_8_archive_stat
 
-#     - name: Check if Oracle Java 11 archive exists
-#       stat:
-#         path: "{{ java_11_archive }}"
-#       register: java_11_archive_stat
+    - name: Check if Oracle Java 11 archive exists
+      stat:
+        path: "{{ java_11_archive }}"
+      register: java_11_archive_stat
 
-#     - name: Download Oracle Java 8
-#       command: "curl -v -L -b oraclelicense=accept-securebackup-cookie -o {{java_8_archive}}  {{java8_download_url}}"
-#       when: java_8_archive_stat.stat.exists == False
+    - name: Download Oracle Java 8
+      command: "curl -v -L -b oraclelicense=accept-securebackup-cookie -o {{java_8_archive}}  {{java8_download_url}}"
+      when: java_8_archive_stat.stat.exists == False
 
-#     - name: Download Oracle Java 11
-#       command: "curl -v -L -b oraclelicense=accept-securebackup-cookie -o {{java_11_archive}}  {{java11_download_url}}"
-#       when: java_11_archive_stat.stat.exists == False
+    - name: Download Oracle Java 11
+      command: "curl -v -L -b oraclelicense=accept-securebackup-cookie -o {{java_11_archive}}  {{java11_download_url}}"
+      when: java_11_archive_stat.stat.exists == False
 
-#     - name: Unpack archive Oracle Java 8
-#       unarchive:
-#         src: "{{java_8_archive}}"
-#         dest: /usr/local
-#         remote_src: yes
+    - name: Unpack archive Oracle Java 8
+      unarchive:
+        src: "{{java_8_archive}}"
+        dest: /usr/local
+        remote_src: yes
 
-#     - name: Unpack archive Oracle Java 11
-#       unarchive:
-#         src: "{{java_11_archive}}"
-#         dest: /usr/local
-#         remote_src: yes
+    - name: Unpack archive Oracle Java 11
+      unarchive:
+        src: "{{java_11_archive}}"
+        dest: /usr/local
+        remote_src: yes
 
-#     - name: Install Oracle Java 8
-#       command: 'update-alternatives --install "/usr/bin/java" "java" "{{java_8_home}}/jre/bin/java" 1'
-#     - name: Install Oracle Java 11
-#       command: 'update-alternatives --install "/usr/bin/java" "java" "{{java_11_home}}/jre/bin/java" 1'
-#     - name: Set Oracle Java 8 as default
-#       command: "update-alternatives --set java {{java_8_home}}/jre/bin/java"
+    - name: Install Oracle Java 8
+      command: 'update-alternatives --install "/usr/bin/java" "java" "{{java_8_home}}/jre/bin/java" 1'
+    - name: Install Oracle Java 11
+      command: 'update-alternatives --install "/usr/bin/java" "java" "{{java_11_home}}/jre/bin/java" 1'
+    - name: Set Oracle Java 8 as default
+      command: "update-alternatives --set java {{java_8_home}}/jre/bin/java"
 
-#     - name: Create /etc/profile.d directory
-#       file:
-#         path: /etc/profile.d
-#         state: directory
+    - name: Create /etc/profile.d directory
+      file:
+        path: /etc/profile.d
+        state: directory
 
-#     - name: Create java.sh file
-#       file:
-#         path: "{{java_env_file}}"
-#         state: touch
+    - name: Create java.sh file
+      file:
+        path: "{{java_env_file}}"
+        state: touch
 
-#     - name: Clear content of java.sh file if it exists
-#       shell: echo "" > "{{ java_env_file }}"
+    - name: Clear content of java.sh file if it exists
+      shell: echo "" > "{{ java_env_file }}"
 
-#     - name: Set environment variables for JAVA
-#       lineinfile:
-#         dest: "{{ java_env_file }}"
-#         line: "{{item }}"
-#       with_items:
-#         - "export JAVA_HOME={{java_8_home}}"
-#         - "export PATH=$PATH:$JAVA_HOME/bin"
+    - name: Set environment variables for JAVA
+      lineinfile:
+        dest: "{{ java_env_file }}"
+        line: "{{item }}"
+      with_items:
+        - "export JAVA_HOME={{java_8_home}}"
+        - "export PATH=$PATH:$JAVA_HOME/bin"
 
-#     - name: Source java.sh script
-#       shell: source {{java_env_file}}
-#       args:
-#         executable: /bin/bash
+    - name: Source java.sh script
+      shell: source {{java_env_file}}
+      args:
+        executable: /bin/bash
 
-# - name: Install Apache Tomcat 6.0.37
-#   hosts: localhost
-#   become: yes
-#   vars:
-#     download_url: https://archive.apache.org/dist/tomcat/tomcat-6/v6.0.37/bin/apache-tomcat-6.0.37.tar.gz
-#     download_folder: /tmp
-#     tomcat_installation_path: "/opt/tomcat"
-#     tomcat_home: "/opt/tomcat/apache-tomcat-6.0.37"
-#     tomcat_archive: "{{download_folder}}/apache-tomcat-6.0.37.tar.gz"
-#   tasks:
-#     - name: Create tomcat directory
-#       file:
-#         path: "{{tomcat_installation_path}}"
-#         state: directory
+- name: Install Apache Tomcat 6.0.37
+  hosts: localhost
+  become: yes
+  vars:
+    download_url: https://archive.apache.org/dist/tomcat/tomcat-6/v6.0.37/bin/apache-tomcat-6.0.37.tar.gz
+    download_folder: /tmp
+    tomcat_installation_path: "/opt/tomcat"
+    tomcat_home: "/opt/tomcat/apache-tomcat-6.0.37"
+    tomcat_archive: "{{download_folder}}/apache-tomcat-6.0.37.tar.gz"
+  tasks:
+    - name: Create tomcat directory
+      file:
+        path: "{{tomcat_installation_path}}"
+        state: directory
 
-#     - name: Download Apache Tomcat
-#       get_url:
-#         url: "{{download_url}}"
-#         dest: "{{tomcat_archive}}"
+    - name: Download Apache Tomcat
+      get_url:
+        url: "{{download_url}}"
+        dest: "{{tomcat_archive}}"
 
-#     - name: Extract Apache Tomcat
-#       unarchive:
-#         src: "{{tomcat_archive}}"
-#         dest: "{{tomcat_installation_path}}"
-#         remote_src: yes
+    - name: Extract Apache Tomcat
+      unarchive:
+        src: "{{tomcat_archive}}"
+        dest: "{{tomcat_installation_path}}"
+        remote_src: yes
 
-#     - name: Change permissions of startup.sh
-#       file:
-#         path: "{{tomcat_home}}/bin/startup.sh"
-#         mode: +x
+    - name: Change permissions of startup.sh
+      file:
+        path: "{{tomcat_home}}/bin/startup.sh"
+        mode: +x
 
-#     - name: Change Tomcat connector port to 8088
-#       replace:
-#         path: "{{tomcat_home}}/conf/server.xml"
-#         regexp: 'port="8080"'
-#         replace: 'port="8088"'
+    - name: Change Tomcat connector port to 8088
+      replace:
+        path: "{{tomcat_home}}/conf/server.xml"
+        regexp: 'port="8080"'
+        replace: 'port="8088"'
 
-#     - name: Change Tomcat port 8005 > 8006
-#       replace:
-#         path: "{{tomcat_home}}/conf/server.xml"
-#         regexp: 'port="8005"'
-#         replace: 'port="8006"'
+    - name: Change Tomcat port 8005 > 8006
+      replace:
+        path: "{{tomcat_home}}/conf/server.xml"
+        regexp: 'port="8005"'
+        replace: 'port="8006"'
 
-#     - name: Change Tomcat connector 8009 > 8010
-#       replace:
-#         path: "{{tomcat_home}}/conf/server.xml"
-#         regexp: 'port="8009"'
-#         replace: 'port="8010"'
+    - name: Change Tomcat connector 8009 > 8010
+      replace:
+        path: "{{tomcat_home}}/conf/server.xml"
+        regexp: 'port="8009"'
+        replace: 'port="8010"'
 
-#     - name: Create tomcat-users.xml file
-#       template:
-#         src: "./tomcat/tomcat-users.xml"
-#         dest: "{{tomcat_home}}/conf/tomcat-users.xml"
+    - name: Create tomcat-users.xml file
+      template:
+        src: "./tomcat/tomcat-users.xml"
+        dest: "{{tomcat_home}}/conf/tomcat-users.xml"
 
-#     - name: Start Tomcat service using startup.sh
-#       command: sh "{{tomcat_home}}/bin/startup.sh"
+    - name: Start Tomcat service using startup.sh
+      command: sh "{{tomcat_home}}/bin/startup.sh"
 
-#     - name: Check if Tomcat service is running
-#       shell: ps aux | grep '[c]atalina.home=/opt/tomcat'
-#       register: tomcat_status
-#       ignore_errors: yes
+    - name: Check if Tomcat service is running
+      shell: ps aux | grep '[c]atalina.home=/opt/tomcat'
+      register: tomcat_status
+      ignore_errors: yes
 
-#     - name: Debug message Tomcat status
-#       debug:
-#         msg: "Tomcat is {{ 'running' if tomcat_status.rc == 0 else 'not running' }}"
+    - name: Debug message Tomcat status
+      debug:
+        msg: "Tomcat is {{ 'running' if tomcat_status.rc == 0 else 'not running' }}"
 
-# - name: Install Apache Maven and configure environment
-#   hosts: localhost
-#   become: yes
-#   vars:
-#     download_url: https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
-#     download_folder: /tmp
-#     maven_installation_path: "/opt/maven"
-#     maven_home: "/opt/maven/apache-maven-3.9.6"
-#     maven_archive: "{{download_folder}}/apache-maven-3.9.6-bin.tar.gz"
-#     maven_env_file: "/etc/profile.d/maven.sh"
+- name: Install Apache Maven and configure environment
+  hosts: localhost
+  become: yes
+  vars:
+    download_url: https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
+    download_folder: /tmp
+    maven_installation_path: "/opt/maven"
+    maven_home: "/opt/maven/apache-maven-3.9.6"
+    maven_archive: "{{download_folder}}/apache-maven-3.9.6-bin.tar.gz"
+    maven_env_file: "/etc/profile.d/maven.sh"
 
-#   tasks:
-#     - name: Download Maven
-#       get_url:
-#         url: "{{ download_url }}"
-#         dest: "{{ maven_archive }}"
+  tasks:
+    - name: Download Maven
+      get_url:
+        url: "{{ download_url }}"
+        dest: "{{ maven_archive }}"
 
-#     - name: Create maven.sh
-#       file:
-#         path: "{{ maven_installation_path }}"
-#         state: directory
+    - name: Create maven.sh
+      file:
+        path: "{{ maven_installation_path }}"
+        state: directory
 
-#     - name: Extract Maven
-#       unarchive:
-#         src: "{{ maven_archive }}"
-#         dest: "{{ maven_installation_path }}"
-#         creates: "{{ maven_home }}"
-#         remote_src: yes
+    - name: Extract Maven
+      unarchive:
+        src: "{{ maven_archive }}"
+        dest: "{{ maven_installation_path }}"
+        creates: "{{ maven_home }}"
+        remote_src: yes
 
-#     - name: Create maven.sh
-#       file:
-#         path: "{{ maven_env_file }}"
-#         state: touch
+    - name: Create maven.sh
+      file:
+        path: "{{ maven_env_file }}"
+        state: touch
 
-#     - name: Clear content of maven.sh file if it exists
-#       shell: echo "" > "{{ maven_env_file }}"
+    - name: Clear content of maven.sh file if it exists
+      shell: echo "" > "{{ maven_env_file }}"
 
-#     - name: Set environment variables for Maven
-#       lineinfile:
-#         dest: "{{ maven_env_file }}"
-#         line: "{{ item }}"
-#       with_items:
-#         - "export M2_HOME={{maven_home}}"
-#         - "export PATH=$PATH:$M2_HOME/bin"
+    - name: Set environment variables for Maven
+      lineinfile:
+        dest: "{{ maven_env_file }}"
+        line: "{{ item }}"
+      with_items:
+        - "export M2_HOME={{maven_home}}"
+        - "export PATH=$PATH:$M2_HOME/bin"
 
-#     - name: Configure maven repo to use local repo
-#       copy:
-#         src: "./maven/settings.xml"
-#         dest: "{{ maven_home }}/conf/settings.xml"
+    - name: Configure maven repo to use local repo
+      copy:
+        src: "./maven/settings.xml"
+        dest: "{{ maven_home }}/conf/settings.xml"
 
-#     - name: Source maven.sh script
-#       shell: source {{ maven_env_file }}
-#       args:
-#         executable: /bin/bash
+    - name: Source maven.sh script
+      shell: source {{ maven_env_file }}
+      args:
+        executable: /bin/bash
 
-# - name: Install Apache and PHP and Docker
-#   hosts: localhost
-#   become: yes
+- name: Install Apache and PHP and Docker
+  hosts: localhost
+  become: yes
 
-#   tasks:
-#     - name: Install apache(httpd)
-#       yum:
-#         name: httpd
-#         state: present
+  tasks:
+    - name: Install apache(httpd)
+      yum:
+        name: httpd
+        state: present
 
-#     - name: Install php package
-#       yum:
-#         name: php
-#         state: present
-#     - name: Add Docker repository
-#       yum_repository:
-#         name: docker-ce
-#         description: Docker CE Stable - $basearch
-#         baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
-#         gpgcheck: yes
-#         gpgkey: https://download.docker.com/linux/centos/gpg
-#         enabled: yes
+    - name: Install php package
+      yum:
+        name: php
+        state: present
+    - name: Add Docker repository
+      yum_repository:
+        name: docker-ce
+        description: Docker CE Stable - $basearch
+        baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
+        gpgcheck: yes
+        gpgkey: https://download.docker.com/linux/centos/gpg
+        enabled: yes
 
-#     - name: Install Docker
-#       yum:
-#         name: docker-ce
-#         state: present
+    - name: Install Docker
+      yum:
+        name: docker-ce
+        state: present
 
-#     - name: Start Docker service
-#       service:
-#         name: docker
-#         state: started
-#         enabled: yes
+    - name: Start Docker service
+      service:
+        name: docker
+        state: started
+        enabled: yes
 
-#     - name: Change permissions of /var/run/docker.sock
-#       file:
-#         path: /var/run/docker.sock
-#         mode: "0666"
+    - name: Change permissions of /var/run/docker.sock
+      file:
+        path: /var/run/docker.sock
+        mode: "0666"
 
 - name: Install SVN
   hosts: localhost
@@ -338,35 +338,35 @@
     - name: Start SVN server
       command: "svnserve -d -r {{svn_repos_home}}"
       ignore_errors: true
-# - name: Run Jenkins with ansible support as a Docker image
-#   hosts: localhost
-#   become: yes
-#   vars:
-#     docker_file_download_url: https://raw.githubusercontent.com/aomarabdelaziz/ISFP-task-doc/master/Docker/Jenkins-ansible/Dockerfile
-#     download_path: /tmp/Dockerfile
-#   tasks:
-#     - name: Download Dockerfile.jenkins-ansible
-#       get_url:
-#         url: "{{docker_file_download_url}}"
-#         dest: "{{ download_path }}"
+- name: Run Jenkins with ansible support as a Docker image
+  hosts: localhost
+  become: yes
+  vars:
+    docker_file_download_url: https://raw.githubusercontent.com/aomarabdelaziz/ISFP-task-doc/master/Docker/Jenkins-ansible/Dockerfile
+    download_path: /tmp/Dockerfile
+  tasks:
+    - name: Download Dockerfile.jenkins-ansible
+      get_url:
+        url: "{{docker_file_download_url}}"
+        dest: "{{ download_path }}"
 
-#     - name: Build Docker image
-#       command: "docker build -t jenkins-ansible -f {{download_path}} ."
+    - name: Build Docker image
+      command: "docker build -t jenkins-ansible -f {{download_path}} ."
 
-#     - name: Run Jenkins container
-#       shell: "docker run --name jenkins --network=host -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -d -v $(which docker):$(which docker) jenkins-ansible"
-#       ignore_errors: yes
+    - name: Run Jenkins container
+      shell: "docker run --name jenkins --network=host -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -d -v $(which docker):$(which docker) jenkins-ansible"
+      ignore_errors: yes
 
-#     - name: Pause for 10 seconds before getting initial admin password
-#       pause:
-#         seconds: 10
+    - name: Pause for 10 seconds before getting initial admin password
+      pause:
+        seconds: 10
 
-#     - name: Get initial admin password
-#       shell: docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
-#       register: initial_admin_password
-#       ignore_errors: yes
+    - name: Get initial admin password
+      shell: docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+      register: initial_admin_password
+      ignore_errors: yes
 
-#     - name: Print the secret
-#       debug:
-#         msg: "The initial admin password is {{ initial_admin_password.stdout }}"
-#       when: initial_admin_password.rc == 0 # Only print if the command succeeds
+    - name: Print the secret
+      debug:
+        msg: "The initial admin password is {{ initial_admin_password.stdout }}"
+      when: initial_admin_password.rc == 0 # Only print if the command succeeds

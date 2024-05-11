@@ -20,15 +20,15 @@
 
 [groups]
 admin=user001
-repo1_user=user002
-repo1_trainee=user003
+isfp_user=user002
+isfp_trainee=user003
 
 [/]
 @admin=rw
 
-[repo1:/]
-@repo1_user=rw
-@repo1_trainee=r
+[isfp:/]
+@isfp_user=rw
+@isfp_trainee=r
 
 # harry_and_sally = harry,sally
 # harry_sally_and_joe = harry,sally,&joe
