@@ -855,13 +855,17 @@ Ensure the following prerequisites are met before running the script:
 
 ![Alternative Image](./images/svn/7.png)
 
-### 5. Trying to commit it
+### 5. Trying to commit it and Committing blocked by pre-commit webhook located into the repo/hooks directory
 
 ![Alternative Image](./images/svn/8.png)
 
-### 6. Committing blocked by pre-commit webhook located into the repo/hooks directory
+### 6. The commit Successfully committed
 
 ![Alternative Image](./images/svn/9.png)
+
+### 7. The new revision updated
+
+
 ![Alternative Image](./images/svn/10.png)
 ![Alternative Image](./images/svn/11.png)
 
