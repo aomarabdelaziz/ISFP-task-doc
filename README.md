@@ -1310,8 +1310,7 @@ pipeline {
 
 # Create Jenkins pipeline that automate git fetch from webhook and compiled source code base on docker image and Launch Jenkins another downstream pipeline called ansible pipeline
 
-This Dockerfile provides a streamlined approach to containerizing Java web applications using Maven and Tomcat. It utilizes a multi-stage build process to separate the build environment from the runtime environment, resulting in a lightweight and efficient Docker image.
-
+This Jenkins pipeline script integrates Docker into the CI/CD workflow, providing automated building, pushing, and deployment of Dockerized applications. By encapsulating the application within Docker containers, it ensures consistent and reproducible deployments across different environments.
 # Prerequisites
 
 Ensure the following prerequisites are met before running the script:
@@ -1371,7 +1370,6 @@ pipeline {
 
 ```  
 
-This Jenkins pipeline script integrates Docker into the CI/CD workflow, providing automated building, pushing, and deployment of Dockerized applications. By encapsulating the application within Docker containers, it ensures consistent and reproducible deployments across different environments.
 
 # Stage 1: Launch another downstream ansible pipeline for server configuration
 This stage initiates another Jenkins pipeline job named ansible-pipeline for configuring the server using Ansible. This ensures that the server environment is properly configured before deploying the application.
