@@ -300,21 +300,21 @@
 
     - name: Create user001
       shell: |
-        echo "{{ your_password }}" | sudo htpasswd -cm /etc/svn/svn-auth user001
+        echo "{{ user_password }}" | sudo htpasswd -cm /etc/svn/svn-auth user001
       vars:
         user_password: "123"
       ignore_errors: true
 
     - name: Create user002
       shell: |
-        echo "{{ your_password }}" | sudo htpasswd -cm /etc/svn/svn-auth user002
+        echo "{{ user_password }}" | sudo htpasswd -cm /etc/svn/svn-auth user002
       vars:
         user_password: "123"
       ignore_errors: true
 
     - name: Create user003
       shell: |
-        echo "{{ your_password }}" | sudo htpasswd -cm /etc/svn/svn-auth user003
+        echo "{{ user_password }}" | sudo htpasswd -cm /etc/svn/svn-auth user003
       vars:
         user_password: "123"
       ignore_errors: true
@@ -331,13 +331,13 @@
         group: apache
         mode: 0640
 
-    - name: Change SELinux context of /svn/authz
-      command: chcon -R -t httpd_sys_content_t /svn/authz
-
     - name: Setup permissions for users
       copy:
         src: "{{svn_repos_home}}/isfp/conf/authz"
         dest: "{{ svn_repos_home }}/authz/"
+
+    - name: Change SELinux context of /svn/authz
+      command: chcon -R -t httpd_sys_content_t /svn/authz
 
     - name: Start and enable httpd service
       systemd:
