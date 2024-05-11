@@ -1173,13 +1173,35 @@ The --network=host option is used to enable network access between the container
 <details>
 <summary><b>Images</b></summary>
 
-### 1. Ansible pipeline Execution
+
+![Alternative Image](./images/jenkins/9.png)
+
+### 1. Launch another downstream ansible pipeline for server configuration using Ansible
+
+![Alternative Image](./images/jenkins/10.png)
+
+### 1. Pipeline started b github webhook while push to master branch, starting with the ansible pipeline
+
+![Alternative Image](./images/jenkins/12.png)
+
+### 1. Ansible pipeline execution
 
 ![Alternative Image](./images/jenkins/13.png)
 ![Alternative Image](./images/jenkins/14.png)
 ![Alternative Image](./images/jenkins/16.png)
 ![Alternative Image](./images/jenkins/19.png)
 ![Alternative Image](./images/jenkins/20.png)
+
+### 1. Continue execution of the application pipeline
+
+![Alternative Image](./images/jenkins/11.png)
+![Alternative Image](./images/jenkins/11-1.png)
+
+### 1. Our application is running on our tomcat server container
+
+![Alternative Image](./images/jenkins/22.png)
+
+
 
 </details>
 
