@@ -830,6 +830,17 @@ Ensure the following prerequisites are met before running the script:
 <details>
 <summary><b>Images</b></summary>
 
+### 1. Executing ansible playbook to our vm
+
+![Alternative Image](./images/svn/1.png)
+![Alternative Image](./images/svn/2.png)
+![Alternative Image](./images/svn/3.png)
+![Alternative Image](./images/svn/4.png)
+![Alternative Image](./images/svn/5.png)
+![Alternative Image](./images/svn/6.png)
+![Alternative Image](./images/svn/7.png)
+![Alternative Image](./images/svn/8.png)
+
 </details>
 </details>
 
