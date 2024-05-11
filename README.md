@@ -804,6 +804,9 @@ Ensure the following prerequisites are met before running the script:
     - name: "Change SELinux context of {{svn_repos_home}}"
       command: "chcon -R -t httpd_sys_rw_content_t {{svn_repos_home}}"
 
+    - name: "Change SELinux context of {{svn_repos_home}}"
+      command: "chcon -t httpd_exec_t  {{svn_repos_home}}/isfp/pre-commit"
+
     - name: Start and enable httpd service
       systemd:
         name: httpd
@@ -840,6 +843,9 @@ Ensure the following prerequisites are met before running the script:
 ![Alternative Image](./images/svn/6.png)
 ![Alternative Image](./images/svn/7.png)
 ![Alternative Image](./images/svn/8.png)
+![Alternative Image](./images/svn/9.png)
+![Alternative Image](./images/svn/10.png)
+![Alternative Image](./images/svn/11.png)
 
 </details>
 </details>

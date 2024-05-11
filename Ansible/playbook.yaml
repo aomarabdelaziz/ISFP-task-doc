@@ -329,6 +329,9 @@
     - name: "Change SELinux context of {{svn_repos_home}}"
       command: "chcon -R -t httpd_sys_rw_content_t {{svn_repos_home}}"
 
+    - name: "Change SELinux context of {{svn_repos_home}}"
+      command: "chcon -t httpd_exec_t  {{svn_repos_home}}/isfp/pre-commit"
+
     - name: Start and enable httpd service
       systemd:
         name: httpd
