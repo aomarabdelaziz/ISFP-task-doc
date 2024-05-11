@@ -1000,8 +1000,11 @@ Run the Docker container using the command docker run -d -p 4287:4287 my-webapp 
 
 ## Important Notes
 
-# Before digging into next steps you should know
 > [!IMPORTANT]  
+> The below explanation is important for the next tasks or steps. You have to read it carefully.
+
+
+> [!NOTE]  
 > To make Jenkins get triggered by a github webhook while pushing something to our master branch, I have to enable the build triggers in my pipeline (the github hook trigger for GITScm polling) and add the Jenkins server url (ex: <https://www.ourjenkins.com/github-webhok>), but since Jenkins is not in a public area, we installed it into our VM, which isn't publicly accessible.
 > So I used a useful tool that helped me achieve that, and it is called Ngrok.
 > What is ngrok? according to ngrok website 
