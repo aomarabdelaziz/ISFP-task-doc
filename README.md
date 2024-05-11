@@ -256,7 +256,7 @@ So I got those links from my login session; they have a limit 3 times only to be
 </details>
 
 
-##  :computer: Apache Tomcat Installation Guide
+## Apache Tomcat Installation Guide
 
 <details>
 <summary><b>Show more details</b></summary>
@@ -445,7 +445,7 @@ Ensure the following prerequisites are met before running the playbook:
 
 
 
-## :computer: Maven Installation Guide
+## Maven Installation Guide
 
 <details>
 <summary><b>Show more details</b></summary>
@@ -550,7 +550,7 @@ Ensure the following prerequisites are met before running the playbook:
 </details>
 
 
-## :computer: WebLogic Server Installation Guide
+## WebLogic Server Installation Guide
 
 <details>
 <summary><b>Show more details</b></summary>
@@ -613,7 +613,7 @@ Ensure the following prerequisites are met before installing WebLogic Server:
 </details>
 
 
-## :computer: PHP Apache Docker Installation
+## PHP Apache Docker Installation
 
 <details>
 <summary><b>Show more details</b></summary>
@@ -695,7 +695,7 @@ Ensure the following prerequisites are met before running the playbook:
 </details>
 
 
-## :computer: Compare Script Guide
+## Compare Script Guide
 
 <details>
 <summary><b>Show more details</b></summary>
@@ -781,7 +781,7 @@ compare_lines_src_dest(lines_dict, "output.txt")
 </details>
 
 
-## :computer: Jenkins Image Installation Guide
+## Jenkins Image Installation Guide
 
 <details>
 <summary><b>Show more details</b></summary>
@@ -915,7 +915,7 @@ USER jenkins
 
 
 
-## :computer: Maven Docker Image With Tomcat Server Installation Guide
+## Maven Docker Image With Tomcat Server Installation Guide
 
 <details>
 <summary><b>Show more details</b></summary>
@@ -1034,7 +1034,7 @@ Run the Docker container using the command docker run -d -p 4287:4287 my-webapp 
 
 
 
-## :computer: Create Jenkins pipeline that use ansible for configure local host server
+## Create Jenkins pipeline that use ansible for configure local host server
 
 <details>
 <summary><b>Show more details</b></summary>
@@ -1077,7 +1077,7 @@ This Jenkins pipeline script executes an Ansible playbook as part of the Jenkins
 
 
 
-## :computer: Jenkins Automate Git Pipeline
+## Jenkins Automate Git Pipeline
 
 <details>
 <summary><b>Show more details</b></summary>
