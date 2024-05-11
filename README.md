@@ -613,7 +613,7 @@ Ensure the following prerequisites are met before installing WebLogic Server:
 </details>
 
 
-## PHP Apache Docker Installation
+## PHP Apache Docker Installation Guide
 
 <details>
 <summary><b>Show more details</b></summary>
