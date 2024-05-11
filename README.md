@@ -1270,7 +1270,7 @@ Run the Docker container using the command docker run -d -p 4287:4287 my-webapp 
 
 # Create Jenkins pipeline that use ansible for configure local host server
 
-This Dockerfile provides a streamlined approach to containerizing Java web applications using Maven and Tomcat. It utilizes a multi-stage build process to separate the build environment from the runtime environment, resulting in a lightweight and efficient Docker image.
+this Jenkins pipeline script executes an Ansible playbook as part of the Jenkins job. It uses the ansiblePlaybook step to run the playbook specified in the playbook.yaml file located in the Ansible directory. The playbook is executed with root privileges (become: true) and disables host key checking (disableHostKeyChecking: true). Ensure that the Ansible installation is configured in Jenkins (installation: 'Ansible') and provide the path to the inventory file (inventory: 'Ansible/inventory').
 
 # Prerequisites
 
@@ -1297,9 +1297,6 @@ pipeline {
 
 
 ```  
-
-This Jenkins pipeline script executes an Ansible playbook as part of the Jenkins job. It uses the ansiblePlaybook step to run the playbook specified in the playbook.yaml file located in the Ansible directory. The playbook is executed with root privileges (become: true) and disables host key checking (disableHostKeyChecking: true). Ensure that the Ansible installation is configured in Jenkins (installation: 'Ansible') and provide the path to the inventory file (inventory: 'Ansible/inventory').
-
 
 
 </details>
