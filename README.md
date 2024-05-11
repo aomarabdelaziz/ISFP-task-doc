@@ -919,6 +919,8 @@ USER jenkins
 <details>
 <summary><b>Show more details</b></summary>
 
+# Create Maven Docker Image With Tomcat Server
+
 This Dockerfile provides a streamlined approach to containerizing Java web applications using Maven and Tomcat. It utilizes a multi-stage build process to separate the build environment from the runtime environment, resulting in a lightweight and efficient Docker image.
 
 # Prerequisites
