@@ -1047,7 +1047,7 @@ This Dockerfile provides a streamlined approach to containerizing Java web appli
 
 Ensure the following prerequisites are met before running the script:
 
-- **Jenkins:**  Ensure Docker is installed on the local system.
+- **Jenkins:**  Ensure Jenkins is installed on the local system.
 - **Ansible:**  Ensure Ansible is installed along side jenkins system.
 
 # Jenkins Structure
@@ -1090,8 +1090,8 @@ This Dockerfile provides a streamlined approach to containerizing Java web appli
 
 Ensure the following prerequisites are met before running the script:
 
-- **Jenkins:**  Ensure Docker is installed on the local system.
-- **Ansible:**  Ensure Ansible is installed along side jenkins system.
+- **Docker:**  Ensure Docker is installed on the local system.
+- **Jenkins:**  Ensure Jenkins is installed.
 
 # Jenkins Structure
 
@@ -1169,5 +1169,18 @@ The --network=host option is used to enable network access between the container
 # Environment Variables
 - The DOCKER_HUB_REPO and DOCKER_IMAGE_NAME environment variables define the Docker Hub repository and image name, allowing for easy customization.
 - The COMMIT_SHA variable retrieves the short commit SHA from the Git repository to uniquely tag Docker images.
+
+<details>
+<summary><b>Images</b></summary>
+
+### 1. Ansible pipeline Execution
+
+![Alternative Image](./images/jenkins/13.png)
+![Alternative Image](./images/jenkins/14.png)
+![Alternative Image](./images/jenkins/16.png)
+![Alternative Image](./images/jenkins/19.png)
+![Alternative Image](./images/jenkins/20.png)
+
+</details>
 
 </details>
