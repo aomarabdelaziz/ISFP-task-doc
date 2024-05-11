@@ -308,7 +308,7 @@
 
     - name: Create svn-auth file
       file:
-        path: "svn-auth"
+        path: "{{svn_accounts_home}}/svn-auth"
         state: touch
 
     - name: "Change permissions of {{svn_accounts_home}}/svn-auth"
